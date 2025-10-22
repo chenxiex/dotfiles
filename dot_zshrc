@@ -1,0 +1,99 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt nonomatch
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/anlorsp/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+### plugins
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-history-substring-search
+zinit light agkozak/zsh-z
+zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
+zinit light sindresorhus/pure
+### End of plugins
+
+### completion
+setopt completealiases
+zstyle ':completion:*' menu yes select search
+autoload -U +X bashcompinit && bashcompinit
+###
+
+### env
+source "$HOME/.env"
+###
+
+### aliases
+alias sudo="sudo "
+alias nvprime="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia "
+alias tpm-luks-enroll="systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7+12 /dev/nvme0n1p2"
+alias tpm-luks-wipe="systemd-cryptenroll --wipe-slot=tpm2 /dev/nvme0n1p2"
+alias pandoc-pdf="pandoc --pdf-engine=xelatex -V CJKmainfont='Noto Sans CJK SC' "
+alias wine="org.winehq.Wine "
+alias RB="sudo systemctl restart bluetooth"
+### End of aliases
+
+### functions
+set-proxy(){
+	export http_proxy=http://127.0.0.1:1080
+	export https_proxy=http://127.0.0.1:1080
+	export all_proxy=socks5://127.0.0.1:1080
+
+	export HTTP_PROXY=http://127.0.0.1:1080
+	export HTTPS_PROXY=http://127.0.0.1:1080
+	export ALL_PROXY=socks5://127.0.0.1:1080
+}
+
+unset-proxy(){
+	unset http_proxy
+	unset https_proxy
+	unset all_proxy
+
+	unset HTTP_PROXY
+	unset HTTPS_PROXY
+	unset ALL_PROXY
+}
+### End of functions
+
+# Command-not-found
+if [ -e "/usr/share/doc/pkgfile/command-not-found.zsh" ]; then
+    source /usr/share/doc/pkgfile/command-not-found.zsh
+fi
+# End of command-not-found
+
+### gh copilot
+if command -v gh >/dev/null 2>&1; then
+	eval "$(gh copilot alias -- zsh)"
+fi
+### End of gh copilot

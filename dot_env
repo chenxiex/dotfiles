@@ -1,0 +1,2 @@
+export PATH=/home/anlorsp/.local/bin:$PATH
+export EDITOR=vim

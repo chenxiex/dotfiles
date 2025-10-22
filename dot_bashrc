@@ -1,0 +1,29 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '
+
+# env
+source "$HOME/.env"
+#
+
+# history search
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+# end of history search
+
+# Command-not-found
+if [ -e "/usr/share/doc/pkgfile/command-not-found.bash" ];then
+    source /usr/share/doc/pkgfile/command-not-found.bash
+fi
+# End of command-not-found
+
+# gh copilot
+eval "$(gh copilot alias -- bash)"
+# End of gh copilot
