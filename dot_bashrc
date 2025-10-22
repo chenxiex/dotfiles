@@ -25,5 +25,7 @@ fi
 # End of command-not-found
 
 # gh copilot
-eval "$(gh copilot alias -- bash)"
+if command -v gh >/dev/null 2>&1; then
+	eval "$(gh copilot alias -- bash)"
+fi
 # End of gh copilot
