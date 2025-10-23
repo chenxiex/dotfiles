@@ -16,6 +16,7 @@ if ! chezmoi="$(command -v chezmoi)"; then
 		echo "To install chezmoi, you must have curl or wget installed." >&2
 		exit 1
 	fi
+	chezmoi_install_script="$(printf '%s' "${chezmoi_install_script}" | sed 's|"https://github.com/twpayne/chezmoi/\([^"]*\)"|"https://gh-proxy.com/https://github.com/twpayne/chezmoi/\1"|g')"
 	sh -c "${chezmoi_install_script}" -- -b "${bin_dir}"
 	unset chezmoi_install_script bin_dir
 fi
