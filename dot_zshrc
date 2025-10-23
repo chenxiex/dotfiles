@@ -82,6 +82,15 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 ###
 
+### History
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "${key[PageUp]}"   ]] && bindkey -- "${key[PageUp]}"   up-line-or-beginning-search
+[[ -n "${key[PageDown]}"   ]] && bindkey -- "${key[PageDown]}" down-line-or-beginning-search
+###
+
 ### completion
 setopt completealiases
 zstyle ':completion:*' menu yes select search
