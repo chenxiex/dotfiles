@@ -36,6 +36,7 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 ### plugins
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light agkozak/zsh-z
