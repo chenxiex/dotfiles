@@ -50,6 +50,11 @@ zstyle ':completion:*' menu yes select search
 autoload -U +X bashcompinit && bashcompinit
 ###
 
+### history search
+bindkey "^[[5~" history-beginning-search-backward
+bindkey "^[[6~" history-beginning-search-forward
+###
+
 ### env
 source "$HOME/.env"
 ###
