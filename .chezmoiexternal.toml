@@ -1,0 +1,44 @@
+[".local/share/zinit/plugins/agkozak---zsh-z"]
+    type = "git-repo"
+    url = "git@github.com:zsh-users/zsh-history-substring-search.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/plugins/sindresorhus---pure"]
+    type = "git-repo"
+    url = "git@github.com:sindresorhus/pure.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/plugins/zdharma-continuum---fast-syntax-highlighting"]
+    type = "git-repo"
+    url = "git@github.com:zdharma-continuum/fast-syntax-highlighting.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/plugins/zdharma-continuum---zinit-annex-as-monitor"]
+    type = "git-repo"
+    url = "git@github.com:zdharma-continuum/zinit-annex-as-monitor.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/plugins/zdharma-continuum---zinit-annex-bin-gem-node"]
+    type = "git-repo"
+    url = "git@github.com:zdharma-continuum/zinit-annex-bin-gem-node.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/plugins/zdharma-continuum---zinit-annex-patch-dl"]
+    type = "git-repo"
+    url = "git@github.com:zdharma-continuum/zinit-annex-patch-dl.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/plugins/zdharma-continuum---zinit-annex-rust"]
+    type = "git-repo"
+    url = "git@github.com:zdharma-continuum/zinit-annex-rust.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/plugins/zsh-users---zsh-autosuggestions"]
+    type = "git-repo"
+    url = "git@github.com:zsh-users/zsh-autosuggestions.git"
+    refreshPeriod = "168h"
+
+[".local/share/zinit/zinit.git"]
+    type = "git-repo"
+    url = "git@github.com:zdharma-continuum/zinit.git"
+    refreshPeriod = "168h"
