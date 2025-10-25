@@ -37,11 +37,10 @@ zinit from"gh-proxy.com/https://github.com" light-mode for \
 
 ### plugins
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-zinit from"gh-proxy.com/https://github.com" wait lucid light-mode for \
+zinit from"gh-proxy.com/https://github.com" light-mode for \
 	zsh-users/zsh-autosuggestions \
-	zdharma-continuum/fast-syntax-highlighting
-zinit ice from"gh-proxy.com/https://github.com" pick"async.zsh" src"pure.zsh" 
-zinit light sindresorhus/pure \
+	wait lucid zdharma-continuum/fast-syntax-highlighting \
+	pick"async.zsh" src"pure.zsh" sindresorhus/pure \
 ### End of plugins
 
 ### Define key
