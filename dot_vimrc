@@ -169,8 +169,9 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-colorscheme one
-set background=dark
-let g:airline_theme='one'
-
+if (!empty(globpath(&rtp, 'colors/one.vim')))
+	colorscheme one
+	set background=dark
+	let g:airline_theme='one'
+endif
 
