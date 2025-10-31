@@ -10,7 +10,7 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # env
-export $(envsubst < .env)
+export $(envsubst < $HOME/.env)
 #
 
 # history search
