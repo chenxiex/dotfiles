@@ -99,7 +99,7 @@ autoload -U +X bashcompinit && bashcompinit
 ###
 
 ### env
-export $(envsubst < .env)
+export $(envsubst < $HOME/.env)
 ###
 
 ### aliases
