@@ -13,11 +13,6 @@ PS1='[\u@\h \W]\$ '
 export $(envsubst < $HOME/.env)
 #
 
-# history search
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-# end of history search
-
 # Command-not-found
 if [ -e "/usr/share/doc/pkgfile/command-not-found.bash" ];then
     source /usr/share/doc/pkgfile/command-not-found.bash
