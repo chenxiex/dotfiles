@@ -7,7 +7,9 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
+
+PROMPT_COMMAND='ret=$?; if [ -n "$_prompt_shown" ]; then printf "\n"; else _prompt_shown=1; fi'
+PS1='[\w]\n$( [ $ret -eq 0 ] && echo "\[\e[1;32m\]\$\[\e[0m\]" || echo "\[\e[1;31m\]\$\[\e[0m\]" ) '
 
 # env
 export $(envsubst < $HOME/.env)
