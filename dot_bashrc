@@ -8,29 +8,30 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-# 保存上条命令返回值 + 控制空行输出
+# Customization
 PROMPT_COMMAND='
 ret=$?;
 if [ -n "$_prompt_shown" ]; then printf "\n"; else _prompt_shown=1; fi
-# 检测 SSH 或容器环境
-if [ -n "$SSH_CONNECTION" ] || grep -qE "(docker|kubepods|containerd)" /proc/1/cgroup 2>/dev/null; then
+if [ -n "$SSH_CONNECTION" ] || \
+   [ -f /run/.containerenv ] || \
+   grep -qE "(docker|kubepods|containerd)" /proc/1/cgroup 2>/dev/null; then
     _show_userhost=1
 else
     _show_userhost=
 fi
 '
 
-# 定义带颜色的提示符
 PS1='$( 
     if [ -n "$_show_userhost" ]; then 
-        printf "[\u@\h:\w]\n"; 
+        printf "[\u@\h:\w]\n"
     else 
-        printf "[\w]\n"; 
+        printf "[\w]\n"
     fi
+
     if [ "${ret:-0}" -eq 0 ]; then 
-        printf "\[\e[1;32m\]\$\[\e[0m\] "; 
+        printf "\[\e[1;32m\]\$\[\e[0m\] "
     else 
-        printf "\[\e[1;31m\]\$\[\e[0m\] "; 
+        printf "\[\e[1;31m\]\$\[\e[0m\] "
     fi 
 )'
 
