@@ -165,4 +165,4 @@ fi
 if [[ -e "$HOME/.zshrc_dev" ]]; then
 	source "$HOME/.zshrc_dev"
 fi
-### End
+### End of device-specific command
