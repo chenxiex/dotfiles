@@ -136,12 +136,6 @@ if [ -e "/usr/share/doc/pkgfile/command-not-found.zsh" ]; then
 fi
 # End of command-not-found
 
-### gh copilot
-if command -v gh >/dev/null 2>&1; then
-	eval "$(gh copilot alias -- zsh)"
-fi
-### End of gh copilot
-
 ### conda
 if command -v conda >/dev/null 2>&1; then
 # >>> conda initialize >>>
