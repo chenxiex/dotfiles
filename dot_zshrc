@@ -128,6 +128,10 @@ unset-proxy(){
 	unset HTTPS_PROXY
 	unset ALL_PROXY
 }
+
+dla(){
+	yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail --add-metadata "${1}"
+}
 ### End of functions
 
 # Command-not-found
