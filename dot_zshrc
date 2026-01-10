@@ -110,7 +110,7 @@ alias pandoc-pdf="pandoc --pdf-engine=xelatex -V CJKmainfont='Noto Sans CJK SC' 
 
 ### functions
 set-proxy(){
-	export http_proxy=http://127.0.0.1:1080
+	export http_proxy=http://127.0.0.1:10808
 	export https_proxy=$http_proxy
 	export all_proxy=$http_proxy
 
