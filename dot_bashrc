@@ -36,7 +36,7 @@ PS1='$(
 )'
 
 # env
-export $(envsubst < $HOME/.env)
+export $(envsubst < $HOME/.sh_shared/.env)
 #
 
 # Command-not-found
