@@ -36,7 +36,11 @@ PS1='$(
 )'
 
 # env
-export $(envsubst < $HOME/.sh_shared/env)
+export $(envsubst < "$HOME"/.sh_shared/env)
+#
+
+# alias
+source "$HOME"/.sh_shared/alias
 #
 
 # Command-not-found
