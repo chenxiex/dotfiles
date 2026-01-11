@@ -1,0 +1,25 @@
+set-proxy(){
+	PROXY_HOST="${1:-localhost}"
+	PROXY_PORT="${2:-10809}"
+	export http_proxy=http://"$PROXY_HOST":"$PROXY_PORT"
+	export https_proxy=$http_proxy
+	export all_proxy=$http_proxy
+
+	export HTTP_PROXY=$http_proxy
+	export HTTPS_PROXY=$http_proxy
+	export ALL_PROXY=$http_proxy
+}
+
+unset-proxy(){
+	unset http_proxy
+	unset https_proxy
+	unset all_proxy
+
+	unset HTTP_PROXY
+	unset HTTPS_PROXY
+	unset ALL_PROXY
+}
+
+dla(){
+	yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail --add-metadata "${1}"
+}
