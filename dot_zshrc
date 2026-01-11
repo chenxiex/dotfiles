@@ -99,37 +99,15 @@ autoload -U +X bashcompinit && bashcompinit
 ###
 
 ### env
-export $(envsubst < "$HOME"/.sh_shared/env)
+export $(envsubst < "$HOME/.sh_shared/env")
 ###
 
 ### aliases
-source "$HOME"/.sh_shared/alias
+source "$HOME/.sh_shared/alias"
 ### End of aliases
 
 ### functions
-set-proxy(){
-	export http_proxy=http://127.0.0.1:10809
-	export https_proxy=$http_proxy
-	export all_proxy=$http_proxy
-
-	export HTTP_PROXY=$http_proxy
-	export HTTPS_PROXY=$http_proxy
-	export ALL_PROXY=$http_proxy
-}
-
-unset-proxy(){
-	unset http_proxy
-	unset https_proxy
-	unset all_proxy
-
-	unset HTTP_PROXY
-	unset HTTPS_PROXY
-	unset ALL_PROXY
-}
-
-dla(){
-	yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail --add-metadata "${1}"
-}
+source "$HOME/.sh_shared/func"
 ### End of functions
 
 # Command-not-found
