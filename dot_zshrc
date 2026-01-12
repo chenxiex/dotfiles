@@ -99,15 +99,24 @@ autoload -U +X bashcompinit && bashcompinit
 ###
 
 ### env
-export $(envsubst < "$HOME/.sh_shared/env")
+ENV_PATH="$HOME/.sh_shared/env"
+if [[ -e "$ENV_PATH" ]]; then
+	export $(envsubst < "$ENV_PATH")
+fi
 ###
 
 ### aliases
-source "$HOME/.sh_shared/alias"
+ALIAS_PATH="$HOME/.sh_shared/alias"
+if [[ -e "$ALIAS_PATH" ]]; then
+	source "$ALIAS_PATH"
+fi
 ### End of aliases
 
 ### functions
-source "$HOME/.sh_shared/func"
+FUNC_PATH="$HOME/.sh_shared/func"
+if [[ -e "$FUNC_PATH" ]]; then
+	source "$FUNC_PATH"
+fi
 ### End of functions
 
 # Command-not-found
