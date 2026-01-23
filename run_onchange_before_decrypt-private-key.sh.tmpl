@@ -1,6 +1,6 @@
 {{- if eq .chezmoi.hostname "anlorsp-main" -}}
 #!/bin/sh
-KEY_DIR="$HOME/.config/chezmoi/"
+KEY_DIR="{{- .encrypt.key_dir }}"
 
 if [ ! -f "$KEY_DIR/key.txt" ]; then
     mkdir -p "$KEY_DIR"
