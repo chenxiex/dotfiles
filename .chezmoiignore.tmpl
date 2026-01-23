@@ -1,2 +1,7 @@
 install.sh
 key.txt.age
+{{- if (or (ne .chezmoi.os "linux") (ne .chezmoi.hostname "anlorsp-main")) }}
+.config
+.ssh
+.local
+{{- end }}
