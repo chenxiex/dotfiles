@@ -144,8 +144,3 @@ unset __conda_setup
 fi
 ### End of conda
 
-### device-specific command
-if [[ -e "$HOME/.zshrc_dev" ]]; then
-	source "$HOME/.zshrc_dev"
-fi
-### End of device-specific command

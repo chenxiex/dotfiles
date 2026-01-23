@@ -1,7 +1,9 @@
+{{- if eq .chezmoi.hostname "anlorsp-main" -}}
 encryption = "age"
 [age]
 	identity = "~/.config/chezmoi/key.txt"
 	recipient = "age1dgaerd5mepygcxswn8j73cxwxt9zeygaq64wdgll5j2w5wgr7gxsquygu0"
+{{- end }}
 
 [git]
     autoCommit = true
