@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=云·星穹铁道
+Exec=flatpak 'run' '--command=/app/bin/edge' 'com.microsoft.Edge' '--profile-directory=Default' '--app-id=pmnpgkmbkpccaiefjalpddjmfnfeamjk' '--app-url=https://sr.mihoyo.com/cloud/'
+Icon=msedge-pmnpgkmbkpccaiefjalpddjmfnfeamjk-Default
+NoDisplay=true
+StartupWMClass=crx__pmnpgkmbkpccaiefjalpddjmfnfeamjk
+X-Flatpak-Part-Of=com.microsoft.Edge
+TryExec=/var/lib/flatpak/exports/bin/com.microsoft.Edge

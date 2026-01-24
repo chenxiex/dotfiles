@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=网易云游戏
+Exec=flatpak 'run' '--command=/app/bin/edge' 'com.microsoft.Edge' '--profile-directory=Default' '--app-id=jfmfhdlohbopnadjpiopnfkncjkjaihl' '--app-url=https://cg.163.com/#/mobile'
+Icon=msedge-jfmfhdlohbopnadjpiopnfkncjkjaihl-Default
+StartupWMClass=crx__jfmfhdlohbopnadjpiopnfkncjkjaihl
+X-Flatpak-Part-Of=com.microsoft.Edge
+TryExec=/var/lib/flatpak/exports/bin/com.microsoft.Edge
+Categories=Game
