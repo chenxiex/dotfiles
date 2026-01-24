@@ -1,0 +1,10 @@
+{{- if eq .chezmoi.hostname "anlorsp-main" -}}
+#!/bin/sh
+
+# private_dot_gnupg/encrypted_private_gpg-secret-keys.asc.age hash: {{ include "private_dot_gnupg/encrypted_private_gpg-secret-keys.asc.age" | sha256sum }} 
+chezmoi decrypt {{ .chezmoi.sourceDir }}/private_dot_gnupg/encrypted_private_gpg-secret-keys.asc.age | gpg --import
+
+# private_dot_gnupg/encrypted_gpg-ownertrust.txt.age hash: {{ include "private_dot_gnupg/encrypted_gpg-ownertrust.txt.age" | sha256sum }}
+chezmoi decrypt {{ .chezmoi.sourceDir }}/private_dot_gnupg/encrypted_gpg-ownertrust.txt.age | gpg --import-ownertrust
+
+{{- end }}
