@@ -1,7 +1,8 @@
 {{- if eq .chezmoi.hostname "anlorsp-main" -}}
 #!/bin/sh
-KEY_DIR="{{- .encrypt.key_dir }}"
+KEY_DIR={{- .encrypt.key_dir | quote }}
 
+# key.txt.age hash: {{ include "key.txt.age" | sha256sum }}
 if [ ! -f "$KEY_DIR/key.txt" ]; then
     mkdir -p "$KEY_DIR"
     chezmoi age decrypt --output "$KEY_DIR/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
