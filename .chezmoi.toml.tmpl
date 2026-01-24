@@ -1,11 +1,11 @@
 {{- if eq .chezmoi.hostname "anlorsp-main" -}}
 encryption = "age"
 [age]
-	identity = "~/.config/chezmoi/key.txt"
-	recipient = "age1dgaerd5mepygcxswn8j73cxwxt9zeygaq64wdgll5j2w5wgr7gxsquygu0"
+	identity = "{{- .encrypt.key_dir }}/key.txt"
+	recipient = "age1kjgca83cddd4cpklus7s762fftwexpg32jazhvaajw7hq26cd9vst0uk2v"
 
 [data.encrypt]
-	key_dir = "~/.config/chezmoi"
+	key_dir = "{{- .chezmoi.homeDir }}/.config/chezmoi"
 {{- end }}
 
 [git]
