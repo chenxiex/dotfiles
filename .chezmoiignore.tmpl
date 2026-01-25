@@ -2,9 +2,11 @@ install.sh
 key.txt.age
 .gnupg/gpg-secret-keys.asc
 .gnupg/gpg-ownertrust.txt
-{{- if (or (ne .chezmoi.os "linux") (ne .chezmoi.hostname "anlorsp-main")) }}
+{{- if ne .chezmoi.hostname "anlorsp-main" }}
 .config
 .gnupg
 .ssh
+{{- if ne .chezmoi.os "linux" }}
 .local
+{{- end}}
 {{- end }}

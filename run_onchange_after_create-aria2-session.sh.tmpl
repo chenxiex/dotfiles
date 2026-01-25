@@ -1,0 +1,9 @@
+{{- if eq .chezmoi.hostname "anlorsp-main" -}}
+#!/bin/sh
+
+ARIA2_CONF_DIR="$HOME/.config/aria2"
+if [ ! -f "$ARIA2_CONF_DIR/aria2.session" ]; then
+	mkdir -p "$ARIA2_CONF_DIR"
+	touch "$ARIA2_CONF_DIR/aria2.session"
+fi
+{{- end }}
