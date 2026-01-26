@@ -6,7 +6,8 @@ key.txt.age
 .config
 .gnupg
 .ssh
-{{- if ne .chezmoi.os "linux" }}
+{{- end }}
+
+{{- if (or (ne .chezmoi.hostname "anlorsp-main") (ne .chezmoi.os "linux")) }}
 .local
-{{- end}}
 {{- end }}
