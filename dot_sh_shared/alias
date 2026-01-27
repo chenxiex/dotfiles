@@ -4,4 +4,3 @@ alias pandoc-pdf="pandoc --pdf-engine=xelatex -V CJKmainfont='Noto Sans CJK SC' 
 alias tpm-luks-enroll="systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto --tpm2-pcrs=7 "
 alias tpm-luks-wipe="systemd-cryptenroll --wipe-slot=tpm2 "
 alias RB="systemctl restart bluetooth"
-alias gsteam="gamescope-session; chvt 2; exit"
