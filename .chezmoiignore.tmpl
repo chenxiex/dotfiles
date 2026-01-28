@@ -4,6 +4,8 @@ key.txt.age
 .gnupg/gpg-ownertrust.txt
 {{- if ne .chezmoi.hostname "anlorsp-main" }}
 .config
+!.config/pip
+!.config/tmux
 .gnupg
 .ssh
 {{- end }}
