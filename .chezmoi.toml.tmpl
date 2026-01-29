@@ -7,7 +7,15 @@ encryption = "age"
 
 [data.encrypt]
 	key_dir = "{{- .chezmoi.homeDir }}/.config/chezmoi"
-{{- end }}
+{{ end }}
+
+{{- $codespaces:= env "CODESPACES" | not | not -}}
+{{- $container:= env "container" | not | not }}
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[data]
+	codespaces = {{ $codespaces }}
+	container = {{ $container }}
 
 [git]
     autoCommit = true
