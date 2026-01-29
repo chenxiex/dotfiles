@@ -1,12 +1,13 @@
 {{- if eq .chezmoi.hostname "anlorsp-main" -}}
+{{- $encryption_key_dir:= joinPath .chezmoi.homeDir ".config" "chezmoi" -}}
 encryption = "age"
 
 [age]
-	identity = "{{- .chezmoi.homeDir }}/.config/chezmoi/key.txt"
+	identity = {{ joinPath $encryption_key_dir "key.txt" | quote }}
 	recipient = "age1kjgca83cddd4cpklus7s762fftwexpg32jazhvaajw7hq26cd9vst0uk2v"
 
 [data.encrypt]
-	key_dir = "{{- .chezmoi.homeDir }}/.config/chezmoi"
+	key_dir = {{ $encryption_key_dir | quote }}
 {{ end }}
 
 {{- $codespaces:= env "CODESPACES" | not | not -}}
