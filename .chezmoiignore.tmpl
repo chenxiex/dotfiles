@@ -3,7 +3,7 @@ key.txt.age
 .gnupg/gpg-secret-keys.asc
 .gnupg/gpg-ownertrust.txt
 {{- if ne .chezmoi.hostname "anlorsp-main" }}
-.config
+.config/*
 !.config/pip
 !.config/tmux
 !.config/containers/containers.conf
