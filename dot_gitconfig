@@ -14,3 +14,5 @@
 	ui = auto
 [gpg]
 	format = ssh
+[url "https://gh-proxy.org/https://github.com/"]
+	insteadOf = https://github.com/
