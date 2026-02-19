@@ -140,7 +140,7 @@ Plug 'luochen1990/rainbow'
 
 Plug 'rakr/vim-one'
 
-Plug 'jasonccox/vim-wayland-clipboard'
+" Plug 'jasonccox/vim-wayland-clipboard'
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
