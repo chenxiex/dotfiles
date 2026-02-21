@@ -40,7 +40,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 zinit light-mode for \
 	zsh-users/zsh-autosuggestions \
 	wait lucid zdharma-continuum/fast-syntax-highlighting \
-	pick"async.zsh" src"pure.zsh" sindresorhus/pure \
 ### End of plugins
 
 ### Define key
@@ -116,6 +115,59 @@ if [[ -e "$FUNC_PATH" ]]; then
 	source "$FUNC_PATH"
 fi
 ### End of functions
+
+### Prompt
+autoload -Uz add-zsh-hook
+
+_prompt_shown=0
+_show_userhost=
+
+function _update_prompt_env() {
+    local ret=$?
+
+    # 首次不换行，之后每次命令前换行
+    if (( _prompt_shown )); then
+        print
+    else
+        _prompt_shown=1
+    fi
+
+    # 判断是否显示 user@host
+    if [[ -n $SSH_CONNECTION ]] \
+       || [[ -f /run/.containerenv ]] \
+       || grep -qE '(docker|kubepods|containerd)' /proc/1/cgroup 2>/dev/null
+    then
+        _show_userhost=1
+    else
+        _show_userhost=
+    fi
+
+    # 保存上一条命令返回值
+    PROMPT_RET=$ret
+}
+
+add-zsh-hook precmd _update_prompt_env
+
+# ---------- Prompt ----------
+setopt PROMPT_SUBST
+
+PROMPT='$(
+
+    if [[ -n $_show_userhost ]]; then
+        print -n "[%n@%m %F{blue}%~%f]"
+    else
+        print -n "[%F{blue}%~%f]"
+    fi
+
+    print
+
+    if (( PROMPT_RET == 0 )); then
+        print -n "%F{green}%#%f "
+    else
+        print -n "%F{red}%#%f "
+    fi
+)'
+### End of prompt
 
 # Command-not-found
 if [ -e "/usr/share/doc/pkgfile/command-not-found.zsh" ]; then
