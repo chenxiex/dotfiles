@@ -127,12 +127,12 @@ autoload -Uz colors
 colors
 
 ### Vi mode indicator
-VI_SYM=">"
+_VI_SYM=">"
 
 function zle-line-init zle-keymap-select {
     case $KEYMAP in
-        vicmd)  VI_SYM="<" ;;
-        viins|main) VI_SYM=">" ;;
+        vicmd)  _VI_SYM="<" ;;
+        viins|main) _VI_SYM=">" ;;
     esac
     zle reset-prompt
 }
@@ -141,8 +141,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 ### End of Vi mode indicator
 
-_show_userhost=
-PROMPT_COLOR="green"
+_PROMPT_USERHOST=
+_PROMPT_COLOR="green"
 function _update_prompt_env() {
     local ret=$?
 
@@ -150,22 +150,22 @@ function _update_prompt_env() {
        || [[ -f /run/.containerenv ]] \
        || grep -qE '(docker|kubepods|containerd)' /proc/1/cgroup 2>/dev/null
     then
-        _show_userhost=1
+        _PROMPT_USERHOST="%n@%m " 
     else
-        _show_userhost=
+        _PROMPT_USERHOST= 
     fi
 
 	if (( EUID == 0 )); then
 		if (( ret == 0 )); then
-			PROMPT_COLOR="cyan"
+			_PROMPT_COLOR="cyan"
 		else
-			PROMPT_COLOR="magenta"
+			_PROMPT_COLOR="magenta"
 		fi
 	else
 		if (( ret == 0 )); then
-			PROMPT_COLOR="green"
+			_PROMPT_COLOR="green"
 		else
-			PROMPT_COLOR="red"
+			_PROMPT_COLOR="red"
 		fi
 	fi
 }
@@ -174,20 +174,9 @@ add-zsh-hook precmd _update_prompt_env
 
 setopt PROMPT_SUBST
 
-PROMPT='$(
-
-	print
-
-    if [[ -n $_show_userhost ]]; then
-        print -n "[%n@%m %F{blue}%~%f]"
-    else
-        print -n "[%F{blue}%~%f]"
-    fi
-
-    print
-
-	print -n "%F{${PROMPT_COLOR}}${VI_SYM}%f "
-)'
+PROMPT='
+[${_PROMPT_USERHOST}%F{blue}%~%f]
+%F{${_PROMPT_COLOR}}${_VI_SYM}%f '
 ### End of prompt
 
 # Command-not-found
