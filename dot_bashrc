@@ -8,7 +8,8 @@
 # Customization
 PROMPT_COMMAND='
 ret=$?;
-if [ -n "$_prompt_shown" ]; then printf "\n"; else _prompt_shown=1; fi
+#if [ -n "$_prompt_shown" ]; then printf "\n"; else _prompt_shown=1; fi
+printf "\n";
 if [ -n "$SSH_CONNECTION" ] || \
    [ -f /run/.containerenv ] || \
    grep -qE "(docker|kubepods|containerd)" /proc/1/cgroup 2>/dev/null; then

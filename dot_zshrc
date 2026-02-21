@@ -15,11 +15,36 @@ compinit
 ### plugins
 _PLUGINS_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins"
 [ -d "$_PLUGINS_DIR" ] || mkdir -p "$_PLUGINS_DIR"
-[ -d "$_PLUGINS_DIR"/zsh-autosuggestions ] || git clone https://github.com/zsh-users/zsh-autosuggestions "$_PLUGINS_DIR"/zsh-autosuggestions 
-[ -d "$_PLUGINS_DIR"/fast-syntax-highlighting ] || git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$_PLUGINS_DIR"/fast-syntax-highlighting
+plugin() {
+    local repo_url="$1"
+    local entry="$2"
+
+    # 从 URL 提取仓库名作为目录名
+    local name="${repo_url##*/}"
+    local dir="$_PLUGINS_DIR/$name"
+
+    # 如果目录不存在，clone
+    if [ ! -d "$dir" ]; then
+        git clone "$repo_url" "$dir"
+    fi
+
+    # 如果入口文件不存在，说明目录损坏或 clone 不完整
+    if [ ! -f "$dir/$entry" ]; then
+        echo "Plugin '$name' entry '$entry' missing, repairing…"
+        rm -rf "$dir"
+        git clone "$repo_url" "$dir"
+    fi
+
+    # 再次检查入口文件
+    if [ -f "$dir/$entry" ]; then
+        source "$dir/$entry"
+    else
+        echo "Error: plugin '$name' entry '$entry' still missing after repair."
+    fi
+}
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-source "$_PLUGINS_DIR"/zsh-autosuggestions/zsh-autosuggestions.zsh
-source "$_PLUGINS_DIR"/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions.zsh
+plugin https://github.com/zdharma-continuum/fast-syntax-highlighting fast-syntax-highlighting.plugin.zsh
 ### End of plugins
 
 ### Define key
@@ -98,21 +123,29 @@ fi
 
 ### Prompt
 autoload -Uz add-zsh-hook
+autoload -Uz colors
+colors
 
-_prompt_shown=0
+### Vi mode indicator
+VI_MODE="ins"
+
+function zle-line-init zle-keymap-select {
+    case $KEYMAP in
+        vicmd)  VI_MODE="cmd" ;;
+        viins|main) VI_MODE="ins" ;;
+    esac
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+### End of Vi mode indicator
+
 _show_userhost=
-
+PROMPT_RET=0
 function _update_prompt_env() {
     local ret=$?
 
-    # 首次不换行，之后每次命令前换行
-    if (( _prompt_shown )); then
-        print
-    else
-        _prompt_shown=1
-    fi
-
-    # 判断是否显示 user@host
     if [[ -n $SSH_CONNECTION ]] \
        || [[ -f /run/.containerenv ]] \
        || grep -qE '(docker|kubepods|containerd)' /proc/1/cgroup 2>/dev/null
@@ -122,16 +155,16 @@ function _update_prompt_env() {
         _show_userhost=
     fi
 
-    # 保存上一条命令返回值
     PROMPT_RET=$ret
 }
 
 add-zsh-hook precmd _update_prompt_env
 
-# ---------- Prompt ----------
 setopt PROMPT_SUBST
 
 PROMPT='$(
+
+	print
 
     if [[ -n $_show_userhost ]]; then
         print -n "[%n@%m %F{blue}%~%f]"
@@ -142,9 +175,9 @@ PROMPT='$(
     print
 
     if (( PROMPT_RET == 0 )); then
-        print -n "%F{green}%#%f "
+		print -n "(${VI_MODE})%F{green}%#%f "
     else
-        print -n "%F{red}%#%f "
+		print -n "(${VI_MODE})%F{red}%#%f "
     fi
 )'
 ### End of prompt
