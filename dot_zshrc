@@ -19,32 +19,64 @@ plugin() {
     local repo_url="$1"
     local entry="$2"
 
-    # 从 URL 提取仓库名作为目录名
+    if [[ "$repo_url" != http*://* ]]; then
+        repo_url="https://github.com/$repo_url"
+    fi
+
     local name="${repo_url##*/}"
     local dir="$_PLUGINS_DIR/$name"
 
-    # 如果目录不存在，clone
     if [ ! -d "$dir" ]; then
         git clone "$repo_url" "$dir"
     fi
 
-    # 如果入口文件不存在，说明目录损坏或 clone 不完整
+    if [ -z "$entry" ]; then
+        local zsh_files=("$dir"/*.plugin.zsh(N))
+        if (( ${#zsh_files[@]} == 1 )); then
+            entry="${zsh_files[1]##*/}"
+		else
+			echo "Error: cannot determine entry for plugin '$name' in '$dir'" >&2
+			echo " Please specify entry explicitly as second argument." >&2
+			return 1
+        fi
+    fi
+
     if [ ! -f "$dir/$entry" ]; then
         echo "Plugin '$name' entry '$entry' missing, repairing…"
         rm -rf "$dir"
         git clone "$repo_url" "$dir"
     fi
 
-    # 再次检查入口文件
     if [ -f "$dir/$entry" ]; then
         source "$dir/$entry"
     else
         echo "Error: plugin '$name' entry '$entry' still missing after repair."
     fi
 }
+update_plugins() {
+    local dir
+
+    [ -d "$_PLUGINS_DIR" ] || {
+        echo "Plugin directory '$_PLUGINS_DIR' does not exist."
+        return 1
+    }
+
+    echo "Updating plugins in $_PLUGINS_DIR"
+
+    for dir in "$_PLUGINS_DIR"/*; do
+        [ -d "$dir" ] || continue
+
+        if [ -d "$dir/.git" ]; then
+            echo "→ Updating $(basename "$dir")"
+            git -C "$dir" pull --ff-only
+        else
+            echo "→ Skipping $(basename "$dir") (not a git repo)"
+        fi
+    done
+}
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-plugin https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions.zsh
-plugin https://github.com/zdharma-continuum/fast-syntax-highlighting fast-syntax-highlighting.plugin.zsh
+plugin zsh-users/zsh-autosuggestions
+plugin zdharma-continuum/fast-syntax-highlighting
 ### End of plugins
 
 ### Define key
