@@ -127,12 +127,12 @@ autoload -Uz colors
 colors
 
 ### Vi mode indicator
-VI_MODE="ins"
+VI_SYM=">"
 
 function zle-line-init zle-keymap-select {
     case $KEYMAP in
-        vicmd)  VI_MODE="cmd" ;;
-        viins|main) VI_MODE="ins" ;;
+        vicmd)  VI_SYM="<" ;;
+        viins|main) VI_SYM=">" ;;
     esac
     zle reset-prompt
 }
@@ -142,7 +142,7 @@ zle -N zle-keymap-select
 ### End of Vi mode indicator
 
 _show_userhost=
-PROMPT_RET=0
+PROMPT_COLOR="green"
 function _update_prompt_env() {
     local ret=$?
 
@@ -155,7 +155,19 @@ function _update_prompt_env() {
         _show_userhost=
     fi
 
-    PROMPT_RET=$ret
+	if (( EUID == 0 )); then
+		if (( ret == 0 )); then
+			PROMPT_COLOR="cyan"
+		else
+			PROMPT_COLOR="magenta"
+		fi
+	else
+		if (( ret == 0 )); then
+			PROMPT_COLOR="green"
+		else
+			PROMPT_COLOR="red"
+		fi
+	fi
 }
 
 add-zsh-hook precmd _update_prompt_env
@@ -174,11 +186,7 @@ PROMPT='$(
 
     print
 
-    if (( PROMPT_RET == 0 )); then
-		print -n "(${VI_MODE})%F{green}%#%f "
-    else
-		print -n "(${VI_MODE})%F{red}%#%f "
-    fi
+	print -n "%F{${PROMPT_COLOR}}${VI_SYM}%f "
 )'
 ### End of prompt
 
