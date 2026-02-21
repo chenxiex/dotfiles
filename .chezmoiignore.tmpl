@@ -3,16 +3,13 @@ key.txt.age
 .gnupg/gpg-secret-keys.asc
 .gnupg/gpg-ownertrust.txt
 {{- if ne .chezmoi.hostname "anlorsp-main" }}
-.config/*
-!.config/pip
-!.config/tmux
-!.config/uv
-!.config/vim
-
-!.config/containers
-.config/containers/*
-!.config/containers/containers.conf
-!.config/containers/registries.conf
+.config/aria2
+.config/containers/systemd
+.config/environment.d
+.config/onedrive
+.config/rclone
+.config/restore.list
+.config/systemd
 
 .gnupg
 .ssh
