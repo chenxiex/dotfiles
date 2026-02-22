@@ -1,13 +1,18 @@
 set-proxy(){
 	PROXY_HOST="${1:-localhost}"
 	PROXY_PORT="${2:-10808}"
-	export http_proxy=http://"$PROXY_HOST":"$PROXY_PORT"
+
+	export http_proxy=http://$PROXY_HOST:$PROXY_PORT
 	export https_proxy=$http_proxy
+	export ftp_proxy=$http_proxy
 	export all_proxy=$http_proxy
+	export no_proxy=localhost,127.0.0.0/8,::1
 
 	export HTTP_PROXY=$http_proxy
-	export HTTPS_PROXY=$http_proxy
-	export ALL_PROXY=$http_proxy
+	export HTTPS_PROXY=$https_proxy
+	export FTP_PROXY=$ftp_proxy
+	export ALL_PROXY=$all_proxy
+	export NO_PROXY=$no_proxy
 }
 
 unset-proxy(){
