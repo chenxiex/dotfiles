@@ -7,7 +7,7 @@
   "filter_rules": [
     {
       "type": "allow",
-      "host_pattern": "(localhost|127\\.0\\.0\\.1)",
+      "host_pattern": "(localhost|127\\.0\\.0\\.1|::1)",
       "port": 22224,
       "priority": 100,
       "description": "允许访问RPC服务器，移除该过滤规则可能导致过滤开启后无法关闭"
