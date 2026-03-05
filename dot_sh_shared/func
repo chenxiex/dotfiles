@@ -44,7 +44,8 @@ hypr-game(){
 			exit
 	else
 		echo "Warning: egpu or display not found!"
-		pause &&
-		exit
+		pause && \
+			chvt 2 && \
+			exit
 	fi
 }
