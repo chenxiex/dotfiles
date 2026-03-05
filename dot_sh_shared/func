@@ -32,3 +32,12 @@ unset-proxy(){
 dla(){
 	yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail --add-metadata "${1}"
 }
+
+hypr-game(){
+	toggle-gpu-display.sh nvidia detect
+	start-hyprland
+	toggle-gpu-display.sh nvidia off
+	pause
+	chvt 2
+	exit
+}
