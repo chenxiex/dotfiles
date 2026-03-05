@@ -37,7 +37,7 @@ hypr-game(){
 	toggle-gpu-display.sh nvidia detect
 	start-hyprland
 	toggle-gpu-display.sh nvidia off
-	pause
-	chvt 2
+	pause && \
+		chvt 2
 	exit
 }
