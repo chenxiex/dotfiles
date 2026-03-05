@@ -35,7 +35,7 @@ dla(){
 
 hypr-game(){
 	local egpu_path="/dev/dri/nvidia-egpu"
-	local dp_paths=( /sys/class/drm/*-DP-5 )
+	local dp_paths=( /sys/class/drm/*-DP-5(N) )
 
 	if [[ -e "$egpu_path" && ${#dp_paths[@]} -gt 0 ]]; then
 		start-hyprland
