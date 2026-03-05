@@ -34,8 +34,17 @@ dla(){
 }
 
 hypr-game(){
-	start-hyprland
-	pause && \
-		chvt 2 && \
+	local egpu_path="/dev/dri/nvidia-egpu"
+	local dp_paths=( /sys/class/drm/*-DP-5 )
+
+	if [[ -e "$egpu_path" && ${#dp_paths[@]} -gt 0 ]]; then
+		start-hyprland
+		pause && \
+			chvt 2 && \
+			exit
+	else
+		echo "Warning: egpu or display not found!"
+		pause &&
 		exit
+	fi
 }
