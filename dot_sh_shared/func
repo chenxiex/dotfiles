@@ -32,3 +32,23 @@ unset-proxy(){
 dla(){
 	yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail --add-metadata "${1}"
 }
+
+hypr-game(){
+	local egpu_path="/dev/dri/nvidia-egpu"
+	local dp_paths=( /sys/class/drm/*-DP-5(N) )
+
+	if [[ -e "$egpu_path" && ${#dp_paths[@]} -gt 0 ]]; then
+		toggle-gpu-display.sh nvidia detect && \
+			start-hyprland
+		toggle-gpu-display.sh nvidia off && \
+			pause && \
+			chvt 2 && \
+			exit
+	else
+		echo "Warning: egpu or display not found!"
+		pause && \
+			chvt 2 && \
+			exit
+	fi
+}
+
