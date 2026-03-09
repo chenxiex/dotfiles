@@ -39,7 +39,8 @@ hypr-game(){
 
 	if [[ -e "$egpu_path" && ${#dp_paths[@]} -gt 0 ]]; then
 		toggle-gpu-display.sh nvidia detect && \
-			dbus-run-session start-hyprland
+		systemd-run --user --scope --unit=hyprland-game-session dbus-run-session start-hyprland
+		systemctl --user stop hyprland-game-session.service
 		toggle-gpu-display.sh nvidia off && \
 			pause && \
 			chvt 2 && \
