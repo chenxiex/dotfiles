@@ -39,12 +39,11 @@ hypr-game(){
 
 	if [[ -e "$egpu_path" && ${#dp_paths[@]} -gt 0 ]]; then
 		toggle-gpu-display.sh nvidia detect && \
-		systemd-run --user --scope --unit=hyprland-game-session dbus-run-session start-hyprland
-		systemctl --user stop hyprland-game-session.service
+			dbus-run-session start-hyprland
 		toggle-gpu-display.sh nvidia off && \
 			pause && \
 			chvt 2 && \
-			exit
+			loginctl terminate-session self
 	else
 		echo "Warning: egpu or display not found!"
 		pause && \
