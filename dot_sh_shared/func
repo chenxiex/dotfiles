@@ -43,7 +43,7 @@ hypr-game(){
 		toggle-gpu-display.sh nvidia off && \
 			pause && \
 			chvt 2 && \
-			exit
+			reset && logout
 	else
 		echo "Warning: egpu or display not found!"
 		pause && \
