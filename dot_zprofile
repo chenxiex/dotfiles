@@ -1,0 +1,43 @@
+### env
+ENV_PATH="$HOME/.sh_shared/env"
+if [[ -e "$ENV_PATH" ]]; then
+	export $(envsubst < "$ENV_PATH")
+fi
+###
+
+### aliases
+ALIAS_PATH="$HOME/.sh_shared/alias"
+if [[ -e "$ALIAS_PATH" ]]; then
+	source "$ALIAS_PATH"
+fi
+### End of aliases
+
+### functions
+FUNC_PATH="$HOME/.sh_shared/func"
+if [[ -e "$FUNC_PATH" ]]; then
+	source "$FUNC_PATH"
+fi
+### End of functions
+
+hypr-game(){
+	local egpu_path="/dev/dri/nvidia-egpu"
+	local dp_paths=( /sys/class/drm/*-DP-5(N) )
+
+	if [[ -e "$egpu_path" && ${#dp_paths[@]} -gt 0 ]]; then
+		toggle-gpu-display.sh nvidia detect && \
+			start-hyprland
+		toggle-gpu-display.sh nvidia off && \
+			pause && \
+			chvt 2 && \
+			exit
+	else
+		echo "Warning: egpu or display not found!"
+		pause && \
+			chvt 2 && \
+			exit
+	fi
+}
+
+if [[ $(tty) == "/dev/tty3" ]]; then
+	hypr-game	
+fi
