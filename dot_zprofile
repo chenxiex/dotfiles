@@ -20,5 +20,6 @@ fi
 ### End of functions
 
 if [[ $(tty) == "/dev/tty3" ]]; then
-	hypr-game.sh
+	hypr-game.sh && \
+		exit
 fi
