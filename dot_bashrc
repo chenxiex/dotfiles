@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export HISTFILE="$XDG_STATE_HOME"/bash/history
+
 # Customization
 PROMPT_COMMAND='
 ret=$?;
