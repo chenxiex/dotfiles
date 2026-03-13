@@ -1,3 +1,0 @@
-PATH=$HOME/.local/bin:$PATH
-EDITOR=vim
-HF_ENDPOINT=https://hf-mirror.com
