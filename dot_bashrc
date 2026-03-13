@@ -32,12 +32,8 @@ PS1='$(
     fi 
 )'
 
-### env
-ENV_PATH="$HOME/.sh_shared/env"
-if [[ -e "$ENV_PATH" ]]; then
-	export $(envsubst < "$ENV_PATH")
-fi
-###
+SH_SHARED_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared"
+source "SH_SHARED_DIR/install_env.sh"
 
 # Command-not-found
 if [ -e "/usr/share/doc/pkgfile/command-not-found.bash" ];then
