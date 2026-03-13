@@ -1,6 +1,6 @@
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
-ENV_PATH="$HOME/.config/sh_shared/env"
+ENV_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared/env"
 if [[ -e "$ENV_PATH" ]]; then
 	export $(envsubst < "$ENV_PATH")
 fi
