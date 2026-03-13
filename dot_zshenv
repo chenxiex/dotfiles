@@ -1,7 +1,4 @@
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
 SH_SHARED_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared/"
-ENV_PATH="$SH_SHARED_DIR/env"
-if [[ -e "$ENV_PATH" ]]; then
-	export $(envsubst < "$ENV_PATH")
-fi
+source "$SH_SHARED_DIR/install_env.sh"
