@@ -140,7 +140,7 @@ autoload -U +X bashcompinit && bashcompinit
 ###
 
 # Func and alias
-SH_SHARED_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared"
+SH_SHARED_DIR="$XDG_CONFIG_HOME/sh_shared"
 source "$SH_SHARED_DIR/install.sh"
 
 ### Prompt
