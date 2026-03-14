@@ -1,0 +1,5 @@
+[Context]
+filesystems=xdg-run/podman:ro;xdg-run/podman/podman.sock:ro
+
+[Environment]
+TMPDIR=/var/tmp
