@@ -1,0 +1,23 @@
+[Unit]
+Description=filter-proxy 容器
+
+[Container]
+ContainerName=filter-proxy
+Image=ghcr.io/chenxiex/filter-proxy:latest
+
+Volume=%h/.config/filter-proxy:/config
+
+Environment=CONFIG_FILE=/config/config.json
+
+PublishPort=22223:22223
+PublishPort=22224:22224
+
+AutoUpdate=registry
+
+[Service]
+Restart=on-failure
+
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
