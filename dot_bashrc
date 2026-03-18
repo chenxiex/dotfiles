@@ -36,6 +36,7 @@ PS1='$(
 )'
 
 SH_SHARED_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared"
+source "$SH_SHARED_DIR/install_env.sh"
 source "$SH_SHARED_DIR/install.sh"
 
 # Command-not-found
