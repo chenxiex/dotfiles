@@ -1,5 +1,6 @@
 #!/usr/bin/bash
-cd ~/.config/ibus/rime
+{{- if (and (eq .chezmoi.hostname "anlorsp-main") (eq .chezmoi.os "linux")) }}
+cd ~/.config/ibus/
 rsync -a --delete \
 	--exclude='user.yaml' \
 	--exclude='installation.yaml' \
@@ -7,5 +8,6 @@ rsync -a --delete \
 	--exclude='*.userdb' \
 	--exclude='*.custom.yaml' \
 	--exclude='*.gram' \
-	oh-my-rime/ .
-	
+	rime_source/oh-my-rime/ ./rime
+rsync -a rime_source/rime_custom/ ./rime
+{{- end }}
