@@ -1,0 +1,10 @@
+[".config/ibus/rime"]
+	type = "archive"
+	url = "https://gh-proxy.org/https://github.com/Mintimate/oh-my-rime/archive/refs/heads/main.zip"
+	exact = true
+	stripComponents = 1
+	refreshPeriod = "168h"
+[".config/ibus/rime/wanxiang-lts-zh-hans.gram"]
+	type = "file"
+	url = "https://cnb.cool/Mintimate/rime/oh-my-rime/-/releases/download/latest/wanxiang-lts-zh-hans.gram"
+	refreshPeriod = "168h"
