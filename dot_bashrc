@@ -46,7 +46,7 @@ fi
 # End of command-not-found
 
 # Tmux
-if command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s main
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
 fi
 # End of tmux
