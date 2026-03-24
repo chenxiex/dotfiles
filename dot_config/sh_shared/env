@@ -1,5 +1,4 @@
 export PATH=$HOME/.local/bin:$PATH
-export EDITOR=vim
 export HF_ENDPOINT=https://hf-mirror.com
 
 export XDG_CONFIG_HOME=$HOME/.config
