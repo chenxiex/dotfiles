@@ -1,0 +1,11 @@
+{{- if (or (ne .chezmoi.hostname "anlorsp-main") (ne .chezmoi.os "linux")) }}
+[".config/ibus/rime_source/oh-my-rime"]
+	type = "archive"
+	url = "https://hk.gh-proxy.org/https://github.com/Mintimate/oh-my-rime/archive/refs/heads/main.zip"
+	stripComponents = 1
+	refreshPeriod = "168h"
+[".config/ibus/rime_source/rime_custom/wanxiang-lts-zh-hans.gram"]
+	type = "file"
+	url = "https://hk.gh-proxy.org/https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram"
+	refreshPeriod = "168h"
+{{- end }}
