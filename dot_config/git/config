@@ -8,8 +8,6 @@
 	defaultBranch = main
 [pull]
 	rebase = false
-[core]
-	editor = vim
 [color]
 	ui = auto
 [gpg]
