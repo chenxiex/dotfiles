@@ -209,6 +209,6 @@ fi
 
 # Tmux
 if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
-    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
+    exec tmux new-session -s "tmp-$$" >/dev/null 2>&1
 fi
 # End of tmux
