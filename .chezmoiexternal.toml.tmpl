@@ -1,4 +1,4 @@
-{{- if (or (ne .chezmoi.hostname "anlorsp-main") (ne .chezmoi.os "linux")) }}
+{{- if (and (eq .chezmoi.hostname "anlorsp-main") (eq .chezmoi.os "linux")) }}
 [".config/ibus/rime_source/oh-my-rime"]
 	type = "archive"
 	url = "https://hk.gh-proxy.org/https://github.com/Mintimate/oh-my-rime/archive/refs/heads/main.zip"
