@@ -1,4 +1,0 @@
-SH_SHARED_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared"
-if [[ -e "$SH_SHARED_DIR/install_env.sh" ]]; then
-	source "$SH_SHARED_DIR/install_env.sh"
-fi
