@@ -141,7 +141,9 @@ autoload -U +X bashcompinit && bashcompinit
 
 # Func and alias
 SH_SHARED_DIR="$XDG_CONFIG_HOME/sh_shared"
-source "$SH_SHARED_DIR/install.sh"
+if [[ -e $SH_SHARED_DIR/install.sh ]]; then
+	source "$SH_SHARED_DIR/install.sh"
+fi
 
 ### Prompt
 autoload -Uz add-zsh-hook
