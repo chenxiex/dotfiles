@@ -106,6 +106,7 @@ inoremap { {}<ESC>i
 inoremap < <><ESC>i
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
 " vim-plug plugins
 let g:plug_url_format = "https://gh-proxy.com/https://github.com/%s.git"
