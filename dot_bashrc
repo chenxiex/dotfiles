@@ -36,8 +36,12 @@ PS1='$(
 )'
 
 SH_SHARED_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared"
-source "$SH_SHARED_DIR/install_env.sh"
-source "$SH_SHARED_DIR/install.sh"
+if [[ -e "$SH_SHARED_DIR/install_env.sh" ]]; then
+	source "$SH_SHARED_DIR/install_env.sh"
+fi
+if [[ -e "$SH_SHARED_DIR/install.sh" ]]; then
+	source "$SH_SHARED_DIR/install.sh"
+fi
 
 # Command-not-found
 if [ -e "/usr/share/doc/pkgfile/command-not-found.bash" ];then
