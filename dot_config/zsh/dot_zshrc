@@ -209,3 +209,8 @@ if [ -e "/usr/share/doc/pkgfile/command-not-found.zsh" ]; then
 fi
 # End of command-not-found
 
+# Tmux
+if [ -x "$(command -v tmux)" ] && [ -n "${SSH_CONNECTION}" ] && [ -z "${TMUX}" ]; then
+    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
+fi
+# End of tmux
