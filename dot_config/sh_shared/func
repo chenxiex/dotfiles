@@ -33,3 +33,13 @@ dla(){
 	yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail --add-metadata "${1}"
 }
 
+pick_gpu() {
+    local gpu_id
+    gpu_id=$(nvidia-smi --query-gpu=index,memory.used --format=csv,noheader,nounits \
+        | sort -t, -k2 -n \
+        | head -n1 \
+        | cut -d, -f1)
+
+    export CUDA_VISIBLE_DEVICES="$gpu_id"
+    echo "Using GPU $gpu_id"
+}
