@@ -1,7 +1,3 @@
-# Func and alias
-SH_SHARED_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sh_shared"
-source "$SH_SHARED_DIR/install.sh"
-
 if [[ $(tty) == "/dev/tty3" ]]; then
 	hypr-game.sh && \
 		exit
