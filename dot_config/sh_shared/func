@@ -15,7 +15,7 @@ set-proxy(){
 	export NO_PROXY=$no_proxy
 }
 
-unset-proxy(){
+reset-proxy(){
 	unset http_proxy
 	unset https_proxy
 	unset ftp_proxy
