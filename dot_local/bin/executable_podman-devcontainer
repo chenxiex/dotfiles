@@ -1,3 +1,27 @@
 #!/bin/bash
 export PODMAN_USERNS=keep-id
-podman-remote "$@"
+
+# 判断 GPU 是否可用
+has_gpu() {
+    command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi >/dev/null 2>&1
+}
+
+# 拦截 docker info
+if [[ "$1" == "info" ]]; then
+    shift
+    if [[ "$1" == "-f" ]]; then
+        TEMPLATE="$2"
+
+        # devcontainer 的关键检测点
+        if [[ "$TEMPLATE" == *".Runtimes.nvidia"* ]]; then
+            if has_gpu; then
+                echo "nvidia"
+            else
+                echo "<no value>"
+            fi
+            exit 0
+        fi
+    fi
+fi
+
+exec podman-remote "$@"
