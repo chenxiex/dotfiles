@@ -1,4 +1,4 @@
-{{- if (and (eq .chezmoi.hostname "anlorsp-main") (eq .chezmoi.os "linux")) }}
+{{- if (and (eq .chezmoi.hostname "anlorsp-main") (eq .chezmoi.os "linux")) -}}
 #!/usr/bin/bash
 cd ~/.config/ibus/rime
 ln -sf -t . ../rime_source/oh-my-rime/* 
