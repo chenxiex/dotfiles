@@ -8,9 +8,8 @@ has_gpu() {
 
 # 拦截 docker info
 if [[ "$1" == "info" ]]; then
-    shift
-    if [[ "$1" == "-f" ]]; then
-        TEMPLATE="$2"
+    if [[ "$2" == "-f" ]]; then
+        TEMPLATE="$3"
 
         # devcontainer 的关键检测点
         if [[ "$TEMPLATE" == *".Runtimes.nvidia"* ]]; then
