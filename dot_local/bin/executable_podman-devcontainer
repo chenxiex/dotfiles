@@ -23,4 +23,9 @@ if [[ "$1" == "info" ]]; then
     fi
 fi
 
+if [[ "$1" == "run" ]]; then
+    shift
+    exec podman-remote run --add-host=proxy.anlor.internal:host-gateway "$@"
+fi
+
 exec podman-remote "$@"
