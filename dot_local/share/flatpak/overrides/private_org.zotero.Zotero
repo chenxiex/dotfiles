@@ -1,3 +1,0 @@
-[Context]
-filesystems=!home;xdg-download;xdg-documents;
-sockets=!fallback-x11;
