@@ -12,6 +12,10 @@ patch:
   "grammar/language": wanxiang-lts-zh-hans
   "grammar/collocation_max_length": 8
   "grammar/collocation_min_length": 2
+  "grammar/collocation_penalty": -10
+  "grammar/non_collocation_penalty": -5
+  "grammar/weak_collocation_penalty": -100
+  "grammar/rear_penalty": -5
 
   # translator 内加载
   "translator/contextual_suggestions": false
