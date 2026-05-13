@@ -8,6 +8,7 @@ ContainerName=docker-aria2
 EnvironmentFile=%h/.config/aria2/docker-aria2.env
 Volume=%h/.config/aria2:/config
 Volume=%h/Downloads:/downloads
+Volume=%h/.local/share/CA/aria2.anlor.localhost/:/config/ssl
 
 AutoUpdate=registry
 
@@ -15,4 +16,4 @@ AutoUpdate=registry
 Restart=on-failure
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
