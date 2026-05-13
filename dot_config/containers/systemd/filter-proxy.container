@@ -18,6 +18,3 @@ AutoUpdate=registry
 Restart=on-failure
 
 TimeoutStartSec=300
-
-[Install]
-WantedBy=default.target
