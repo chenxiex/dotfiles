@@ -346,7 +346,7 @@ end)
 hl.bind("CTRL + ALT + S", function()
     dpms("off")
 end)
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({mode = "fullscreen", action = "toggle"}))
+hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("~/.config/hypr/scripts/floating_fullscreen.sh"))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
