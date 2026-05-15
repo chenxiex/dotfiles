@@ -16,7 +16,7 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-    output   = "DP-5",
+    output   = "desc:Xiaomi Corporation Redmi 27 NU 3948623NN1482",
     mode     = "preferred",
     position = "auto",
     scale    = "auto",
