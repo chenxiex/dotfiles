@@ -16,10 +16,10 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-    output   = "desc:Xiaomi Corporation Redmi 27 NU 3948623NN1482",
+    output   = "DP-5",
     mode     = "preferred",
     position = "auto",
-    scale    = "auto",
+    scale    = "2",
     bitdepth = 10,
     cm = "srgb",
 })
@@ -131,7 +131,7 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 10,
+        rounding       = 0,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
@@ -346,7 +346,17 @@ end)
 hl.bind("CTRL + ALT + S", function()
     dpms("off")
 end)
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("~/.config/hypr/scripts/floating_fullscreen.sh"))
+hl.bind(mainMod .. " + F", 
+function()
+	local mon = hl.get_active_monitor()
+	if not mon then return end
+	hl.dispatch(hl.dsp.window.fullscreen_state({internal=0, client=2, action="set"}))
+	hl.dispatch(hl.dsp.window.float({action="on"}))
+	hl.dispatch(hl.dsp.window.center({}))
+	hl.dispatch(hl.dsp.window.move({x=0, y=0}))
+	hl.dispatch(hl.dsp.window.resize({x=mon.width*0.5, y=mon.height*0.5}))
+end
+)
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -397,3 +407,20 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+hl.window_rule({ match = { class = [[^yuanshen\.exe$]] }, tag = "+float-fullscreen" })
+hl.window_rule({ match = { xdg_tag = [[^proton-game$]] }, tag = "+float-fullscreen" })
+
+hl.window_rule({
+	name = "float-fullscreen",
+	match = {
+		tag = "float-fullscreen"
+	},
+
+	float = true,
+	fullscreen_state = "0 2",
+	center = true,
+	move = {0,0},
+	size = {"(monitor_w*1)", "(monitor_h*1)"},
+})
+
