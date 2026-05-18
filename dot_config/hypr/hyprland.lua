@@ -66,6 +66,9 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("ibus start --type=wayland")
   hl.exec_cmd("copyq --start-server")
   hl.exec_cmd("com.heroicgameslauncher.hgl")
+
+  hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"')
+  hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"')
 end)
 
 
