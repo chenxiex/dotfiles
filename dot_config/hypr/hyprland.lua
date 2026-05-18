@@ -64,7 +64,7 @@ local menu        = "hyprlauncher"
 hl.on("hyprland.start", function () 
   hl.exec_cmd("waybar")
   hl.exec_cmd("ibus start --type=wayland")
-  hl.exec_cmd("/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=copyq com.github.hluk.copyq --start-server")
+  hl.exec_cmd("copyq --start-server")
   hl.exec_cmd("com.heroicgameslauncher.hgl")
 end)
 
