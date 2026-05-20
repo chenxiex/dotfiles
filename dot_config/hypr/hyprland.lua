@@ -90,11 +90,11 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
 hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
 hl.env("XMODIFIERS", "@im=ibus")
 
+-- For wine wayland
+hl.env("WAYLANDDRV_PRIMARY_MONITOR", "DP-5")
 
 -----------------------
 ----- PERMISSIONS -----
