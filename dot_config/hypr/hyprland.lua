@@ -24,6 +24,14 @@ hl.monitor({
     cm = "srgb",
 })
 hl.monitor({
+    output   = "eDP-1",
+    mode     = "preferred",
+    position = "auto-center-down",
+    scale    = "2",
+    cm = "edid",
+	vrr = 1,
+})
+hl.monitor({
     output = "",
     disabled = true,
 })
