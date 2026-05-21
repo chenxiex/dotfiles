@@ -14,9 +14,12 @@
 ---- MONITORS ----
 ------------------
 
+local mon1 = "DP-5"
+local imon = "eDP-1"
+
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-    output   = "DP-5",
+    output   = mon1,
     mode     = "preferred",
     position = "auto",
     scale    = "2",
@@ -24,7 +27,7 @@ hl.monitor({
     cm = "srgb",
 })
 hl.monitor({
-    output   = "eDP-1",
+    output   = imon,
     mode     = "preferred",
     position = "auto-center-down",
     scale    = "2",
@@ -94,7 +97,7 @@ hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
 hl.env("XMODIFIERS", "@im=ibus")
 
 -- For wine wayland
-hl.env("WAYLANDDRV_PRIMARY_MONITOR", "DP-5")
+hl.env("WAYLANDDRV_PRIMARY_MONITOR", mon1)
 
 -----------------------
 ----- PERMISSIONS -----
@@ -319,9 +322,9 @@ end
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
--- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "e-1" }))
+-- Scroll through existing workspaces
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "r+1" }))
+hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "r-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
