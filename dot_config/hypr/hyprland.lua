@@ -369,6 +369,7 @@ function()
 	hl.dispatch(hl.dsp.window.center({}))
 	hl.dispatch(hl.dsp.window.move({x=0, y=0}))
 	hl.dispatch(hl.dsp.window.resize({x=mon.width*0.5, y=mon.height*0.5}))
+	hl.dispatch(hl.dsp.window.set_prop({prop = "border_size", value = 0}))
 end
 )
 
@@ -440,15 +441,6 @@ hl.window_rule({
 })
 
 -- Group workspace for monitors
-local function monitor_exists(name)
-    for _, mon in ipairs(hl.get_monitors()) do
-        if mon.name == name then
-            return true
-        end
-    end
-    return false
-end
-
 local function bind_workspace_range(first, last, monitor, default_ws)
     for ws = first, last do
         hl.workspace_rule({
@@ -460,10 +452,4 @@ local function bind_workspace_range(first, last, monitor, default_ws)
     end
 end
 
-if monitor_exists(external) then
-    bind_workspace_range(1, 5, external, 1)
-    bind_workspace_range(6, 10, internal, 6)
-else
-    bind_workspace_range(1, 5, internal, 1)
-    -- bind_workspace_range(6, 10, internal, 1)
-end
+bind_workspace_range(1, 5, external, 1)
