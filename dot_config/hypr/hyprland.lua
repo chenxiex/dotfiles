@@ -14,12 +14,12 @@
 ---- MONITORS ----
 ------------------
 
-local mon1 = "DP-5"
-local imon = "eDP-1"
+local external = "DP-5"
+local internal = "eDP-1"
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-    output   = mon1,
+    output   = external,
     mode     = "preferred",
     position = "auto",
     scale    = "2",
@@ -27,7 +27,7 @@ hl.monitor({
     cm = "srgb",
 })
 hl.monitor({
-    output   = imon,
+    output   = internal,
     mode     = "preferred",
     position = "auto-center-down",
     scale    = "2",
@@ -97,7 +97,7 @@ hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
 hl.env("XMODIFIERS", "@im=ibus")
 
 -- For wine wayland
-hl.env("WAYLANDDRV_PRIMARY_MONITOR", mon1)
+hl.env("WAYLANDDRV_PRIMARY_MONITOR", external)
 
 -----------------------
 ----- PERMISSIONS -----
@@ -439,3 +439,31 @@ hl.window_rule({
 	border_size = 0,
 })
 
+-- Group workspace for monitors
+local function monitor_exists(name)
+    for _, mon in ipairs(hl.get_monitors()) do
+        if mon.name == name then
+            return true
+        end
+    end
+    return false
+end
+
+local function bind_workspace_range(first, last, monitor, default_ws)
+    for ws = first, last do
+        hl.workspace_rule({
+            workspace = tostring(ws),
+            monitor = monitor,
+            persistent = true,
+            default = (ws == default_ws),
+        })
+    end
+end
+
+if monitor_exists(external) then
+    bind_workspace_range(1, 5, external, 1)
+    bind_workspace_range(6, 10, internal, 6)
+else
+    bind_workspace_range(1, 5, internal, 1)
+    -- bind_workspace_range(6, 10, internal, 1)
+end
