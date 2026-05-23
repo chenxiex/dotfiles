@@ -16,13 +16,14 @@
 
 local external = "DP-5"
 local internal = "eDP-1"
+local scale = 2
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = external,
     mode     = "preferred",
     position = "auto",
-    scale    = "2",
+    scale    = scale,
     bitdepth = 10,
     cm = "srgb",
 })
@@ -30,7 +31,7 @@ hl.monitor({
     output   = internal,
     mode     = "preferred",
     position = "auto-center-down",
-    scale    = "2",
+    scale    = scale,
     cm = "edid",
 	vrr = 1,
 })
@@ -363,12 +364,14 @@ end)
 hl.bind(mainMod .. " + F", 
 function()
 	local mon = hl.get_active_monitor()
-	if not mon then return end
+    if not mon then return end
+    local monitor_w = mon.width*(1/scale)
+    local monitor_h = mon.height*(1/scale)
 	hl.dispatch(hl.dsp.window.fullscreen_state({internal=0, client=2, action="set"}))
 	hl.dispatch(hl.dsp.window.float({action="on"}))
 	hl.dispatch(hl.dsp.window.center({}))
 	hl.dispatch(hl.dsp.window.move({x=0, y=0}))
-	hl.dispatch(hl.dsp.window.resize({x=mon.width*0.5, y=mon.height*0.5}))
+	hl.dispatch(hl.dsp.window.resize({x=monitor_w*1, y=monitor_h*1}))
 	hl.dispatch(hl.dsp.window.set_prop({prop = "border_size", value = 0}))
 end
 )
