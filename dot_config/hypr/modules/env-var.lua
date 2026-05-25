@@ -18,7 +18,9 @@ else
     hl.env("AQ_DRM_DEVICES", "/dev/dri/intel-igpu")
 end
 
-hl.env("XMODIFIERS", "@im=ibus")
+hl.env("XMODIFIERS", "@im=fcitx")
+hl.env("QT_IM_MODULE", "fcitx")
+hl.env("QT_IM_MODULES", "wayland;fcitx")
 
 -- For wine wayland
 hl.env("WAYLANDDRV_PRIMARY_MONITOR", display.external)
