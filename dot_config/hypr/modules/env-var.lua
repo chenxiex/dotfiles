@@ -5,13 +5,18 @@
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
 local display = require("modules.vars.display")
+local gamemode = require("modules.vars.gamemode")
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
 hl.env("GDK_SCALE", display.scale)
 
-hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
+if gamemode then
+    hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
+else
+    hl.env("AQ_DRM_DEVICES", "/dev/dri/intel-igpu")
+end
 
 hl.env("XMODIFIERS", "@im=ibus")
 
