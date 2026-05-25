@@ -1,2 +1,2 @@
 [Context]
-filesystems=~/OneDrive/App/rime_sync:create;
+filesystems=xdg-config/rime;~/OneDrive/App/rime_sync:create
