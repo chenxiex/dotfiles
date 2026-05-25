@@ -2,6 +2,8 @@
 
 egpu_path="/dev/dri/nvidia-egpu"
 
+export HYPR_GAMEMODE=1
+
 choose_fallback() {
     echo "Warning: egpu or display not found!"
     echo "1) Continue and start Hyprland"
