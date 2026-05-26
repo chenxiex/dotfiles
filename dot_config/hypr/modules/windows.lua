@@ -63,4 +63,5 @@ hl.window_rule({
 	move = {0,0},
 	size = {"(monitor_w*1)", "(monitor_h*1)"},
 	border_size = 0,
+    rounding = 0,
 })

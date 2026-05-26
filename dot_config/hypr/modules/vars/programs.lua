@@ -5,7 +5,7 @@
 -- Set programs that you use
 local programs = {
     terminal    = "kgx",
-    fileManager = "nautilus",
+    fileManager = 'xdg-open "$HOME"',
     menu        = "hyprlauncher",
 }
 
