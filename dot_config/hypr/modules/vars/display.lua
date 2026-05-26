@@ -1,17 +1,9 @@
 local gamemode = require("modules.vars.gamemode")
 local display
 
-if gamemode then
-    display = {
-        external = "DP-5",
-        internal = "eDP-1",
-        scale = 2,
-    }
-else
-    display = {
-        external = "DP-3",
-        internal = "eDP-1",
-        scale = 2,
-    }
-end
+display = {
+    external = gamemode and "DP-5" or "DP-3",
+    internal = "eDP-1",
+    scale = 1.6,
+}
 return display

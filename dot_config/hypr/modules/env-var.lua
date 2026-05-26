@@ -10,7 +10,7 @@ local gamemode = require("modules.vars.gamemode")
 --- hidpi
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("GDK_SCALE", display.scale)
+hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
 
