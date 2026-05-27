@@ -48,17 +48,29 @@ hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
-    hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+    hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = "r~" .. i }))
+    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = "r~" .. i }))
 end
 
 -- Example special workspace (scratchpad)
 -- hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 -- hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
--- Scroll through existing workspaces
+-- Move focus and windows between workspaces with mainMod + CTRL/SHIFT + left/right
 hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "r+1" }))
 hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "r-1" }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ workspace = "r+1" }))
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ workspace = "r-1" }))
+
+-- Move focus and windows between monitors with mainMod + CTRL/SHIFT + H/J/K/L
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ monitor = "left" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ monitor = "right" }))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.focus({ monitor = "up" }))
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.focus({ monitor = "down" }))
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ monitor = "left" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ monitor = "right" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ monitor = "up" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ monitor = "down" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
