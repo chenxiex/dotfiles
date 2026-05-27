@@ -1,12 +1,14 @@
 {{- if (and (eq .chezmoi.hostname "anlorsp-main") (eq .chezmoi.os "linux")) -}}
 #!/usr/bin/bash
 RIME_PATH=~/.config/rime
-IBUS_RIME_PATH=~/.config/ibus/rime
-FCITX5_FLATPAK_RIME_PATH=~/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime
+INSTALL_PATHS=(
+  "$HOME/.config/ibus/rime"
+  "$HOME/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime"
+  "$HOME/.local/share/fcitx5/rime"
+)
 
-mkdir -p $IBUS_RIME_PATH
-ln -sf --relative -t $IBUS_RIME_PATH $RIME_PATH/oh-my-rime/* $RIME_PATH/rime_custom/* $RIME_PATH/wanxiang/*
-
-mkdir -p $FCITX5_FLATPAK_RIME_PATH
-ln -sf --relative -t $FCITX5_FLATPAK_RIME_PATH $RIME_PATH/oh-my-rime/* $RIME_PATH/rime_custom/* $RIME_PATH/wanxiang/*
+for install_path in "${INSTALL_PATHS[@]}"; do
+  mkdir -p "$install_path"
+  ln -sf --relative -t "$install_path" "$RIME_PATH"/oh-my-rime/* "$RIME_PATH"/rime_custom/* "$RIME_PATH"/wanxiang/*
+done
 {{- end }}
