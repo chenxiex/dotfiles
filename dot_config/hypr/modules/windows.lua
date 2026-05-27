@@ -50,7 +50,13 @@ hl.window_rule({
     float = true,
 })
 
-hl.window_rule({ match = { xdg_tag = [[^proton-game$]] }, tag = "+float-fullscreen" })
+local function app_tags(match, tags)
+	for _,tag in ipairs(tags) do
+		hl.window_rule({ match = match, tag = "+" .. tag})
+	end
+end
+
+app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen", "external"})
 
 hl.window_rule({
 	name = "float-fullscreen",
