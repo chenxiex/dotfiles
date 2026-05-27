@@ -22,7 +22,7 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + up", hl.dsp.window.fullscreen({ mode = "maximized", action = "set"}))
 hl.bind(mainMod .. " + down", hl.dsp.window.fullscreen({ mode = "maximized", action = "unset" }))
-hl.bind(mainMod .. " SHIFT + F",
+hl.bind(mainMod .. " + SHIFT + F",
     function()
         local mon = hl.get_active_monitor()
         if not mon then return end
