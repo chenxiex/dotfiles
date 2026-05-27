@@ -40,7 +40,7 @@ hl.bind(mainMod .. " + SHIFT + F",
     end
 )
 
--- Move focus with mainMod + H/J/K/L
+-- Move focus with mainMod + ALT + H/J/K/L
 hl.bind(mainMod .. " + ALT + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + ALT + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + ALT + K", hl.dsp.focus({ direction = "up" }))
