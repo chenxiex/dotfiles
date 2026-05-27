@@ -66,7 +66,6 @@ hl.window_rule({
 
 	float = true,
 	fullscreen_state = "0 2",
-	center = true,
 	move = {0,0},
 	size = {"(monitor_w*1)", "(monitor_h*1)"},
 	border_size = 0,
