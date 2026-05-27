@@ -56,7 +56,7 @@ local function app_tags(match, tags)
 	end
 end
 
-app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen", "external"})
+app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
 
 hl.window_rule({
 	name = "float-fullscreen",
@@ -70,13 +70,4 @@ hl.window_rule({
 	size = {"(monitor_w*1)", "(monitor_h*1)"},
 	border_size = 0,
     rounding = 0,
-})
-
-hl.window_rule({
-	name = "external",
-	match = {
-		tag = "external",
-	},
-
-	monitor = display.external,
 })
