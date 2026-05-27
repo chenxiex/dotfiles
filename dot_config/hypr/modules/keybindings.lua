@@ -65,13 +65,13 @@ hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ workspace = "r+1" })
 hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ workspace = "r-1" }))
 
 -- Move focus and windows between monitors with mainMod + CTRL/SHIFT + H/J/K/L
-hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ monitor = "left" }))
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ monitor = "right" }))
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.focus({ monitor = "up" }))
-hl.bind(mainMod .. " + CTRL + J", hl.dsp.focus({ monitor = "down" }))
-hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ monitor = "left" }))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ monitor = "right" }))
-hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ monitor = "up" }))
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ monitor = "l" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ monitor = "r" }))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.focus({ monitor = "u" }))
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.focus({ monitor = "d" }))
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ monitor = "l" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ monitor = "r" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ monitor = "u" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ monitor = "d" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
