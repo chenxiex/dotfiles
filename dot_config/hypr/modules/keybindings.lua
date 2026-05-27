@@ -40,11 +40,11 @@ hl.bind(mainMod .. " + SHIFT + F",
     end
 )
 
--- Move focus with mainMod + ALT + H/J/K/L
-hl.bind(mainMod .. " + ALT + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + ALT + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + ALT + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + ALT + J", hl.dsp.focus({ direction = "down" }))
+-- Move focus with mainMod + CTRL + H/J/K/L
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -64,11 +64,11 @@ hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "r-1" }))
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ workspace = "r+1" }))
 hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ workspace = "r-1" }))
 
--- Move focus and windows between monitors with mainMod + CTRL/SHIFT + H/J/K/L
-hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ monitor = "l" }))
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ monitor = "r" }))
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.focus({ monitor = "u" }))
-hl.bind(mainMod .. " + CTRL + J", hl.dsp.focus({ monitor = "d" }))
+-- Move focus and windows between monitors with mainMod + ALT/SHIFT + H/J/K/L
+hl.bind(mainMod .. " + ALT + H", hl.dsp.focus({ monitor = "l" }))
+hl.bind(mainMod .. " + ALT + L", hl.dsp.focus({ monitor = "r" }))
+hl.bind(mainMod .. " + ALT + K", hl.dsp.focus({ monitor = "u" }))
+hl.bind(mainMod .. " + ALT + J", hl.dsp.focus({ monitor = "d" }))
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ monitor = "l" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ monitor = "r" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ monitor = "u" }))
