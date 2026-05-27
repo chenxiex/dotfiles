@@ -97,19 +97,19 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Power management
-local function dpms(action)
+local function dpms(param)
     hl.timer(
         function()
-            hl.dispatch(hl.dsp.dpms({ action = action }))
+            hl.dispatch(hl.dsp.dpms(param))
         end, { timeout = 500, type = "oneshot" }
     )
 end
 hl.bind("CTRL + ALT + W", function()
-    dpms("on")
+    dpms({ action = "on" })
 end, { locked = true })
 hl.bind("CTRL + ALT + S", function()
 	hl.dispatch(hl.dsp.exec_cmd("hyprlock"))
-    dpms("off")
+    dpms({ action = "off", monitor = display.external })
 end, { locked = true })
 
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
