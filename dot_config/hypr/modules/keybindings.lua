@@ -106,10 +106,11 @@ local function dpms(action)
 end
 hl.bind("CTRL + ALT + W", function()
     dpms("on")
-end)
+end, { locked = true })
 hl.bind("CTRL + ALT + S", function()
+	hl.dispatch(hl.dsp.exec_cmd("hyprlock"))
     dpms("off")
-end)
+end, { locked = true })
 
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + M",
