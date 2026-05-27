@@ -72,7 +72,7 @@ hl.bind(mainMod .. " + CTRL + J", hl.dsp.focus({ monitor = "down" }))
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ monitor = "left" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ monitor = "right" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ monitor = "up" }))
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ monitor = "down" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ monitor = "d" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
