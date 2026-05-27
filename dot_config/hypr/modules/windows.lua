@@ -7,6 +7,8 @@
 
 -- Example window rules that are useful
 
+local display = require(modules.var.display)
+
 local suppressMaximizeRule = hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
     name  = "suppress-maximize-events",
@@ -48,7 +50,6 @@ hl.window_rule({
     float = true,
 })
 
-hl.window_rule({ match = { class = [[^yuanshen\.exe$]] }, tag = "+float-fullscreen" })
 hl.window_rule({ match = { xdg_tag = [[^proton-game$]] }, tag = "+float-fullscreen" })
 
 hl.window_rule({
@@ -64,4 +65,13 @@ hl.window_rule({
 	size = {"(monitor_w*1)", "(monitor_h*1)"},
 	border_size = 0,
     rounding = 0,
+})
+
+hl.window_rule({
+	name = "external",
+	match = {
+		tag = "external"
+	},
+
+	monitor = display.external
 })
