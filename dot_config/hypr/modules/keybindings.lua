@@ -41,10 +41,10 @@ hl.bind(mainMod .. " + SHIFT + F",
 )
 
 -- Move focus with mainMod + H/J/K/L
-hl.bind(mainMod .. " + W + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + W + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + W + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + W + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " ALT + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " ALT + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " ALT + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " ALT + J", hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
