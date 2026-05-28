@@ -17,12 +17,10 @@ hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
 --- For games
 if gamemode then
     hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
+    hl.env("WAYLANDDRV_PRIMARY_MONITOR", display.external)
 else
     hl.env("AQ_DRM_DEVICES", "/dev/dri/intel-igpu")
 end
-
--- For wine wayland
-hl.env("WAYLANDDRV_PRIMARY_MONITOR", display.external)
 
 --- Input method
 hl.env("XMODIFIERS", "@im=fcitx")
