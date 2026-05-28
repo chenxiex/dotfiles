@@ -5,7 +5,7 @@
 -- Set programs that you use
 local programs = {
     terminal    = "kgx",
-    fileManager = 'xdg-open "$HOME"',
+    fileManager = 'nautilus',
     menu        = "hyprlauncher",
     clipboard   = "/usr/bin/copyq toggle",
     browser     = "com.brave.Browser",

@@ -13,6 +13,17 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(programs.menu))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(programs.clipboard))
 hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd(programs.browser))
+hl.bind(mainMod .. " + A",
+    hl.dsp.exec_cmd("nwg-drawer" ..
+        " -closebtn" ..
+        " left" ..
+        " -fm " ..
+        programs.fileManager ..
+        " -pbexit" ..
+        " hyprshutdown" ..
+        " -pblock" ..
+        " hyprlock"
+    ))
 
 -- Window management
 local closeWindowBind = hl.bind("ALT + F4", hl.dsp.window.close())
@@ -20,10 +31,10 @@ local closeWindowBind = hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit")) -- dwindle only
-hl.bind(mainMod .. " + up", hl.dsp.window.fullscreen({ mode = "maximized", action = "set"}))
+hl.bind(mainMod .. " + up", hl.dsp.window.fullscreen({ mode = "maximized", action = "set" }))
 hl.bind(mainMod .. " + down", hl.dsp.window.fullscreen({ mode = "maximized", action = "unset" }))
-hl.bind(mainMod .. " + left", hl.dsp.window.move({direction = "left"}))
-hl.bind(mainMod .. " + right", hl.dsp.window.move({direction = "right"}))
+hl.bind(mainMod .. " + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + F",
     function()
         local mon = hl.get_active_monitor()
@@ -108,7 +119,7 @@ hl.bind("CTRL + ALT + W", function()
     dpms({ action = "on" })
 end, { locked = true })
 hl.bind("CTRL + ALT + S", function()
-	hl.dispatch(hl.dsp.exec_cmd("hyprlock"))
+    hl.dispatch(hl.dsp.exec_cmd("hyprlock"))
     dpms({ action = "off", monitor = display.external })
 end, { locked = true })
 
