@@ -13,13 +13,21 @@
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
 -- end)
 local gamemode = require("modules.vars.gamemode")
+local hyprland_session_target = "hyprland-session.target"
+local xdg_autostart_target = "xdg-desktop-autostart.target"
+local systemd_session_targets = hyprland_session_target .. " " .. xdg_autostart_target
+
 hl.on("hyprland.start", function () 
   hl.exec_cmd("waybar")
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("hyprsunset")
-  hl.exec_cmd("systemctl --user start hyprland-session.target")
+  hl.exec_cmd("systemctl --user start " .. hyprland_session_target)
 
   if gamemode then
     hl.exec_cmd("com.heroicgameslauncher.hgl")
   end
+end)
+
+hl.on("hyprland.shutdown", function()
+  hl.exec_cmd("systemctl --user stop " .. systemd_session_targets)
 end)
