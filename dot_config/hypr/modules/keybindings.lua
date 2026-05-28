@@ -22,7 +22,13 @@ hl.bind(mainMod .. " + A",
         " -pbexit" ..
         " hyprshutdown" ..
         " -pblock" ..
-        " hyprlock"
+        " hyprlock" ..
+        " -pbpoweroff" ..
+        ' "systemctl poweroff"' ..
+        " -pbreboot" ..
+        ' "systemctl reboot"' ..
+        " -pbsleep" ..
+        ' "systemctl suspend"'
     ))
 
 -- Window management
