@@ -17,6 +17,9 @@ hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 --- Wayland
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
+--- DMS
+hl.env("DMS_DANKBAR_LAYER", "bottom")
+
 --- Theming
 hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
 hl.env("QT_QPA_PLATFORMTHEME_QT6", "gtk3")
