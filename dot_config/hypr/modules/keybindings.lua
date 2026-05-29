@@ -4,6 +4,7 @@
 
 local programs = require("modules.vars.programs")
 local display = require("modules.vars.display")
+local devices_func = require("modules.devices")
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
@@ -111,6 +112,9 @@ hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call mpris decre
 -- === Brightness Controls ===
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd([[dms ipc call brightness increment 5 ""]]), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[dms ipc call brightness decrement 5 ""]]), { locked = true, repeating = true })
+
+-- Devices
+hl.bind("SUPER + CTRL + SHIFT + ALT + SPACE", devices_func.toggle_touchpad)
 
 -- Power management
 local function dpms(param)
