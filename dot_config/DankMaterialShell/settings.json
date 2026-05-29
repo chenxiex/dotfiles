@@ -136,6 +136,11 @@
       "id": "darkMode",
       "enabled": true,
       "width": 50
+    },
+    {
+      "id": "builtin_display_profiles",
+      "enabled": true,
+      "width": 50
     }
   ],
   "showWorkspaceIndex": true,
@@ -226,8 +231,8 @@
   "launcherUseOverlayLayer": false,
   "launcherStyle": "full",
   "spotlightBarShowModeChips": false,
-  "useAutoLocation": true,
-  "weatherEnabled": true,
+  "useAutoLocation": false,
+  "weatherEnabled": false,
   "networkPreference": "auto",
   "iconTheme": "System Default",
   "cursorSettings": {
@@ -460,8 +465,7 @@
   "hyprlandOutputSettings": {
     "DP-3": {
       "bitdepth": 10,
-      "colorManagement": "dp3",
-      "disabled": true
+      "colorManagement": "dp3"
     },
     "eDP-1": {
       "bitdepth": 10,
@@ -475,7 +479,7 @@
   "displayProfiles": {},
   "activeDisplayProfile": {
     "unknown": "",
-    "hyprland": "profile_1780059193924_4p079au"
+    "hyprland": "profile_1780041917276_pjdh0kz"
   },
   "displayProfileAutoSelect": false,
   "displayShowDisconnected": false,
