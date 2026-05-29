@@ -14,6 +14,13 @@ hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
 
+--- Wayland
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+
+--- Theming
+hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
+hl.env("QT_QPA_PLATFORMTHEME_QT6", "gtk3")
+
 --- For games
 if gamemode then
     hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
