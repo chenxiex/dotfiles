@@ -18,6 +18,7 @@ local xdg_autostart_target = "xdg-desktop-autostart.target"
 local systemd_session_targets = hyprland_session_target .. " " .. xdg_autostart_target
 
 hl.on("hyprland.start", function () 
+  hl.exec_cmd("dbus-update-activation-environment --systemd --all")
   hl.exec_cmd("waybar")
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("hyprsunset")
