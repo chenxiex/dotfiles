@@ -19,9 +19,7 @@ local systemd_session_targets = hyprland_session_target .. " " .. xdg_autostart_
 
 hl.on("hyprland.start", function () 
   hl.exec_cmd("dbus-update-activation-environment --systemd --all")
-  hl.exec_cmd("waybar")
-  hl.exec_cmd("hyprpaper")
-  hl.exec_cmd("hyprsunset")
+  hl.exec_cmd("wl-clip-persist --clipboard regular")
   hl.exec_cmd("systemctl --user start " .. hyprland_session_target)
 
   if gamemode then

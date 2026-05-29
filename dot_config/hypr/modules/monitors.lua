@@ -28,5 +28,5 @@ if gamemode then
         disabled = true,
     })
 else
-    require("monitors")
+    require("dms.outputs")
 end

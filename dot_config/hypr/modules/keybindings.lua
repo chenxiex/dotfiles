@@ -11,31 +11,18 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind("CTRL + ALT + T", hl.dsp.exec_cmd(programs.terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(programs.menu))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(programs.clipboard))
 hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd(programs.browser))
-hl.bind(mainMod .. " + A",
-    hl.dsp.exec_cmd("nwg-drawer" ..
-        " -closebtn" ..
-        " left" ..
-        " -fm " ..
-        programs.fileManager ..
-        " -pbexit" ..
-        " hyprshutdown" ..
-        " -pblock" ..
-        " hyprlock" ..
-        " -pbpoweroff" ..
-        ' "systemctl poweroff"' ..
-        " -pbreboot" ..
-        ' "systemctl reboot"' ..
-        " -pbsleep" ..
-        ' "systemctl suspend"'
-    ))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(programs.clipboard))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(programs.notifications))
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd(programs.powermenu))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(programs.screenshot))
+hl.bind("Print", hl.dsp.exec_cmd(programs.screenshot .. " full"))
+hl.bind("ALT + Print", hl.dsp.exec_cmd(programs.screenshot .. " window"))
 
 -- Window management
 local closeWindowBind = hl.bind("ALT + F4", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + up", hl.dsp.window.fullscreen({ mode = "maximized", action = "set" }))
 hl.bind(mainMod .. " + down", hl.dsp.window.fullscreen({ mode = "maximized", action = "unset" }))
@@ -78,8 +65,13 @@ end
 -- Move focus and windows between workspaces with mainMod + CTRL/SHIFT + left/right
 hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "r+1" }))
 hl.bind(mainMod .. " + CTRL + left", hl.dsp.focus({ workspace = "r-1" }))
+hl.bind(mainMod .. " + CTRL + mouse_down", hl.dsp.focus({ workspace = "r+1" }))
+hl.bind(mainMod .. " + CTRL + mouse_up", hl.dsp.focus({ workspace = "r-1" }))
+
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ workspace = "r+1" }))
 hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ workspace = "r-1" }))
+hl.bind(mainMod .. " + SHIFT + mouse_down", hl.dsp.window.move({ workspace = "r+1" }))
+hl.bind(mainMod .. " + SHIFT + mouse_up", hl.dsp.window.move({ workspace = "r-1" }))
 
 -- Move focus and windows between monitors with mainMod + ALT/SHIFT + H/J/K/L
 hl.bind(mainMod .. " + ALT + H", hl.dsp.focus({ monitor = "l" }))
@@ -95,23 +87,27 @@ hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ monitor = "d" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-    { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-    { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-    { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-    { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+-- === Manual Sizing ===
+hl.bind("SUPER + minus", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive -10% 0]]), { repeating = true })
+hl.bind("SUPER + equal", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive 10% 0]]), { repeating = true })
+hl.bind("SUPER + SHIFT + minus", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive 0 -10%]]), { repeating = true })
+hl.bind("SUPER + SHIFT + equal", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive 0 10%]]), { repeating = true })
 
--- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- === Audio Controls ===
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call audio increment 3"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 3"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("dms ipc call audio mute"), { locked = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("dms ipc call audio micmute"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("dms ipc call mpris playPause"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("dms ipc call mpris previous"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("dms ipc call mpris next"), { locked = true })
+hl.bind("CTRL + XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call mpris increment 3"), { locked = true, repeating = true })
+hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call mpris decrement 3"), { locked = true, repeating = true })
+
+-- === Brightness Controls ===
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd([[dms ipc call brightness increment 5 ""]]), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[dms ipc call brightness decrement 5 ""]]), { locked = true, repeating = true })
 
 -- Power management
 local function dpms(param)
@@ -125,10 +121,10 @@ hl.bind("CTRL + ALT + W", function()
     dpms({ action = "on" })
 end, { locked = true })
 hl.bind("CTRL + ALT + S", function()
-    hl.dispatch(hl.dsp.exec_cmd("hyprlock"))
+    hl.dispatch(hl.dsp.exec_cmd(programs.lock))
     dpms({ action = "off", monitor = display.external })
 end, { locked = true })
 
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(programs.lock))
 hl.bind(mainMod .. " + M",
     hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))

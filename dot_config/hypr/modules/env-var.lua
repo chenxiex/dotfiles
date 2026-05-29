@@ -10,9 +10,9 @@ local gamemode = require("modules.vars.gamemode")
 --- hidpi
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
+hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 
 --- Wayland
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
@@ -36,3 +36,6 @@ hl.env("QT_IM_MODULES", "wayland;fcitx")
 
 --- GSK_RENDERER
 hl.env("GSK_RENDERER", "opengl")
+
+--- Programs
+hl.env("TERMINAL", "kitty")
