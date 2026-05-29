@@ -59,8 +59,10 @@ end
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
 app_tags({ class = [[^eu.betterbird.Betterbird$]] }, {"background"})
 app_tags({ class = [[^QQ$]] }, {"float"})
-app_tags({ class = [[^wechat$]] }, {"float", "no_blur"})
+app_tags({ class = [[^wechat$]] }, {"float"})
 app_tags({ class = [[^v2rayN$]] }, {"float"})
+app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
+app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
 
 hl.window_rule({
 	name = "float-fullscreen",
@@ -99,10 +101,11 @@ hl.window_rule({
     float = true,
 })
 
+-- Fix blur border for XWayland windows. 
 hl.window_rule({
-    name = "no-blur",
+    name = "xwayland",
     match = {
-        tag = "no_blur",
+        xwayland = true,
     },
 
     no_blur = true,
