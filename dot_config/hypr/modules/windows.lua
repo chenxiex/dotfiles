@@ -57,6 +57,9 @@ local function app_tags(match, tags)
 end
 
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
+app_tags({ class = [[^eu.betterbird.Betterbird$]] }, {"background"})
+app_tags({ class = [[^QQ$]] }, {"float"})
+app_tags({ class = [[^v2rayN$]] }, {"float"})
 
 hl.window_rule({
 	name = "float-fullscreen",
@@ -70,4 +73,27 @@ hl.window_rule({
 	size = {"(monitor_w*1)", "(monitor_h*1)"},
 	border_size = 0,
     rounding = 0,
+})
+
+local background_workspace = {"background"}
+for _, name in ipairs(background_workspace) do
+    hl.window_rule({
+        name = name,
+        match = {
+            tag = name,
+        },
+
+        workspace = "special:" .. name .. " silent",
+        no_initial_focus = true,
+        group = "set"
+    })
+end
+
+hl.window_rule({
+    name = "float",
+    match = {
+        tag = "float",
+    },
+
+    float = true,
 })
