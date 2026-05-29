@@ -460,17 +460,22 @@
   "hyprlandOutputSettings": {
     "DP-3": {
       "bitdepth": 10,
-      "colorManagement": "dp3"
+      "colorManagement": "dp3",
+      "disabled": true
     },
     "eDP-1": {
       "bitdepth": 10,
       "colorManagement": "edid"
+    },
+    "DP-5": {
+      "colorManagement": "dp3",
+      "bitdepth": 10
     }
   },
   "displayProfiles": {},
   "activeDisplayProfile": {
     "unknown": "",
-    "hyprland": "profile_1780041917276_pjdh0kz"
+    "hyprland": "profile_1780059193924_4p079au"
   },
   "displayProfileAutoSelect": false,
   "displayShowDisconnected": false,
