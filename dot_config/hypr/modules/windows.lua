@@ -59,6 +59,7 @@ end
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
 app_tags({ class = [[^eu.betterbird.Betterbird$]] }, {"background"})
 app_tags({ class = [[^QQ$]] }, {"float"})
+app_tags({ class = [[^wechat$]] }, {"float", "no_blur"})
 app_tags({ class = [[^v2rayN$]] }, {"float"})
 
 hl.window_rule({
@@ -96,4 +97,14 @@ hl.window_rule({
     },
 
     float = true,
+})
+
+hl.window_rule({
+    name = "no-blur",
+    match = {
+        tag = "no_blur",
+    },
+
+    no_blur = true,
+    border_size = 0,
 })

@@ -58,6 +58,9 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = "r~" .. i }))
 end
 
+-- Workspace Overview
+hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("dms ipc hypr toggleOverview"))
+
 -- Special workspace
 hl.bind(mainMod .. " + CTRL + B",         hl.dsp.workspace.toggle_special("background"))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.window.move({ workspace = "special:background" }))
