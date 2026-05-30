@@ -12,3 +12,15 @@ hl.config({
         new_render_scheduling = true,
     }
 })
+
+-- Performance tweaks
+hl.config({
+    decoration = {
+        blur = {
+            enabled = false
+        },
+        shadow = {
+            enabled = false
+        }
+    }
+})
