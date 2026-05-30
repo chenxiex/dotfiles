@@ -63,6 +63,7 @@ app_tags({ class = [[^wechat$]] }, {"float"})
 app_tags({ class = [[^v2rayN$]] }, {"float"})
 app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
 app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
+app_tags({ class = [[^Bitwarden$]]}, {"float"})
 
 hl.window_rule({
 	name = "float-fullscreen",
