@@ -1,1 +1,1 @@
--- Optional per-user keybind overrides (managed by DMS). Loaded after default binds.
+-- DMS user keybind overrides (edit via Control Center or dms; do not remove this header)

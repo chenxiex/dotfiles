@@ -1,5 +1,5 @@
 require("modules.autostart")
-require("modules.env-var")
 require("modules.keybindings")
+require("modules.env-var")
 require("modules.windows")
 require("modules.xwayland")
