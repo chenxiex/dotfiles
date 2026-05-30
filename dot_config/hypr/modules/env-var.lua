@@ -28,8 +28,10 @@ hl.env("QT_QPA_PLATFORMTHEME_QT6", "gtk3")
 if gamemode then
     hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
     hl.env("WAYLANDDRV_PRIMARY_MONITOR", display.external)
+    hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "")
 else
     hl.env("AQ_DRM_DEVICES", "/dev/dri/intel-igpu")
+    hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "/usr/share/glvnd/egl_vendor.d/50_mesa.json")
 end
 
 --- Input method

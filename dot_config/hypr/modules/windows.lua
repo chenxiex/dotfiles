@@ -57,7 +57,7 @@ local function app_tags(match, tags)
 end
 
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
-app_tags({ class = [[^eu.betterbird.Betterbird$]] }, {"background"})
+app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[^Betterbird$]] }, {"background"})
 app_tags({ class = [[^QQ$]] }, {"float"})
 app_tags({ class = [[^wechat$]] }, {"float"})
 app_tags({ class = [[^v2rayN$]] }, {"float"})
