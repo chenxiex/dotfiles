@@ -124,14 +124,6 @@ hl.bind(mainMod .. " + SHIFT + F",
         end
     end
 )
-hl.bind(mainMod .. " + ALT + SHIFT + F",
-    function()
-        hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "unset" }))
-        hl.dispatch(hl.dsp.window.float({ action = "off" }))
-        hl.dispatch(hl.dsp.window.set_prop({ prop = "border_size", value = 2 }))
-        hl.dispatch(hl.dsp.window.set_prop({ prop = "rounding", value = 12 }))
-    end
-)
 
 -- Move focus with mainMod + CTRL + H/J/K/L
 hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ direction = "left" }))
