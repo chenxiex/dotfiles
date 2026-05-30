@@ -10,19 +10,20 @@ local gamemode = require("modules.vars.gamemode")
 --- hidpi
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
-hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
+hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "0")
+hl.env("QT_SCALE_FACTOR", display.scale)
 hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 
 --- Wayland
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 
 --- DMS
 hl.env("DMS_DANKBAR_LAYER", "bottom")
 
 --- Theming
-hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
-hl.env("QT_QPA_PLATFORMTHEME_QT6", "gtk3")
+hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
+hl.env("QT_QPA_PLATFORMTHEME_QT6", "qt6ct")
 
 --- For games
 if gamemode then

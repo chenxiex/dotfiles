@@ -41,15 +41,17 @@ end
 local function set_pseudo_fullscreen()
     local mon = hl.get_active_monitor()
     if not mon then return end
-    local monitor_w = mon.width * (1 / display.scale)
-    local monitor_h = mon.height * (1 / display.scale)
+    local monitor_w = mon.width * (1 / mon.scale)
+    local monitor_h = mon.height * (1 / mon.scale)
+    local monitor_x = mon.x
+    local monitor_y = mon.y
     hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "set" }))
     hl.dispatch(hl.dsp.window.float({ action = "on" }))
     hl.dispatch(hl.dsp.window.set_prop({ prop = "border_size", value = 0 }))
     hl.dispatch(hl.dsp.window.set_prop({ prop = "rounding", value = 0 }))
     hl.dispatch(hl.dsp.window.center({}))
     for _ = 1, 3 do
-        hl.dispatch(hl.dsp.window.move({ x = 0, y = 0 }))
+        hl.dispatch(hl.dsp.window.move({ x = monitor_x, y = monitor_y }))
         hl.dispatch(hl.dsp.window.resize({ x = monitor_w * 1, y = monitor_h * 1 }))
     end
 end
@@ -197,19 +199,10 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[dms ipc call brightness decre
 hl.bind("SUPER + CTRL + SHIFT + ALT + SPACE", devices_func.toggle_touchpad)
 
 -- Power management
-local function dpms(param)
-    hl.timer(
-        function()
-            hl.dispatch(hl.dsp.dpms(param))
-        end, { timeout = 500, type = "oneshot" }
-    )
-end
-hl.bind("CTRL + ALT + W", function()
-    dpms({ action = "on" })
-end, { locked = true })
+hl.bind("CTRL + ALT + W", hl.dsp.exec_cmd("dms dpms on"), { locked = true })
 hl.bind("CTRL + ALT + S", function()
     hl.dispatch(hl.dsp.exec_cmd(programs.lock))
-    dpms({ action = "off", monitor = display.external })
+    hl.dispatch(hl.dsp.exec_cmd("dms dpms off"))
 end, { locked = true })
 
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(programs.lock))
