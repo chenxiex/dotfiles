@@ -5,6 +5,21 @@
       "id": "profile_1780041917276_pjdh0kz",
       "name": "default",
       "outputs": {
+        "DP-3": {
+          "mode": "3840x2160@60.000",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "hyprland": {
+            "bitdepth": 10,
+            "colorManagement": "dp3"
+          }
+        },
         "eDP-1": {
           "mode": "2880x1800@120.001",
           "position": {
@@ -20,19 +35,19 @@
             "colorManagement": "edid"
           }
         },
-        "DP-3": {
+        "DP-5": {
           "mode": "3840x2160@60.000",
           "position": {
-            "x": 0,
+            "x": 2560,
             "y": 0
           },
           "scale": 1.5,
           "transform": "Normal",
           "vrr": false,
-          "disabled": false,
+          "disabled": true,
           "hyprland": {
-            "bitdepth": 10,
-            "colorManagement": "dp3"
+            "colorManagement": "dp3",
+            "bitdepth": 10
           }
         }
       }
