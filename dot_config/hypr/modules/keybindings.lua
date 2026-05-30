@@ -31,17 +31,27 @@ hl.bind(mainMod .. " + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + F",
     function()
-        local mon = hl.get_active_monitor()
-        if not mon then return end
-        local monitor_w = mon.width * (1 / display.scale)
-        local monitor_h = mon.height * (1 / display.scale)
-        hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "set" }))
-        hl.dispatch(hl.dsp.window.float({ action = "on" }))
-        hl.dispatch(hl.dsp.window.center({}))
-        hl.dispatch(hl.dsp.window.move({ x = 0, y = 0 }))
-        hl.dispatch(hl.dsp.window.resize({ x = monitor_w * 1, y = monitor_h * 1 }))
-        hl.dispatch(hl.dsp.window.set_prop({ prop = "border_size", value = 0 }))
-        hl.dispatch(hl.dsp.window.set_prop({ prop = "rounding", value = 0 }))
+        for _ = 1, 3 do
+            local mon = hl.get_active_monitor()
+            if not mon then return end
+            local monitor_w = mon.width * (1 / display.scale)
+            local monitor_h = mon.height * (1 / display.scale)
+            hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "set" }))
+            hl.dispatch(hl.dsp.window.float({ action = "on" }))
+            hl.dispatch(hl.dsp.window.center({}))
+            hl.dispatch(hl.dsp.window.move({ x = 0, y = 0 }))
+            hl.dispatch(hl.dsp.window.resize({ x = monitor_w * 1, y = monitor_h * 1 }))
+            hl.dispatch(hl.dsp.window.set_prop({ prop = "border_size", value = 0 }))
+            hl.dispatch(hl.dsp.window.set_prop({ prop = "rounding", value = 0 }))
+        end
+    end
+)
+hl.bind(mainMod .. " + ALT + SHIFT + F",
+    function()
+        hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "unset" }))
+        hl.dispatch(hl.dsp.window.float({ action = "off" }))
+        hl.dispatch(hl.dsp.window.set_prop({ prop = "border_size", value = 2 }))
+        hl.dispatch(hl.dsp.window.set_prop({ prop = "rounding", value = 12 }))
     end
 )
 
