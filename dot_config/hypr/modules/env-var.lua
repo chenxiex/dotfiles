@@ -16,23 +16,20 @@ hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 
 --- Wayland
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
-hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 
 --- DMS
 hl.env("DMS_DANKBAR_LAYER", "bottom")
 
 --- Theming
-hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
-hl.env("QT_QPA_PLATFORMTHEME_QT6", "qt6ct")
+hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
+hl.env("QT_QPA_PLATFORMTHEME_QT6", "gtk3")
 
 --- For games
 if gamemode then
     hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-egpu:/dev/dri/intel-igpu")
     hl.env("WAYLANDDRV_PRIMARY_MONITOR", display.external)
-    hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "")
 else
     hl.env("AQ_DRM_DEVICES", "/dev/dri/intel-igpu")
-    hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "/usr/share/glvnd/egl_vendor.d/50_mesa.json")
 end
 
 --- Input method

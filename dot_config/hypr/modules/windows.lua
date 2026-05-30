@@ -111,5 +111,4 @@ hl.window_rule({
     },
 
     no_blur = true,
-    border_size = 0,
 })
