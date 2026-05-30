@@ -1,0 +1,13 @@
+{
+	"hooks": {
+		"gpu_added": "~/.local/bin/toggle-gpu-display.sh nvidia off"
+	}
+	"eject": {
+		"unload_modules"=false,
+		"process_whitelist" :[
+			{"name": "systemd", "path": "/dev/dri/card*"},
+			{"name": "systemd-logind", "path": "/dev/dri/card*"},
+			{"name": "Hyprland", "path": "/dev/dri/card*"}
+		]
+	}
+}
