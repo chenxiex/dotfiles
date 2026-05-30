@@ -100,6 +100,7 @@ hl.window_rule({
     },
 
     float = true,
+	center = true,
 })
 
 -- Fix blur border for XWayland windows. 
