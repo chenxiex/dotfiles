@@ -113,13 +113,3 @@ hl.window_rule({
     no_blur = true,
     border_size = 0,
 })
-
--- Fix minimized windows freeze
-hl.window_rule({
-    name = "minimizable",
-    match = {
-        tag = "minimizable",
-    },
-
-    render_unfocused = true,
-})
