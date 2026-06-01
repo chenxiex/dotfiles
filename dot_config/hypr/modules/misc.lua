@@ -25,8 +25,15 @@ hl.config({
 -- Fix some popup windows disappearing when they lose focus.
 hl.config({
     input = {
-        follow_mouse = 2,
+        follow_mouse = 0,
         float_switch_override_focus = 0,
+    },
+})
+
+-- Focus on activate
+hl.config({
+    misc = {
+        focus_on_activate = true
     }
 })
 

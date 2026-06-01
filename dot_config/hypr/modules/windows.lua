@@ -66,7 +66,7 @@ app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
 app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
 app_tags({ class = [[^Bitwarden$]]}, {"float"})
 app_tags({ class = [[^eudic$]]}, {"float"})
-app_tags({ class = [[^open-orpheus$]]}, {"float"})
+app_tags({ class = [[^org.gnome.SystemMonitor$]]}, {"float"})
 
 hl.window_rule({
 	name = "float-fullscreen",
@@ -124,4 +124,13 @@ hl.window_rule({
     },
 
     render_unfocused = true,
+})
+
+hl.window_rule({
+    name = "open-orpheus",
+    match = {
+        class = [[^open-orpheus$]],
+    },
+
+    float = true,
 })
