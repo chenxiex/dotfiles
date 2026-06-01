@@ -115,3 +115,13 @@ hl.window_rule({
 
     no_blur = true,
 })
+
+-- Fix render issue for wiliwili
+hl.window_rule({
+    name = "wiliwili",
+    match = {
+        title = "wiliwili"
+    },
+
+    render_unfocused = true,
+})

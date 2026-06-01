@@ -12,7 +12,6 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
-hl.env("GDK_SCALE", math.floor(display.scale+0.5))
 
 --- Wayland
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
