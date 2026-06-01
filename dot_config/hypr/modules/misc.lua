@@ -19,8 +19,23 @@ hl.config({
         blur = {
             enabled = false
         },
-        shadow = {
-            enabled = false
+    }
+})
+
+-- Fix some popup windows disappearing when they lose focus.
+hl.config({
+    input = {
+        follow_mouse = 2,
+        float_switch_override_focus = 0,
+    }
+})
+
+-- Group bar configuration
+hl.config({
+    group = {
+        groupbar = {
+            gradients = true,
+            font_size = 15,
         }
     }
 })

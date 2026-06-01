@@ -58,12 +58,15 @@ end
 
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
 app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[^Betterbird$]] }, {"background"})
+app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[^日历提醒$]] }, {"float"})
 app_tags({ class = [[^QQ$]] }, {"float"})
 app_tags({ class = [[^wechat$]] }, {"float"})
 app_tags({ class = [[^v2rayN$]] }, {"float"})
 app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
 app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
 app_tags({ class = [[^Bitwarden$]]}, {"float"})
+app_tags({ class = [[^eudic$]]}, {"float"})
+app_tags({ class = [[^open-orpheus$]]}, {"float"})
 
 hl.window_rule({
 	name = "float-fullscreen",

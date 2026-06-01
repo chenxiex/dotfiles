@@ -8,12 +8,7 @@ local programs = {
     fileManager = 'nautilus',
     browser     = "com.brave.Browser",
 
-    menu        = "dms ipc call spotlight toggle",
-    clipboard   = "dms ipc call clipboard toggle",
-    notifications = "dms ipc call notifications toggle",
-    powermenu   = "dms ipc call powermenu toggle",
     lock        = "dms ipc call lock lock",
-    screenshot  = "dms screenshot"
 }
 
 return programs
