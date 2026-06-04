@@ -57,7 +57,7 @@ local function app_tags(match, tags)
 end
 
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
-app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[^Betterbird$]] }, {"background"})
+app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[.*Betterbird$]] }, {"background"})
 app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[^日历提醒$]] }, {"float"})
 app_tags({ class = [[^QQ$]] }, {"float"})
 app_tags({ class = [[^wechat$]] }, {"float"})
@@ -66,7 +66,8 @@ app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
 app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
 app_tags({ class = [[^Bitwarden$]]}, {"float"})
 app_tags({ class = [[^eudic$]]}, {"float"})
-app_tags({ class = [[^org.gnome.SystemMonitor$]]}, {"float"})
+app_tags({ class = [[^io.missioncenter.MissionCenter$]]}, {"float"})
+app_tags({ class = [[.*-nngceckbapebfimnlniiiahkandclblb-Default$]]}, {"float"}) -- Bitwarden browser extension popup
 
 hl.window_rule({
 	name = "float-fullscreen",
@@ -82,19 +83,16 @@ hl.window_rule({
     rounding = 0,
 })
 
-local background_workspace = {"background"}
-for _, name in ipairs(background_workspace) do
-    hl.window_rule({
-        name = name,
-        match = {
-            tag = name,
-        },
+hl.window_rule({
+    name = "background",
+    match = {
+        tag = "background",
+    },
 
-        workspace = "special:" .. name .. " silent",
-        no_initial_focus = true,
-        group = "set"
-    })
-end
+    workspace = "special:background silent",
+    no_initial_focus = true,
+    group = "set"
+})
 
 hl.window_rule({
     name = "float",
@@ -104,6 +102,7 @@ hl.window_rule({
 
     float = true,
 	center = true,
+    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
 })
 
 -- Fix blur border for XWayland windows. 
@@ -126,6 +125,9 @@ hl.window_rule({
     render_unfocused = true,
 })
 
+-- Window rules for apps
+
+-- Open Orpheus
 hl.window_rule({
     name = "open-orpheus",
     match = {

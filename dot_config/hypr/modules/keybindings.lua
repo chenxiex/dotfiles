@@ -109,8 +109,8 @@ hl.bind(mainMod .. " + SHIFT + F",
 )
 
 -- Groups
-hl.bind("ALT + TAB", hl.dsp.group.next())
-hl.bind("ALT + SHIFT + TAB", hl.dsp.group.prev())
+-- hl.bind("ALT + TAB", hl.dsp.group.next())
+-- hl.bind("ALT + SHIFT + TAB", hl.dsp.group.prev())
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -129,6 +129,3 @@ hl.bind("CTRL + ALT + S", function()
     hl.dispatch(hl.dsp.exec_cmd(programs.lock))
     hl.dispatch(hl.dsp.exec_cmd("dms dpms off"))
 end, { locked = true })
-
-hl.bind(mainMod .. " + M",
-    hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
