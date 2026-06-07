@@ -57,17 +57,13 @@ local function app_tags(match, tags)
 end
 
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
-app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[.*Betterbird$]] }, {"background"})
-app_tags({ class = [[^eu.betterbird.Betterbird$]], initial_title = [[^日历提醒$]] }, {"float"})
 app_tags({ class = [[^QQ$]] }, {"float"})
 app_tags({ class = [[^wechat$]] }, {"float"})
 app_tags({ class = [[^v2rayN$]] }, {"float"})
 app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
 app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
-app_tags({ class = [[^Bitwarden$]]}, {"float"})
 app_tags({ class = [[^eudic$]]}, {"float"})
 app_tags({ class = [[^io.missioncenter.MissionCenter$]]}, {"float"})
-app_tags({ class = [[.*-nngceckbapebfimnlniiiahkandclblb-Default$]]}, {"float"}) -- Bitwarden browser extension popup
 
 hl.window_rule({
 	name = "float-fullscreen",
@@ -102,7 +98,6 @@ hl.window_rule({
 
     float = true,
 	center = true,
-    size = {"(monitor_w*0.5)", "(monitor_h*0.5)"},
 })
 
 -- Fix blur border for XWayland windows. 
@@ -113,16 +108,6 @@ hl.window_rule({
     },
 
     no_blur = true,
-})
-
--- Fix render issue for wiliwili
-hl.window_rule({
-    name = "wiliwili",
-    match = {
-        title = "wiliwili"
-    },
-
-    render_unfocused = true,
 })
 
 -- Window rules for apps
@@ -136,3 +121,28 @@ hl.window_rule({
 
     float = true,
 })
+
+-- Bitwarden
+app_tags({ class = [[^Bitwarden$]]}, {"float"})
+app_tags({ class = [[.*-nngceckbapebfimnlniiiahkandclblb-Default$]]}, {"float"}) -- Bitwarden browser extension popup
+
+--Betterbird
+local betterbird_class = [[^eu.betterbird.Betterbird$]]
+app_tags({ class = betterbird_class, initial_title = [[.*Betterbird$]] }, {"background"})
+app_tags({ class = betterbird_class, initial_title = [[^日历提醒$]] }, {"float"})
+
+-- v2rayN
+hl.window_rule({
+    name = "v2rayN",
+    match = {
+        class = [[^v2rayN$]],
+    },
+
+    size = {"monitor_w*0.5", "monitor_h*0.5"},
+})
+
+-- Zotero
+local zotero_class = [[^org.zotero.Zotero$]]
+app_tags({ class = zotero_class, title = [[^Zotero 设置$]] }, {"float"})
+app_tags({ class = zotero_class, title = [[^中文社区转换器列表$]] }, {"float"})
+app_tags({ class = zotero_class, title = [[^进度$]] }, {"float"})
