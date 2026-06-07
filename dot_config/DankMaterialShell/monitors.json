@@ -41,6 +41,20 @@
       "id": "profile_1780059193924_4p079au",
       "name": "game",
       "outputs": {
+        "DP-5": {
+          "mode": "3840x2160@60.000",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "hyprland": {
+            "colorManagement": "auto"
+          }
+        },
         "eDP-1": {
           "mode": "2880x1800@120.001",
           "position": {
@@ -56,28 +70,13 @@
             "colorManagement": "edid"
           }
         },
-        "DP-5": {
-          "mode": "3840x2160@60.000",
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "scale": 1.5,
-          "transform": "Normal",
-          "vrr": false,
-          "disabled": false,
-          "hyprland": {
-            "colorManagement": "dp3",
-            "bitdepth": 10
-          }
-        },
         "DP-3": {
-          "mode": "3840x2160@60.000",
+          "mode": null,
           "position": {
             "x": 0,
             "y": 0
           },
-          "scale": 1.5,
+          "scale": 1,
           "transform": "Normal",
           "vrr": false,
           "disabled": true,
