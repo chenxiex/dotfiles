@@ -55,9 +55,12 @@ local function set_pseudo_fullscreen()
 end
 
 local function restore_from_pseudo_fullscreen(state)
+    local border_size = hl.get_config("general.border_size")
+    local rounding = hl.get_config("decoration.rounding")
+
     hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "unset" }))
-    hl.dispatch(hl.dsp.window.set_prop({ prop = "border_size", value = 2 }))
-    hl.dispatch(hl.dsp.window.set_prop({ prop = "rounding", value = 12 }))
+    hl.dispatch(hl.dsp.window.set_prop({ prop = "border_size", value = border_size }))
+    hl.dispatch(hl.dsp.window.set_prop({ prop = "rounding", value = rounding }))
 
     if not state then
         hl.dispatch(hl.dsp.window.float({ action = "off" }))

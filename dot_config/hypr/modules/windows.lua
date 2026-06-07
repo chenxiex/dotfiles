@@ -7,8 +7,6 @@
 
 -- Example window rules that are useful
 
-local display = require("modules.vars.display")
-
 local suppressMaximizeRule = hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
     name  = "suppress-maximize-events",
