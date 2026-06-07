@@ -9,7 +9,6 @@ hl.config({
 hl.config({
     render = {
         cm_auto_hdr = 0,
-        new_render_scheduling = true,
     }
 })
 
