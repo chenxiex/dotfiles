@@ -45,3 +45,10 @@ hl.config({
         }
     }
 })
+
+-- Resize on border
+hl.config({
+    general = {
+        resize_on_border = true,
+    }
+})

@@ -21,7 +21,7 @@ hl.config({
 			enabled = true,
 			range = 30,
 			render_power = 5,
-			offset = "0 5",
+			offset = { 0, 5 },
 			color = "rgba(00000070)",
 		},
 	},
