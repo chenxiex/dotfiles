@@ -48,6 +48,16 @@ hl.window_rule({
     float = true,
 })
 
+-- Fix blur border for XWayland windows. 
+hl.window_rule({
+    name = "xwayland",
+    match = {
+        xwayland = true,
+    },
+
+    no_blur = true,
+})
+
 local function app_tags(match, tags)
 	for _,tag in ipairs(tags) do
 		hl.window_rule({ match = match, tag = "+" .. tag})
@@ -64,6 +74,52 @@ app_tags({ class = [[^eudic$]]}, {"float"})
 app_tags({ class = [[^io.missioncenter.MissionCenter$]]}, {"float"})
 app_tags({ class = [[^qqmusic$]]}, {"float"})
 
+-- rules for apps
+
+-- Open Orpheus
+hl.window_rule({
+    name = "open-orpheus",
+    match = {
+        class = [[^open-orpheus$]],
+    },
+
+    float = true,
+})
+
+-- Bitwarden
+app_tags({ class = [[^Bitwarden$]]}, {"float"})
+app_tags({ class = [[.*-nngceckbapebfimnlniiiahkandclblb-Default$]]}, {"float"}) -- Bitwarden browser extension popup
+
+--Betterbird
+local betterbird_class = [[^eu.betterbird.Betterbird$]]
+app_tags({ class = betterbird_class, initial_title = [[.*Betterbird$]] }, {"background"})
+app_tags({ class = betterbird_class, initial_title = [[^日历提醒$]] }, {"float"})
+
+-- v2rayN
+hl.window_rule({
+    name = "v2rayN",
+    match = {
+        class = [[^v2rayN$]],
+    },
+
+    size = {"monitor_w*0.5", "monitor_h*0.5"},
+})
+
+-- Zotero
+local zotero_class = [[^org.zotero.Zotero$]]
+app_tags({ class = zotero_class }, {"float"})
+hl.window_rule({
+    name = "zotero-main",
+    match = {
+        class = zotero_class,
+        title = [[.*Zotero$]],
+    },
+
+    tag = "-float",
+    group = "set",
+})
+
+--rules for tags
 hl.window_rule({
 	name = "float-fullscreen",
 	match = {
@@ -97,60 +153,4 @@ hl.window_rule({
 
     float = true,
 	center = true,
-})
-
--- Fix blur border for XWayland windows. 
-hl.window_rule({
-    name = "xwayland",
-    match = {
-        xwayland = true,
-    },
-
-    no_blur = true,
-})
-
--- Window rules for apps
-
--- Open Orpheus
-hl.window_rule({
-    name = "open-orpheus",
-    match = {
-        class = [[^open-orpheus$]],
-    },
-
-    float = true,
-})
-
--- Bitwarden
-app_tags({ class = [[^Bitwarden$]]}, {"float"})
-app_tags({ class = [[.*-nngceckbapebfimnlniiiahkandclblb-Default$]]}, {"float"}) -- Bitwarden browser extension popup
-
---Betterbird
-local betterbird_class = [[^eu.betterbird.Betterbird$]]
-app_tags({ class = betterbird_class, initial_title = [[.*Betterbird$]] }, {"background"})
-app_tags({ class = betterbird_class, initial_title = [[^日历提醒$]] }, {"float"})
-
--- v2rayN
-hl.window_rule({
-    name = "v2rayN",
-    match = {
-        class = [[^v2rayN$]],
-    },
-
-    size = {"monitor_w*0.5", "monitor_h*0.5"},
-})
-
--- Zotero
-local zotero_class = [[^org.zotero.Zotero$]]
-app_tags({ class = zotero_class, title = [[^Zotero 设置$]] }, {"float"})
-app_tags({ class = zotero_class, title = [[^中文社区转换器列表$]] }, {"float"})
-app_tags({ class = zotero_class, title = [[^进度$]] }, {"float"})
-hl.window_rule({
-    name = "zotero",
-    match = {
-        class = zotero_class,
-        initial_title = [[^Zotero$]],
-    },
-
-    group = "new"
 })
