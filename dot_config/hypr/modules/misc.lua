@@ -40,7 +40,6 @@ hl.config({
 hl.config({
     group = {
         groupbar = {
-            gradients = true,
             font_size = 15,
         }
     }

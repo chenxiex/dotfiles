@@ -92,7 +92,7 @@ end
 hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd(programs.browser))
 
 -- Window management
-hl.bind(mainMod .. " + SHIFT + F",
+hl.bind(mainMod .. " + ALT + F",
     function()
         local win = hl.get_active_window()
         if not win then return end
