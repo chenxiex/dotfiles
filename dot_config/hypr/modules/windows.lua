@@ -62,6 +62,7 @@ app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
 app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
 app_tags({ class = [[^eudic$]]}, {"float"})
 app_tags({ class = [[^io.missioncenter.MissionCenter$]]}, {"float"})
+app_tags({ class = [[^qqmusic$]]}, {"float"})
 
 hl.window_rule({
 	name = "float-fullscreen",

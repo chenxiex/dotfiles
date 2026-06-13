@@ -11,6 +11,7 @@ hl.bind("SUPER + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
 hl.bind("SUPER + SHIFT + N", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
 hl.bind("SUPER + Y", hl.dsp.exec_cmd("dms ipc call dankdash wallpaper"))
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
+hl.bind("SUPER + O", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
 hl.bind("SUPER + X", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 
 -- === Cheat sheet
@@ -38,7 +39,7 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd([[dms ipc call brightness increme
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[dms ipc call brightness decrement 5 ""]]), { locked = true, repeating = true })
 
 -- === Window Management ===
-hl.bind("SUPER + Q", hl.dsp.window.kill())
+hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind("SUPER + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
@@ -112,13 +113,38 @@ hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind("SUPER + CTRL + mouse_down", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind("SUPER + CTRL + mouse_up", hl.dsp.window.move({ workspace = "e-1" }))
 
+-- === Touchpad Gestures ===
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+
+-- === Numbered Workspaces ===
+hl.bind("SUPER + 1", hl.dsp.focus({ workspace = "1" }))
+hl.bind("SUPER + 2", hl.dsp.focus({ workspace = "2" }))
+hl.bind("SUPER + 3", hl.dsp.focus({ workspace = "3" }))
+hl.bind("SUPER + 4", hl.dsp.focus({ workspace = "4" }))
+hl.bind("SUPER + 5", hl.dsp.focus({ workspace = "5" }))
+hl.bind("SUPER + 6", hl.dsp.focus({ workspace = "6" }))
+hl.bind("SUPER + 7", hl.dsp.focus({ workspace = "7" }))
+hl.bind("SUPER + 8", hl.dsp.focus({ workspace = "8" }))
+hl.bind("SUPER + 9", hl.dsp.focus({ workspace = "9" }))
+
+-- === Move to Numbered Workspaces ===
+hl.bind("SUPER + SHIFT + 1", hl.dsp.window.move({ workspace = "1" }))
+hl.bind("SUPER + SHIFT + 2", hl.dsp.window.move({ workspace = "2" }))
+hl.bind("SUPER + SHIFT + 3", hl.dsp.window.move({ workspace = "3" }))
+hl.bind("SUPER + SHIFT + 4", hl.dsp.window.move({ workspace = "4" }))
+hl.bind("SUPER + SHIFT + 5", hl.dsp.window.move({ workspace = "5" }))
+hl.bind("SUPER + SHIFT + 6", hl.dsp.window.move({ workspace = "6" }))
+hl.bind("SUPER + SHIFT + 7", hl.dsp.window.move({ workspace = "7" }))
+hl.bind("SUPER + SHIFT + 8", hl.dsp.window.move({ workspace = "8" }))
+hl.bind("SUPER + SHIFT + 9", hl.dsp.window.move({ workspace = "9" }))
+
 -- === Column Management ===
 hl.bind("SUPER + bracketleft", hl.dsp.layout("preselect l"))
 hl.bind("SUPER + bracketright", hl.dsp.layout("preselect r"))
 
 -- === Sizing & Layout ===
 hl.bind("SUPER + R", hl.dsp.layout("togglesplit"))
-hl.bind("SUPER + CTRL + F", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive exact 100% 100%]]))
+hl.bind("SUPER + CTRL + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "set" }))
 
 -- === Move/resize windows with mainMod + LMB/RMB and dragging ===
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true, description = "Move window" })
@@ -128,10 +154,10 @@ hl.bind("SUPER + code:20", hl.dsp.window.resize({ x = -100, y = 0, relative = tr
 hl.bind("SUPER + code:21", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { description = "Shrink window left" })
 
 -- === Manual Sizing ===
-hl.bind("SUPER + minus", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive -10% 0]]), { repeating = true })
-hl.bind("SUPER + equal", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive 10% 0]]), { repeating = true })
-hl.bind("SUPER + SHIFT + minus", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive 0 -10%]]), { repeating = true })
-hl.bind("SUPER + SHIFT + equal", hl.dsp.exec_cmd([[hyprctl dispatch resizeactive 0 10%]]), { repeating = true })
+hl.bind("SUPER + minus", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
+hl.bind("SUPER + equal", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
+hl.bind("SUPER + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
+hl.bind("SUPER + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
 
 -- === Screenshots ===
 hl.bind("Print", hl.dsp.exec_cmd("dms screenshot"))
