@@ -29,6 +29,23 @@ reset-proxy(){
 	unset NO_PROXY
 }
 
+codex(){
+	set-proxy
+
+	if [[ "$PWD" == "$HOME" ]]; then
+		(
+			cd "$HOME/opt/build/codex-pwd" || exit
+			command codex "$@"
+		)
+	else
+		command codex "$@"
+	fi
+	local status=$?
+
+	reset-proxy
+	return $status
+}
+
 dla(){
 	yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail --add-metadata "${1}"
 }
