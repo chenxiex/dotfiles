@@ -145,3 +145,12 @@ local zotero_class = [[^org.zotero.Zotero$]]
 app_tags({ class = zotero_class, title = [[^Zotero 设置$]] }, {"float"})
 app_tags({ class = zotero_class, title = [[^中文社区转换器列表$]] }, {"float"})
 app_tags({ class = zotero_class, title = [[^进度$]] }, {"float"})
+hl.window_rule({
+    name = "zotero",
+    match = {
+        class = zotero_class,
+        initial_title = [[^Zotero$]],
+    },
+
+    group = "new"
+})
