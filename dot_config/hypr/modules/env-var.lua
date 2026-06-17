@@ -17,6 +17,9 @@ hl.env("SDL_VIDEO_DRIVER", "wayland")
 
 --- DMS
 hl.env("DMS_DANKBAR_LAYER", "bottom")
+-- Fix spotlight input method
+hl.env("DMS_HYPRLAND_EXCLUSIVE_FOCUS", "1")
+hl.env("DMS_MODAL_LAYER", "bottom")
 
 --- Theming
 hl.env("QT_QPA_PLATFORMTHEME", "gtk3")

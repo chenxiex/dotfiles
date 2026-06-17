@@ -7,29 +7,29 @@
 
 -- Example window rules that are useful
 
-local suppressMaximizeRule = hl.window_rule({
-    -- Ignore maximize requests from all apps. You'll probably like this.
-    name  = "suppress-maximize-events",
-    match = { class = ".*" },
+-- local suppressMaximizeRule = hl.window_rule({
+--     -- Ignore maximize requests from all apps. You'll probably like this.
+--     name  = "suppress-maximize-events",
+--     match = { class = ".*" },
 
-    suppress_event = "maximize",
-})
+--     suppress_event = "maximize",
+-- })
 -- suppressMaximizeRule:set_enabled(false)
 
-hl.window_rule({
-    -- Fix some dragging issues with XWayland
-    name  = "fix-xwayland-drags",
-    match = {
-        class      = "^$",
-        title      = "^$",
-        xwayland   = true,
-        float      = true,
-        fullscreen = false,
-        pin        = false,
-    },
+-- hl.window_rule({
+--     -- Fix some dragging issues with XWayland
+--     name  = "fix-xwayland-drags",
+--     match = {
+--         class      = "^$",
+--         title      = "^$",
+--         xwayland   = true,
+--         float      = true,
+--         fullscreen = false,
+--         pin        = false,
+--     },
 
-    no_focus = true,
-})
+--     no_focus = true,
+-- })
 
 -- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({
@@ -48,16 +48,6 @@ hl.window_rule({
     float = true,
 })
 
--- Fix blur border for XWayland windows. 
-hl.window_rule({
-    name = "xwayland",
-    match = {
-        xwayland = true,
-    },
-
-    no_blur = true,
-})
-
 local function app_tags(match, tags)
 	for _,tag in ipairs(tags) do
 		hl.window_rule({ match = match, tag = "+" .. tag})
@@ -65,26 +55,8 @@ local function app_tags(match, tags)
 end
 
 app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
-app_tags({ class = [[^QQ$]] }, {"float"})
-app_tags({ class = [[^wechat$]] }, {"float"})
-app_tags({ class = [[^v2rayN$]] }, {"float"})
-app_tags({ class = [[^com.vysp3r.ProtonPlus$]] }, {"float"})
-app_tags({ class = [[^org.gnome.Software$]]}, {"float"})
-app_tags({ class = [[^eudic$]]}, {"float"})
-app_tags({ class = [[^io.missioncenter.MissionCenter$]]}, {"float"})
-app_tags({ class = [[^qqmusic$]]}, {"float"})
 
 -- rules for apps
-
--- Open Orpheus
-hl.window_rule({
-    name = "open-orpheus",
-    match = {
-        class = [[^open-orpheus$]],
-    },
-
-    float = true,
-})
 
 -- Bitwarden
 app_tags({ class = [[^Bitwarden$]]}, {"float"})
@@ -94,16 +66,6 @@ app_tags({ class = [[.*-nngceckbapebfimnlniiiahkandclblb-Default$]]}, {"float"})
 local betterbird_class = [[^eu.betterbird.Betterbird$]]
 app_tags({ class = betterbird_class, initial_title = [[.*Betterbird$]] }, {"background"})
 app_tags({ class = betterbird_class, initial_title = [[^日历提醒$]] }, {"float"})
-
--- v2rayN
-hl.window_rule({
-    name = "v2rayN",
-    match = {
-        class = [[^v2rayN$]],
-    },
-
-    size = {"monitor_w*0.5", "monitor_h*0.5"},
-})
 
 -- Zotero
 local zotero_class = [[^org.zotero.Zotero$]]
@@ -152,5 +114,5 @@ hl.window_rule({
     },
 
     float = true,
-	center = true,
+--	center = true,
 })
