@@ -161,10 +161,16 @@ call plug#end()
 let g:rainbow_active = 1
 
 "vim-im-select
+{{ if eq .chezmoi.os "linux" }}
 " Linux + fcitx5
 let g:im_select_get_im_cmd = ['fcitx5-remote', '-n']
 let g:im_select_default = 'keyboard-us'
 let g:ImSelectSetImCmd = {key -> ['fcitx5-remote', '-s', key]}
+{{ else if eq .chezmoi.os "darwin" }}
+let g:im_select_get_im_cmd = ['im-select']
+let g:im_select_default = "com.apple.keylayout.ABC"
+let g:ImSelectSetImCmd = {key -> ['im-select', key]}
+{{ end }}
 let g:im_select_enable_cmd_line = 0
 
 "one
