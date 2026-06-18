@@ -18,5 +18,8 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 	codespaces = {{ $codespaces }}
 	container = {{ $container }}
 
+[data.git]
+	user = false
+
 [git]
     autoCommit = true
