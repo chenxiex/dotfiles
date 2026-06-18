@@ -146,6 +146,9 @@ Plug 'rakr/vim-one'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+Plug 'brglng/vim-im-select'
+
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -156,6 +159,13 @@ call plug#end()
 "Plugin Config
 "rainbow
 let g:rainbow_active = 1
+
+"vim-im-select
+" Linux + fcitx5
+let g:im_select_get_im_cmd = ['fcitx5-remote', '-n']
+let g:im_select_default = 'keyboard-us'
+let g:ImSelectSetImCmd = {key -> ['fcitx5-remote', '-s', key]}
+let g:im_select_enable_cmd_line = 0
 
 "one
 "Credit joshdick
