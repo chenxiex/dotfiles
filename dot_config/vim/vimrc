@@ -97,6 +97,8 @@ set binary
 set noendofline
 "静音
 set vb t_vb=
+"鼠标
+set mouse=a
 
 "Custom key
 let mapleader=";"
@@ -141,6 +143,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'luochen1990/rainbow'
 
 Plug 'rakr/vim-one'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
