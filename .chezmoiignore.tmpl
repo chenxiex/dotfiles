@@ -20,3 +20,7 @@ key.txt.age
 .config/autostart
 .local
 {{- end }}
+
+{{- if not .git.user }}
+.config/git/conf.d/50-user.conf
+{{- end }}
