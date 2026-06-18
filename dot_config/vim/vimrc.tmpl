@@ -146,6 +146,8 @@ Plug 'rakr/vim-one'
 
 Plug 'brglng/vim-im-select'
 
+Plug 'preservim/nerdtree'
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -191,3 +193,9 @@ if (!empty(globpath(&rtp, 'colors/one.vim')))
 	let g:airline_theme='one'
 endif
 
+"NERDTree
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+nnoremap <C-S-e> :NERDTree<CR>
+nnoremap <C-S-e> :NERDTreeFocus<CR>
