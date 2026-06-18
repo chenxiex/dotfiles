@@ -1,5 +1,6 @@
 unqualified-search-registries = ["docker.io"]
 
+{{ if .accel -}}
 [[registry]]
 prefix = "docker.io"
 location = "registry-1.docker.io"
@@ -13,3 +14,4 @@ location = "ghcr.io"
 
 [[registry.mirror]]
 location = "ghcr.nju.edu.cn"
+{{- end }}
