@@ -210,3 +210,12 @@ if [ -e "/usr/share/doc/pkgfile/command-not-found.zsh" ]; then
 fi
 # End of command-not-found
 
+# Homebrew
+export HOMEBREW_DIR="/opt/homebrew"
+[ -e "$HOMEBREW_DIR/bin/brew" ] && eval "$($HOMEBREW_DIR/bin/brew shellenv)"
+# End of Homebrew
+
+# NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# End of NVM
