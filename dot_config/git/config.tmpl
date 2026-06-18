@@ -12,8 +12,10 @@
 	ui = auto
 [gpg]
 	format = ssh
+{{- if .accel }}
 [url "https://gh-proxy.org/https://github.com/"]
 	insteadOf = https://github.com/
+{{- end }}
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
