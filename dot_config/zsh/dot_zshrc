@@ -81,7 +81,15 @@ update_plugins() {
         fi
     done
 }
+
+# Plugin config
+# zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# zsh-z
+[ -d "$XDG_DATA_HOME/zsh-z" ] || mkdir -p "$XDG_DATA_HOME/zsh-z"
+ZSHZ_DATA = "$XDG_DATA_HOME/zsh-z/.z"
+
 plugin zsh-users/zsh-autosuggestions
 plugin zdharma-continuum/fast-syntax-highlighting
 plugin agkozak/zsh-z
