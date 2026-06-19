@@ -30,13 +30,15 @@ reset-proxy(){
 }
 
 codex(){
-	local codex_bin codex_dir status
+	local codex_dir codex_path status
 
 	set-proxy
 
-	if ! command -v codex >/dev/null 2>&1; then
-		codex_bin=$(find "$HOME/.vscode-server/extensions" -path '*/openai.chatgpt-*/bin/*/codex' -type f -perm /111 -print -quit 2>/dev/null)
-	fi
+	codex_path=$(
+		type -P codex 2>/dev/null ||
+		whence -p codex 2>/dev/null ||
+		find "$HOME/.vscode-server/extensions" -path '*/openai.chatgpt-*/bin/*/codex' -type f -perm /111 -print -quit 2>/dev/null
+	)
 	codex_dir=.
 
 	if [[ "$PWD" == "$HOME" ]]; then
@@ -45,8 +47,8 @@ codex(){
 
 	(
 		cd "$codex_dir" || exit
-		if [[ -n "$codex_bin" ]]; then
-			"$codex_bin" "$@"
+		if [[ -n "$codex_path" ]]; then
+			"$codex_path" "$@"
 		else
 			command codex "$@"
 		fi
