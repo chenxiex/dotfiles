@@ -6,6 +6,10 @@ hl.config({
 	input = {
 		kb_layout = "us",
 		numlock_by_default = true,
+		touchpad = {
+			tap_to_click = true,
+			natural_scroll = true,
+		},
 	},
 	general = {
 		gaps_in = 5,
@@ -69,6 +73,7 @@ hl.layer_rule({ match = { namespace = "^(quickshell)$" }, no_anim = true })
 hl.layer_rule({ match = { namespace = "^dms:.*" }, no_anim = true })
 
 require("dms.colors")
+require("dms.outputs")
 require("dms.layout")
 require("dms.cursor")
 require("dms.binds")
@@ -76,4 +81,3 @@ require("dms.binds-user")
 require("dms.windowrules")
 
 require("custom")
-require("dms.outputs")
