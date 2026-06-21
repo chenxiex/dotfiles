@@ -35,7 +35,7 @@ reset-proxy(){
 }
 
 codex(){
-	local codex_dir codex_path status
+	local codex_dir codex_path codex_status
 
 	set-proxy
 
@@ -58,7 +58,7 @@ codex(){
 			command codex "$@"
 		fi
 	)
-	status=$?
+	codex_status=$?
 
 	reset-proxy
 	return $status
