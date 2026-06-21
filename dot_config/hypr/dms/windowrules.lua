@@ -1,4 +1,5 @@
--- Window rules. Deploy writes ~/.config/hypr/dms/windowrules.lua
+-- DMS Window Rules — managed by DankMaterialShell
+-- Do not edit manually; changes may be overwritten
 
 -- DMS-RULE: id=wr_1781523929678757120, name=wechat
 hl.window_rule({ match = { class = "^wechat$" }, float = true })
@@ -13,7 +14,7 @@ hl.window_rule({ match = { class = "^v2rayN$" }, float = true, size = "monitor_w
 hl.window_rule({ match = { class = "^org.gnome.Software$" }, float = true })
 
 -- DMS-RULE: id=wr_1781524229746532753, name=io.missioncenter.MissionCenter
-hl.window_rule({ match = { class = "^io.missioncenter.MissionCenter$" }, float = true })
+hl.window_rule({ match = { class = "^io.missioncenter.MissionCenter$" }, float = true, size = "monitor_w/2 monitor_h/2" })
 
 -- DMS-RULE: id=wr_1781524277808751935, name=com.vysp3r.ProtonPlus
 hl.window_rule({ match = { class = "^com.vysp3r.ProtonPlus$" }, float = true })
