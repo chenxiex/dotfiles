@@ -1,5 +1,5 @@
 set-proxy(){
-{{- if .container -}}
+{{ if .container -}}
 	PROXY_HOST="${1:-proxy.anlor.internal}"
 	PROXY_PORT="${2:-10810}"
 {{ else }}
