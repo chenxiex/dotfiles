@@ -5,7 +5,7 @@ set-proxy(){
 {{ else }}
 	PROXY_HOST="${1:-localhost}"
 	PROXY_PORT="${2:-10808}"
-{{ end -}}
+{{- end }}
 
 	export http_proxy=http://$PROXY_HOST:$PROXY_PORT
 	export https_proxy=$http_proxy
