@@ -23,3 +23,7 @@ key.txt.age
 {{- if not .git.user }}
 .config/git/conf.d/50-user.conf
 {{- end }}
+
+{{- if .container }}
+.config/rime
+{{- end }}
