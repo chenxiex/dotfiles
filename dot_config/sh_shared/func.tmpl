@@ -37,8 +37,6 @@ reset-proxy(){
 codex(){
 	local codex_dir codex_path codex_status
 
-	set-proxy
-
 	codex_path=$(
 		type -P codex 2>/dev/null ||
 		whence -p codex 2>/dev/null ||
@@ -60,7 +58,6 @@ codex(){
 	)
 	codex_status=$?
 
-	reset-proxy
 	return $status
 }
 
