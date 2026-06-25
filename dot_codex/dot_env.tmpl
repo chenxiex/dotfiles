@@ -1,4 +1,10 @@
+{{- if .container }}
+http_proxy="http://host.containers.internal:10810"
+https_proxy="http://host.containers.internal:10810"
+all_proxy="http://host.containers.internal:10810"
+{{ else if eq .chezmoi.hostname "anlorsp-main" }}
 http_proxy="http://localhost:10808"
 https_proxy="http://localhost:10808"
 all_proxy="http://localhost:10808"
+{{- end }}
 no_proxy=localhost,127.0.0.0/8,::1
