@@ -1,0 +1,19 @@
+#!/bin/bash
+CODEX_PATH="$HOME/.config/codex"
+INSTALL_PATHS=(
+  "$HOME/.codex"
+)
+
+relative_path() {
+  perl -MFile::Spec -e 'print File::Spec->abs2rel($ARGV[0], $ARGV[1])' "$1" "$2"
+}
+
+for install_path in "${INSTALL_PATHS[@]}"; do
+  mkdir -p "$install_path"
+  shopt -s dotglob nullglob
+  for source_path in "$CODEX_PATH"/*; do
+    [ -e "$source_path" ] || continue
+    ln -sfn "$(relative_path "$source_path" "$install_path")" "$install_path/$(basename "$source_path")"
+  done
+  shopt -u dotglob nullglob
+done
