@@ -38,7 +38,7 @@ plugin() {
     fi
 
     if [ -z "$entry" ]; then
-        local zsh_files=("$dir"/*.plugin.zsh(N))
+        local zsh_files=("$dir"/*.plugin.zsh(N) "$dir"/*.zsh-theme(N))
         if (( ${#zsh_files[@]} == 1 )); then
             entry="${zsh_files[1]##*/}"
 		else
@@ -93,6 +93,7 @@ ZSHZ_DATA="$XDG_DATA_HOME/zsh-z/.z"
 plugin zsh-users/zsh-autosuggestions
 plugin zdharma-continuum/fast-syntax-highlighting
 plugin agkozak/zsh-z
+plugin jackharrisonsherlock/common
 ### End of plugins
 
 ### Define key
@@ -153,64 +154,6 @@ SH_SHARED_DIR="$XDG_CONFIG_HOME/sh_shared"
 if [[ -e $SH_SHARED_DIR/install.sh ]]; then
 	source "$SH_SHARED_DIR/install.sh"
 fi
-
-### Prompt
-autoload -Uz add-zsh-hook
-autoload -Uz colors
-colors
-
-### Vi mode indicator
-_VI_SYM=">"
-
-function zle-line-init zle-keymap-select {
-    case $KEYMAP in
-        vicmd)  _VI_SYM="<" ;;
-        viins|main) _VI_SYM=">" ;;
-    esac
-    zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
-### End of Vi mode indicator
-
-_PROMPT_USERHOST=
-_PROMPT_COLOR="green"
-function _update_prompt_env() {
-    local ret=$?
-
-    if [[ -n $SSH_CONNECTION ]] \
-       || [[ -f /run/.containerenv ]] \
-       || grep -qE '(docker|kubepods|containerd)' /proc/1/cgroup 2>/dev/null
-    then
-        _PROMPT_USERHOST="%n@%m " 
-    else
-        _PROMPT_USERHOST= 
-    fi
-
-	if (( EUID == 0 )); then
-		if (( ret == 0 )); then
-			_PROMPT_COLOR="cyan"
-		else
-			_PROMPT_COLOR="magenta"
-		fi
-	else
-		if (( ret == 0 )); then
-			_PROMPT_COLOR="green"
-		else
-			_PROMPT_COLOR="red"
-		fi
-	fi
-}
-
-add-zsh-hook precmd _update_prompt_env
-
-setopt PROMPT_SUBST
-
-PROMPT='
-[${_PROMPT_USERHOST}%F{blue}%~%f]
-%F{${_PROMPT_COLOR}}${_VI_SYM}%f '
-### End of prompt
 
 # Command-not-found
 if [ -e "/usr/share/doc/pkgfile/command-not-found.zsh" ]; then
