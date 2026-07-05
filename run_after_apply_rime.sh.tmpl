@@ -8,7 +8,12 @@ INSTALL_PATHS=(
 )
 
 relative_path() {
-  perl -MFile::Spec -e 'print File::Spec->abs2rel($ARGV[0], $ARGV[1])' "$1" "$2"
+  perl -MCwd=abs_path -MFile::Basename=dirname,basename -MFile::Spec -e '
+    my ($target, $base) = @ARGV;
+    my $target_dir = abs_path(dirname($target)) // die "cannot resolve target dir: $target\n";
+    my $base_dir = abs_path($base) // die "cannot resolve base dir: $base\n";
+    print File::Spec->abs2rel(File::Spec->catfile($target_dir, basename($target)), $base_dir);
+  ' "$1" "$2"
 }
 
 for install_path in "${INSTALL_PATHS[@]}"; do
