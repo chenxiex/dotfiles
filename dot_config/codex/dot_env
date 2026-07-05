@@ -1,0 +1,4 @@
+http_proxy="http://localhost:10808"
+https_proxy="http://localhost:10808"
+all_proxy="http://localhost:10808"
+no_proxy=localhost,127.0.0.0/8,::1
