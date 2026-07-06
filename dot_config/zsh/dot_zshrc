@@ -93,7 +93,6 @@ ZSHZ_DATA="$XDG_DATA_HOME/zsh-z/.z"
 plugin zsh-users/zsh-autosuggestions
 plugin zdharma-continuum/fast-syntax-highlighting
 plugin agkozak/zsh-z
-plugin jackharrisonsherlock/common
 ### End of plugins
 
 ### Define key
@@ -154,6 +153,10 @@ SH_SHARED_DIR="$XDG_CONFIG_HOME/sh_shared"
 if [[ -e $SH_SHARED_DIR/install.sh ]]; then
 	source "$SH_SHARED_DIR/install.sh"
 fi
+
+### Prompt
+source "${ZDOTDIR:-$HOME/.config/zsh}/prompt.zsh"
+### End of prompt
 
 # Command-not-found
 if [ -e "/usr/share/doc/pkgfile/command-not-found.zsh" ]; then
