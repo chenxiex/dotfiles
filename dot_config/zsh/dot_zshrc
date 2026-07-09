@@ -155,7 +155,7 @@ if [[ -e $SH_SHARED_DIR/install.sh ]]; then
 fi
 
 ### Prompt
-source "${ZDOTDIR:-$HOME/.config/zsh}/prompt.zsh"
+source "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/prompt.zsh"
 ### End of prompt
 
 # Command-not-found
