@@ -39,15 +39,6 @@
 -- })
 -- overlayLayerRule:set_enabled(false)
 
--- Hyprland-run windowrule
-hl.window_rule({
-    name  = "move-hyprland-run",
-    match = { class = "hyprland-run" },
-
-    move  = "20 monitor_h-120",
-    float = true,
-})
-
 local function app_tags(match, tags)
 	for _,tag in ipairs(tags) do
 		hl.window_rule({ match = match, tag = "+" .. tag})
@@ -58,14 +49,9 @@ app_tags({ xdg_tag = [[^proton-game$]] }, {"float-fullscreen",})
 
 -- rules for apps
 
--- Bitwarden
-app_tags({ class = [[^Bitwarden$]]}, {"float"})
-app_tags({ class = [[.*-nngceckbapebfimnlniiiahkandclblb-Default$]]}, {"float"}) -- Bitwarden browser extension popup
-
 --Betterbird
 local betterbird_class = [[^eu.betterbird.Betterbird$]]
 app_tags({ class = betterbird_class, initial_title = [[.*Betterbird$]] }, {"background"})
-app_tags({ class = betterbird_class, initial_title = [[^日历提醒$]] }, {"float"})
 
 -- Zotero
 local zotero_class = [[^org.zotero.Zotero$]]
@@ -105,14 +91,4 @@ hl.window_rule({
     workspace = "special:background silent",
     no_initial_focus = true,
     group = "set"
-})
-
-hl.window_rule({
-    name = "float",
-    match = {
-        tag = "float",
-    },
-
-    float = true,
---	center = true,
 })

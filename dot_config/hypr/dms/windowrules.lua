@@ -30,3 +30,12 @@ hl.window_rule({ match = { class = "^open-orpheus$" }, float = true })
 
 -- DMS-RULE: id=wr_1781524532990089643, name=fix-blue-xwayland
 hl.window_rule({ match = { xwayland = true }, no_blur = true })
+
+-- DMS-RULE: id=wr_1783705027421958608, name=Bitwarden
+hl.window_rule({ match = { class = "^Bitwarden$" }, float = true })
+
+-- DMS-RULE: id=wr_1783705068770854186, name=Bitwarden browser extension
+hl.window_rule({ match = { class = ".*-nngceckbapebfimnlniiiahkandclblb-Default$" }, float = true })
+
+-- DMS-RULE: id=wr_1783705233403954988, name=Betterbird日历
+hl.window_rule({ match = { class = "^eu.betterbird.Betterbird$", title = "^日历提醒$" }, float = true })
