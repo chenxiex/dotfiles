@@ -12,15 +12,6 @@ hl.config({
     }
 })
 
--- Performance tweaks
-hl.config({
-    decoration = {
-        blur = {
-            enabled = false
-        },
-    }
-})
-
 -- Fix some popup windows disappearing when they lose focus.
 hl.config({
     input = {
