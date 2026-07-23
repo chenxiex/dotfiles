@@ -8,13 +8,13 @@ hl.window_rule({ match = { class = "^wechat$" }, float = true })
 hl.window_rule({ match = { class = "^QQ$" }, float = true })
 
 -- DMS-RULE: id=wr_1781524086090929595, name=v2rayN
-hl.window_rule({ match = { class = "^v2rayN$" }, float = true, size = "monitor_w/2 monitor_h/2", move = "monitor_w/4 monitor_h/4" })
+hl.window_rule({ match = { class = "^v2rayN$" }, float = true })
 
 -- DMS-RULE: id=wr_1781524205349181452, name=org.gnome.Software
 hl.window_rule({ match = { class = "^org.gnome.Software$" }, float = true })
 
 -- DMS-RULE: id=wr_1781524229746532753, name=io.missioncenter.MissionCenter
-hl.window_rule({ match = { class = "^io.missioncenter.MissionCenter$" }, float = true, size = "monitor_w/2 monitor_h/2" })
+hl.window_rule({ match = { class = "^io.missioncenter.MissionCenter$" }, float = true })
 
 -- DMS-RULE: id=wr_1781524277808751935, name=com.vysp3r.ProtonPlus
 hl.window_rule({ match = { class = "^com.vysp3r.ProtonPlus$" }, float = true })
@@ -39,3 +39,9 @@ hl.window_rule({ match = { class = ".*-nngceckbapebfimnlniiiahkandclblb-Default$
 
 -- DMS-RULE: id=wr_1783705233403954988, name=Betterbird日历
 hl.window_rule({ match = { class = "^eu.betterbird.Betterbird$", title = "^日历提醒$" }, float = true })
+
+-- DMS-RULE: id=wr_1784221026998958487, name=org.telegram.desktop
+hl.window_rule({ match = { class = "^org.telegram.desktop$" }, float = true })
+
+-- DMS-RULE: id=wr_1784818441582833595, name=code
+hl.window_rule({ match = { class = "^code$", title = "^进程资源管理器.*" }, float = true })
