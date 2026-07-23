@@ -14,7 +14,7 @@ Agents must not write outside these locations.
 In particular, agents must not write to:
 
 - `~`, `$HOME`, `/home/*`, `/Users/*`
-- `~/.config`, `~/.local`, `~/.ssh`, `~/.gnupg`, `~/.cache`
+- `~/.config`, `~/.local`, `~/.ssh`, `~/.gnupg`
 - `/etc`, `/usr`, `/bin`, `/sbin`, `/lib`, `/opt`
 - Other projects, repositories, or unrelated directories
 
