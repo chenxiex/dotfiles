@@ -6,7 +6,7 @@
       "name": "default",
       "outputs": {
         "eDP-1": {
-          "mode": "2880x1800@120.001",
+          "mode": "2880x1800@120.000",
           "position": {
             "x": 344,
             "y": 1440
@@ -18,21 +18,6 @@
           "hyprland": {
             "bitdepth": 10,
             "colorManagement": "edid"
-          }
-        },
-        "DP-3": {
-          "mode": "3840x2160@60.000",
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "scale": 1.5,
-          "transform": "Normal",
-          "vrr": false,
-          "disabled": false,
-          "hyprland": {
-            "colorManagement": "auto",
-            "sdrBrightness": 2
           }
         }
       }
