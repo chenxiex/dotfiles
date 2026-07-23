@@ -25,7 +25,7 @@ fi
 
 if [[ "$1" == "run" ]]; then
     shift
-    exec podman-remote run --tmpfs=/tmp:rw,exec,nosuid,nodev,mode=1777 "$@"
+    exec podman-remote run --tmpfs=/tmp:rw,exec,nosuid,nodev,mode=1777 --env 'http_proxy=http://host.containers.internal:10810' --env 'https_proxy=http://host.containers.internal:10810' --env 'no_proxy=localhost,127.0.0.0/8,::1' "$@"
 fi
 
 exec podman-remote "$@"
