@@ -2,18 +2,10 @@
 
 autoload -Uz add-zsh-hook
 autoload -Uz colors
-autoload -Uz vcs_info
 colors
 zmodload zsh/datetime
 
 setopt PROMPT_SUBST
-
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '*'
-zstyle ':vcs_info:git:*' unstagedstr '*'
-zstyle ':vcs_info:git:*' formats '%b%c%u'
-zstyle ':vcs_info:git:*' actionformats '%b%c%u'
 
 # Prompt state used by PROMPT. These values are refreshed by zle/precmd hooks.
 _PROMPT_VI_SYMBOL=">"
@@ -79,15 +71,29 @@ function _prompt_escape() {
 function _prompt_update_git_info() {
     _PROMPT_GIT=
 
-    vcs_info
-    [[ -n $vcs_info_msg_0_ ]] || return
+    local git_status ref oid dirty_marker line
+    git_status=$(command git status --porcelain=v2 --branch 2>/dev/null) || return
 
-    local ref dirty_marker
+    for line in ${(f)git_status}; do
+        case $line in
+            '# branch.head '*)
+                ref=${line#\# branch.head }
+                ;;
+            '# branch.oid '*)
+                oid=${line#\# branch.oid }
+                ;;
+            '# '*)
+                ;;
+            *)
+                dirty_marker="*"
+                ;;
+        esac
+    done
 
-    ref=${vcs_info_msg_0_%%\**}
-    if [[ $vcs_info_msg_0_ == *\* ]]; then
-        dirty_marker="*"
+    if [[ $ref == '(detached)' ]]; then
+        ref=${oid[1,7]}
     fi
+    [[ -n $ref ]] || return
 
     _PROMPT_GIT=" %F{242}$(_prompt_escape "$ref")%F{yellow}${dirty_marker}%f"
 }
