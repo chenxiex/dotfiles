@@ -1,6 +1,5 @@
 #!/bin/bash
 export PODMAN_USERNS=keep-id
-export CONTAINERS_CONF="$HOME/.config/containers/devcontainers.conf"
 
 # 判断 GPU 是否可用
 has_gpu() {
