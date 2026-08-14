@@ -14,7 +14,7 @@ hl.window_rule({ match = { class = "^v2rayN$" }, float = true })
 hl.window_rule({ match = { class = "^org.gnome.Software$" }, float = true })
 
 -- DMS-RULE: id=wr_1781524229746532753, name=io.missioncenter.MissionCenter
-hl.window_rule({ match = { class = "^io.missioncenter.MissionCenter$" }, float = true })
+hl.window_rule({ match = { class = "^io.missioncenter.MissionCenter$" }, float = true, size = { "monitor_w*0.6", "monitor_h*0.6" } })
 
 -- DMS-RULE: id=wr_1781524277808751935, name=com.vysp3r.ProtonPlus
 hl.window_rule({ match = { class = "^com.vysp3r.ProtonPlus$" }, float = true })
@@ -32,7 +32,7 @@ hl.window_rule({ match = { class = "^open-orpheus$" }, float = true })
 hl.window_rule({ match = { xwayland = true }, no_blur = true })
 
 -- DMS-RULE: id=wr_1783705027421958608, name=Bitwarden
-hl.window_rule({ match = { class = "^Bitwarden$" }, float = true })
+hl.window_rule({ match = { class = "(?i)^bitwarden$" }, float = true })
 
 -- DMS-RULE: id=wr_1783705068770854186, name=Bitwarden browser extension
 hl.window_rule({ match = { class = ".*-nngceckbapebfimnlniiiahkandclblb-Default$" }, float = true })
