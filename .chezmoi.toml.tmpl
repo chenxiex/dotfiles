@@ -18,7 +18,7 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 	codespaces = {{ $codespaces }}
 	container = {{ $container }}
 
-	accel = false
+	accel = {{ $container }}
 
 [data.git]
 	user = false
