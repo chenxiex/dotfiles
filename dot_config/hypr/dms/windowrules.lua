@@ -45,3 +45,6 @@ hl.window_rule({ match = { class = "^org.telegram.desktop$" }, float = true })
 
 -- DMS-RULE: id=wr_1784818441582833595, name=code
 hl.window_rule({ match = { class = "^code$", title = "^进程资源管理器.*" }, float = true })
+
+-- DMS-RULE: id=dms-floating-windows, name=DMS Floating Windows
+hl.window_rule({ match = { class = "^com.danklinux.dms$" }, float = true })

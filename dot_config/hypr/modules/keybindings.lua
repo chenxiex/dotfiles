@@ -89,7 +89,7 @@ local function restore_from_pseudo_fullscreen(state)
 end
 
 -- Programs
-hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd(programs.browser))
+hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd("chatgpt"))
 
 -- Window management
 hl.bind(mainMod .. " + ALT + F",
