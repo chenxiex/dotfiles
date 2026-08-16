@@ -18,7 +18,7 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 	codespaces = {{ $codespaces }}
 	container = {{ $container }}
 
-	accel = {{ $container }}
+	accel = {{ or $container (eq .chezmoi.hostname "anlorsp-main") }}
 
 [git]
     autoCommit = true
