@@ -9,6 +9,7 @@ key.txt.age
 
 .gnupg
 .ssh
+.config/git
 {{- end }}
 
 {{- if (or (ne .chezmoi.hostname "anlorsp-main") (ne .chezmoi.os "linux")) }}
@@ -21,10 +22,6 @@ key.txt.age
 
 .local/bin
 .local/share/flatpak
-{{- end }}
-
-{{- if not .git.user }}
-.config/git/conf.d/50-user.conf
 {{- end }}
 
 {{- if .container }}
