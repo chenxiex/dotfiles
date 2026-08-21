@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import os
+import socket
+
+display = os.environ.get("WAYLAND_DISPLAY")
+runtime = os.environ.get("XDG_RUNTIME_DIR")
+
+if not display or not runtime:
+    raise SystemExit("WAYLAND_DISPLAY or XDG_RUNTIME_DIR is unset")
+
+path = display if display.startswith("/") else os.path.join(runtime, display)
+
+sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+sock.connect(path)
+
+# flatpak 必须能够继承这个 fd
+os.set_inheritable(sock.fileno(), True)
+
+env = os.environ.copy()
+env["WAYLAND_SOCKET"] = str(sock.fileno())
+
+os.execvpe(
+    "/usr/bin/flatpak",
+    ["flatpak", "run", "--branch=stable", "--arch=x86_64", "--command=/app/bin/fcitx5", "org.fcitx.Fcitx5"],
+    env,
+)
