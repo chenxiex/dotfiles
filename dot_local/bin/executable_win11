@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+readonly LIBVIRT_URI="qemu:///system"
+
+VM_NAME='win11'
+
+virsh_c() {
+    LC_ALL=C virsh "$@"
+}
+
+for command_name in virsh; do
+    if ! command -v "$command_name" >/dev/null 2>&1; then
+        printf '错误：找不到命令 %s。\n' "$command_name" >&2
+        exit 127
+    fi
+done
+
+if ! vm_state="$(virsh_c --connect "$LIBVIRT_URI" domstate "$VM_NAME" 2>/dev/null)"; then
+    printf '错误：无法在 %s 中找到或查询虚拟机 %s。\n' "$LIBVIRT_URI" "$VM_NAME" >&2
+    exit 1
+fi
+
+case "$vm_state" in
+    "shut off"|"crashed")
+        virsh_c --connect "$LIBVIRT_URI" start "$VM_NAME"
+        ;;
+    running|idle)
+        ;;
+    paused|pmsuspended)
+        virsh_c --connect "$LIBVIRT_URI" resume "$VM_NAME"
+        ;;
+    *)
+        ;;
+esac
+
+exec org.virt_manager.virt-manager -c $LIBVIRT_URI --show-domain-console $VM_NAME
