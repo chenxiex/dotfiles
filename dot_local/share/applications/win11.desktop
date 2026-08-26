@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Windows 11 Remote Desktop
+Name[zh_CN]=Windows 11 远程桌面
+Comment=Start the Win11 virtual machine and connect using FreeRDP
+Comment[zh_CN]=启动 Win11 虚拟机并使用 FreeRDP 连接
+Exec=zsh -c "win11"
+Icon=computer
+Categories=Network;RemoteAccess;
