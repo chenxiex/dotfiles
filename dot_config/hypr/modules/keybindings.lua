@@ -44,6 +44,19 @@ local function get_xy(value)
     }
 end
 
+local function get_expanded_split_ratio(win, other)
+    local windowAt = get_xy(win.at)
+    local otherAt = get_xy(other.at)
+    if not windowAt or not otherAt then return nil end
+
+    local horizontal = math.abs(windowAt.x - otherAt.x) >= math.abs(windowAt.y - otherAt.y)
+    if horizontal then
+        return windowAt.x < otherAt.x and 1.6 or 0.4
+    end
+
+    return windowAt.y < otherAt.y and 1.6 or 0.4
+end
+
 local function get_window_state(win)
     return {
         floating = win.floating == true,
@@ -56,6 +69,33 @@ end
 
 local function is_pseudo_fullscreen(state)
     return state.fullscreen == 0 and state.fullscreen_client == 2
+end
+
+local function toggle_focused_split()
+    local win = hl.get_active_window()
+    local workspace = hl.get_active_workspace()
+    if not win or win.floating or not workspace or workspace.tiled_layout ~= "dwindle" then
+        return
+    end
+
+    local windowKey = get_window_key(win)
+    local workspaceKey = tostring(workspace.id or workspace.name)
+    if not windowKey or not workspaceKey then return end
+
+    local other = get_other_tiled_window(workspace, windowKey)
+    if not other then return end
+
+    if expandedSplitWindows[workspaceKey] == windowKey then
+        hl.dispatch(hl.dsp.layout("splitratio 1.0 exact"))
+        expandedSplitWindows[workspaceKey] = nil
+        return
+    end
+
+    local ratio = get_expanded_split_ratio(win, other)
+    if not ratio then return end
+
+    hl.dispatch(hl.dsp.layout("splitratio " .. ratio .. " exact"))
+    expandedSplitWindows[workspaceKey] = windowKey
 end
 
 local function set_pseudo_fullscreen()
@@ -132,41 +172,8 @@ hl.bind(mainMod .. " + ALT + F",
     end
 )
 
-hl.bind(mainMod .. " + Z", function()
-    local win = hl.get_active_window()
-    local workspace = hl.get_active_workspace()
-    if not win or win.floating or not workspace or workspace.tiled_layout ~= "dwindle" then
-        return
-    end
-
-    local windowKey = get_window_key(win)
-    local workspaceKey = tostring(workspace.id or workspace.name)
-    if not windowKey or not workspaceKey then return end
-
-    local other = get_other_tiled_window(workspace, windowKey)
-    if not other then return end
-
-    if expandedSplitWindows[workspaceKey] == windowKey then
-        hl.dispatch(hl.dsp.layout("splitratio 1.0 exact"))
-        expandedSplitWindows[workspaceKey] = nil
-    else
-        local windowAt = get_xy(win.at)
-        local otherAt = get_xy(other.at)
-        if not windowAt or not otherAt then return end
-
-        local horizontal = math.abs(windowAt.x - otherAt.x) >= math.abs(windowAt.y - otherAt.y)
-        local windowIsFirst
-        if horizontal then
-            windowIsFirst = windowAt.x < otherAt.x
-        else
-            windowIsFirst = windowAt.y < otherAt.y
-        end
-        local ratio = windowIsFirst and 1.6 or 0.4
-
-        hl.dispatch(hl.dsp.layout("splitratio " .. ratio .. " exact"))
-        expandedSplitWindows[workspaceKey] = windowKey
-    end
-end, { description = "Toggle focused split 80/20" })
+-- SUPER + Z: Toggle the focused tiled window between an 80/20 and 50/50 split.
+hl.bind(mainMod .. " + Z", toggle_focused_split, { description = "Toggle focused split 80/20" })
 
 -- Groups
 -- hl.bind("ALT + TAB", hl.dsp.group.next())
