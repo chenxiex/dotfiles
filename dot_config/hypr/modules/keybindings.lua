@@ -8,11 +8,32 @@ local devices_func = require("modules.devices")
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 local pseudoFullscreenStates = {}
+local expandedSplitWindows = {}
 
 local function get_window_key(win)
     local key = win.stable_id or win.address
     if not key then return nil end
     return tostring(key)
+end
+
+local function get_other_tiled_window(workspace, activeWindowKey)
+    local tiledWindows = {}
+
+    for _, candidate in ipairs(hl.get_workspace_windows(workspace) or {}) do
+        if not candidate.floating and candidate.hidden ~= true then
+            table.insert(tiledWindows, candidate)
+        end
+    end
+
+    if #tiledWindows ~= 2 then return nil end
+
+    for _, candidate in ipairs(tiledWindows) do
+        if get_window_key(candidate) ~= activeWindowKey then
+            return candidate
+        end
+    end
+
+    return nil
 end
 
 local function get_xy(value)
@@ -110,6 +131,42 @@ hl.bind(mainMod .. " + ALT + F",
         end
     end
 )
+
+hl.bind(mainMod .. " + Z", function()
+    local win = hl.get_active_window()
+    local workspace = hl.get_active_workspace()
+    if not win or win.floating or not workspace or workspace.tiled_layout ~= "dwindle" then
+        return
+    end
+
+    local windowKey = get_window_key(win)
+    local workspaceKey = tostring(workspace.id or workspace.name)
+    if not windowKey or not workspaceKey then return end
+
+    local other = get_other_tiled_window(workspace, windowKey)
+    if not other then return end
+
+    if expandedSplitWindows[workspaceKey] == windowKey then
+        hl.dispatch(hl.dsp.layout("splitratio 1.0 exact"))
+        expandedSplitWindows[workspaceKey] = nil
+    else
+        local windowAt = get_xy(win.at)
+        local otherAt = get_xy(other.at)
+        if not windowAt or not otherAt then return end
+
+        local horizontal = math.abs(windowAt.x - otherAt.x) >= math.abs(windowAt.y - otherAt.y)
+        local windowIsFirst
+        if horizontal then
+            windowIsFirst = windowAt.x < otherAt.x
+        else
+            windowIsFirst = windowAt.y < otherAt.y
+        end
+        local ratio = windowIsFirst and 1.6 or 0.4
+
+        hl.dispatch(hl.dsp.layout("splitratio " .. ratio .. " exact"))
+        expandedSplitWindows[workspaceKey] = windowKey
+    end
+end, { description = "Toggle focused split 80/20" })
 
 -- Groups
 -- hl.bind("ALT + TAB", hl.dsp.group.next())
