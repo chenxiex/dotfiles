@@ -24,6 +24,8 @@ If the current project directory is unclear, agents must treat the current worki
 
 If a task appears to require writing outside the allowed locations, stop and report the issue instead of performing the write.
 
-## Global Codex Instructions
+## Sandbox-Blocked Commands
 
-When using Plan mode or otherwise asking the user for input, wait indefinitely for the user's answer. Do not set or pass `autoResolutionMs` to `request_user_input` unless the user explicitly asks for auto-resolution in the current thread. If user input is required before continuing, ask without an auto-resolve timeout. If user doesn't provide an input, repeat the questions and stop what you are doing and wait for user input.
+If a test, smoke test, real-device probe, dependency installation, or similar command cannot run because it is blocked by the sandbox, agents must clearly state the specific permission being blocked—for example, "requires write access to the `/cache` path"—and then request elevated permission to run the command.
+
+Agents must not skip any necessary probing or verification because of a sandbox restriction. Agents must not bypass the restriction by redirecting caches, installation paths, or other command data to a non-designated directory such as `/tmp`.
