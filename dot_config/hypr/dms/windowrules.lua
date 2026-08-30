@@ -48,3 +48,6 @@ hl.window_rule({ match = { class = "^code$", title = "^进程资源管理器.*" 
 
 -- DMS-RULE: id=dms-floating-windows, name=DMS Floating Windows
 hl.window_rule({ match = { class = "^com.danklinux.dms$" }, float = true })
+
+-- DMS-RULE: id=wr_1788085819716290542, name=com.qq.weixin.work.deepin
+hl.window_rule({ match = { class = "^com.qq.weixin.work.deepin$" }, float = true, workspace = "special:background" })
