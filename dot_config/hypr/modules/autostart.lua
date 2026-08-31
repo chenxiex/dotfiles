@@ -21,7 +21,7 @@ local devices_func = require("modules.devices")
 hl.on("hyprland.start", function ()
   hl.exec_cmd("xrdb -merge ~/.config/X11/Xresources")
   hl.exec_cmd("wl-clip-persist --clipboard regular")
-  hl.exec_cmd("wvkbd-mobintl -L 250 --hidden")
+  hl.exec_cmd("fcitx5-flatpak-hyprland")
 
   if gamemode then
     hl.exec_cmd("com.heroicgameslauncher.hgl")
