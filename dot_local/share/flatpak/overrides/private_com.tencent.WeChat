@@ -1,5 +1,2 @@
 [Context]
 filesystems=xdg-download
-
-[Environment]
-QT_IM_MODULE=fcitx
