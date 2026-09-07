@@ -2,9 +2,12 @@ set-proxy(){
 {{- if .container }}
 	PROXY_HOST="${1:-host.containers.internal}"
 	PROXY_PORT="${2:-10810}"
-{{ else }}
+{{ else if eq .chezmoi.hostname "anlorsp-main" }}
 	PROXY_HOST="${1:-localhost}"
 	PROXY_PORT="${2:-10808}"
+{{ else }}
+	PROXY_HOST="${1:-localhost}"
+	PROXY_PORT="${2:-10810}"
 {{- end }}
 
 	export http_proxy=http://$PROXY_HOST:$PROXY_PORT
