@@ -11,7 +11,7 @@ Agents may write files only in:
 
 Agents must not write outside these locations.
 
-In particular, agents must not write to:
+In particular, except for the explicitly allowed paths above, agents must not write to:
 
 - `~`, `$HOME`, `/home/*`, `/Users/*`
 - `~/.config`, `~/.local`, `~/.ssh`, `~/.gnupg`
@@ -29,3 +29,7 @@ If a task appears to require writing outside the allowed locations, stop and rep
 If a test, smoke test, real-device probe, dependency installation, or similar command cannot run because it is blocked by the sandbox, agents must clearly state the specific permission being blocked—for example, "requires write access to the `/cache` path"—and then request elevated permission to run the command.
 
 Agents must not skip any necessary probing or verification because of a sandbox restriction. Agents must not bypass the restriction by redirecting caches, installation paths, or other command data to a non-designated directory such as `/tmp`.
+
+## Sandbox or container Commands
+
+Sandbox or container commands like Flatpak or Docker may fail due to recursive sandbox. Agents must request elevated permission to run these commands, and stop immediately if permission request is blocked. Agents must not bypass Flatpak, `bwrap`, Docker, or any other sandbox or container boundary to execute an equivalent native host binary directly. 
