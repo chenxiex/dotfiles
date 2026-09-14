@@ -1,9 +1,27 @@
 #!/bin/bash
 export PODMAN_USERNS=keep-id
 
-# 判断 GPU 是否可用
+# 判断 Podman 服务端是否有可用的 NVIDIA GPU
 has_gpu() {
-    command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi >/dev/null 2>&1
+    local devices
+
+    # Podman 6+ 会在 info 中报告服务端已解析的 CDI 设备。
+    if devices="$(podman-remote info --format \
+        '{{range .Host.DiscoveredDevices}}{{println .Source .ID}}{{end}}' 2>/dev/null)"; then
+        while read -r source id _; do
+            if [[ "$source" == "cdi" && "$id" == nvidia.com/gpu=* ]]; then
+                return 0
+            fi
+        done <<< "$devices"
+
+        return 1
+    fi
+
+    # 旧版 Podman 没有 DiscoveredDevices 字段，通过实际的 CDI 容器验证回退。
+    podman-remote run --rm \
+        --device nvidia.com/gpu=all \
+        --security-opt=label=disable \
+        ubuntu nvidia-smi -L >/dev/null 2>&1
 }
 
 # 拦截 docker info
