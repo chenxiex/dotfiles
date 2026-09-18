@@ -1,5 +1,6 @@
 [Context]
-filesystems=xdg-run/podman:ro;xdg-run/podman/podman.sock:ro
+filesystems=~/.config/codex;~/.codex;~/.gnupg;~/.local;~/.ssh;~/opt;xdg-run/podman/podman.sock:ro;xdg-run/podman:ro;~/.vscode-server-flatpakhost;!host
+persistent=.vscode-shared;.vscode
 
 [Environment]
 TMPDIR=/var/tmp
