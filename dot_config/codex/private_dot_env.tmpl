@@ -2,11 +2,18 @@
 http_proxy="http://host.containers.internal:10810"
 https_proxy="http://host.containers.internal:10810"
 all_proxy="http://host.containers.internal:10810"
+HTTP_PROXY="http://host.containers.internal:10810"
+HTTPS_PROXY="http://host.containers.internal:10810"
+ALL_PROXY="http://host.containers.internal:10810"
 {{- else if eq .chezmoi.hostname "anlorsp-main" -}}
 http_proxy="http://localhost:10808"
 https_proxy="http://localhost:10808"
 all_proxy="http://localhost:10808"
+HTTP_PROXY="http://localhost:10808"
+HTTPS_PROXY="http://localhost:10808"
+ALL_PROXY="http://localhost:10808"
 {{ end }}
 no_proxy=localhost,127.0.0.0/8,::1
+NO_PROXY=localhost,127.0.0.0/8,::1
 
 NODE_USE_ENV_PROXY=1
