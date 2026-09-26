@@ -24,6 +24,6 @@ key.txt.age
 .local/share/applications
 {{- end }}
 
-{{- if .container }}
+{{- if (not .large) }}
 .config/rime
 {{- end }}

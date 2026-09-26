@@ -20,5 +20,7 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 	accel = {{ or $container (eq .chezmoi.hostname "anlorsp-main") }}
 
+	large = {{ (eq .chezmoi.hostname "anlorsp-main") }}
+
 [git]
     autoCommit = true
