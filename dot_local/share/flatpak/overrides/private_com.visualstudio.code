@@ -1,5 +1,5 @@
 [Context]
-filesystems=~/.config/codex;~/.codex;~/.gnupg;~/.local;~/.ssh;~/opt;xdg-run/podman/podman.sock:ro;xdg-run/podman:ro;~/.vscode-server-flatpakhost;!host
+filesystems=xdg-config/codex;~/.codex;~/.gnupg;~/.local;~/.ssh;~/opt;xdg-run/podman/podman.sock:ro;xdg-run/podman:ro;~/.vscode-server-flatpakhost;xdg-config/git;!host
 persistent=.vscode-shared;.vscode
 
 [Environment]
