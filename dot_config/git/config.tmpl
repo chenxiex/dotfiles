@@ -2,16 +2,15 @@
 {{- if eq .chezmoi.hostname "anlorsp-main" }}
 	path = conf.d/50-user.conf
 {{- end }}
+{{- if .accel }}
+	path = conf.d/50-accel.conf
+{{- end }}
 [init]
 	defaultBranch = main
 [pull]
 	rebase = false
 [color]
 	ui = auto
-{{- if .accel }}
-[url "https://gh-proxy.org/https://github.com/"]
-	insteadOf = https://github.com/
-{{- end }}
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
