@@ -1,5 +1,5 @@
 [include]
-{{- if eq .chezmoi.hostname "anlorsp-main" }}
+{{- if .gituser }}
 	path = conf.d/50-user.conf
 {{- end }}
 {{- if .accel }}

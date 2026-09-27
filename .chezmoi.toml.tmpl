@@ -22,5 +22,7 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 	large = {{ (eq .chezmoi.hostname "anlorsp-main") }}
 
+	gituser = {{ (eq .chezmoi.hostname "anlorsp-main" ) }}
+
 [git]
     autoCommit = true
