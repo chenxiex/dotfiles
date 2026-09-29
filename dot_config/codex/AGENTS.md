@@ -32,6 +32,13 @@ If the current project directory is unclear, agents must treat the current worki
 
 If a task appears to require writing outside the allowed locations, stop and report the issue instead of performing the write.
 
+## Codex Configuration and chezmoi
+
+- `~/.config/codex/` is managed by chezmoi. chezmoi links its contents into `~/.codex/`, merging them with files already present there.
+- Before modifying a file under `~/.codex/`, check whether it is a link to a file under `~/.config/codex/`. If it is, edit the source file under `~/.config/codex/`; otherwise, edit the file under `~/.codex/` directly.
+- When adding skills, subagents, or other configuration, prefer `~/.config/codex/` if it contains no tokens, other sensitive information, or machine-specific information such as local paths. This makes it available for synchronization between machines through chezmoi.
+- If the new configuration contains tokens, other sensitive information, or machine-specific information, add it under `~/.codex/` to avoid exposing it through chezmoi.
+
 ## Sandbox-Blocked Commands
 
 If a test, smoke test, real-device probe, dependency installation, or similar command cannot run because it is blocked by the sandbox, agents must clearly state the specific permission being blocked—for example, "requires write access to the `/cache` path"—and then request elevated permission to run the command.
