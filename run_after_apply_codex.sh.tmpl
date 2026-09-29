@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 CODEX_PATH="$HOME/.config/codex"
 INSTALL_PATHS=(
   "$HOME/.codex"
@@ -13,12 +15,37 @@ relative_path() {
   ' "$1" "$2"
 }
 
+ensure_directory() {
+  local source_dir="$1"
+  local target_dir="$2"
+
+  if [ -L "$target_dir" ]; then
+    if [ "$target_dir" -ef "$source_dir" ]; then
+      unlink "$target_dir"
+    else
+      printf 'Cannot merge directory through unrelated symlink: %s\n' "$target_dir" >&2
+      return 1
+    fi
+  fi
+  mkdir -p "$target_dir"
+}
+
 for install_path in "${INSTALL_PATHS[@]}"; do
-  mkdir -p "$install_path"
-  shopt -s dotglob nullglob
-  for source_path in "$CODEX_PATH"/*; do
-    [ -e "$source_path" ] || continue
-    ln -sfn "$(relative_path "$source_path" "$install_path")" "$install_path/$(basename "$source_path")"
-  done
-  shopt -u dotglob nullglob
+  ensure_directory "$CODEX_PATH" "$install_path"
+
+  while IFS= read -r -d '' source_dir; do
+    relative_dir="${source_dir#"$CODEX_PATH"/}"
+    ensure_directory "$source_dir" "$install_path/$relative_dir"
+  done < <(find "$CODEX_PATH" -mindepth 1 -type d -print0)
+
+  while IFS= read -r -d '' source_path; do
+    [ -d "$source_path" ] && continue
+    relative_file="${source_path#"$CODEX_PATH"/}"
+    target_path="$install_path/$relative_file"
+    if [ -d "$target_path" ]; then
+      printf 'Cannot replace directory with file link: %s\n' "$target_path" >&2
+      exit 1
+    fi
+    ln -sfn "$(relative_path "$source_path" "${target_path%/*}")" "$target_path"
+  done < <(find "$CODEX_PATH" \( -type f -o -type l \) -print0)
 done
