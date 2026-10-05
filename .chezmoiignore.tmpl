@@ -11,10 +11,6 @@ key.txt.age
 .ssh
 {{- end }}
 
-{{- if .container }}
-.config/git
-{{- end }}
-
 {{- if (or (ne .chezmoi.hostname "anlorsp-main") (ne .chezmoi.os "linux")) }}
 .config/containers/systemd
 .config/environment.d

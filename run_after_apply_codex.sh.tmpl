@@ -22,9 +22,6 @@ ensure_directory() {
   if [ -L "$target_dir" ]; then
     if [ "$target_dir" -ef "$source_dir" ]; then
       unlink "$target_dir"
-    else
-      printf 'Cannot merge directory through unrelated symlink: %s\n' "$target_dir" >&2
-      return 1
     fi
   fi
   mkdir -p "$target_dir"
