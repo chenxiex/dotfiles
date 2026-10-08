@@ -1,7 +1,12 @@
 model_context_window = 1000000
 model_auto_compact_token_limit = 900000
 
+{{ if .container -}}
+# Use the container's isolation because nested bwrap sandboxes may fail.
+default_permissions = ":danger-full-access"
+{{ else -}}
 default_permissions = "local-development"
+{{ end }}
 
 [permissions.local-development]
 description = "Local development with workspace, cache, selected runtime paths, and network access."
