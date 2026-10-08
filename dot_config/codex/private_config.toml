@@ -1,0 +1,13 @@
+default_permissions = "local-development"
+
+[permissions.local-development]
+description = "Local development with workspace, cache, selected runtime paths, and network access."
+extends = ":workspace"
+
+[permissions.local-development.filesystem]
+"~/.cache" = "write"
+"~/.config/codex" = "write"
+
+[permissions.local-development.network]
+enabled = true
+
