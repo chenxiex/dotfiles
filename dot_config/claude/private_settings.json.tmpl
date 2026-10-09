@@ -1,18 +1,12 @@
-{{- $proxy := "" -}}
-{{- if .container -}}
-{{- $proxy = "http://host.containers.internal:10810" -}}
-{{- else if eq .chezmoi.hostname "anlorsp-main" -}}
-{{- $proxy = "http://localhost:10808" -}}
-{{- end -}}
 {
   "env": {
-{{- if $proxy }}
-    "http_proxy": "{{ $proxy }}",
-    "https_proxy": "{{ $proxy }}",
-    "all_proxy": "{{ $proxy }}",
-    "HTTP_PROXY": "{{ $proxy }}",
-    "HTTPS_PROXY": "{{ $proxy }}",
-    "ALL_PROXY": "{{ $proxy }}",
+{{- if .proxy }}
+    "http_proxy": "{{ .proxy }}",
+    "https_proxy": "{{ .proxy }}",
+    "all_proxy": "{{ .proxy }}",
+    "HTTP_PROXY": "{{ .proxy }}",
+    "HTTPS_PROXY": "{{ .proxy }}",
+    "ALL_PROXY": "{{ .proxy }}",
 {{- end }}
     "no_proxy": "localhost,127.0.0.0/8,::1",
     "NO_PROXY": "localhost,127.0.0.0/8,::1",

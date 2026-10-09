@@ -11,12 +11,19 @@ encryption = "age"
 {{ end }}
 
 {{- $codespaces:= env "CODESPACES" | not | not -}}
-{{- $container:= env "container" | not | not }}
+{{- $container:= env "container" | not | not -}}
+{{- $proxy := "" -}}
+{{- if $container -}}
+{{- $proxy = "http://host.containers.internal:10810" -}}
+{{- else if eq .chezmoi.hostname "anlorsp-main" -}}
+{{- $proxy = "http://localhost:10808" -}}
+{{- end }}
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
 	codespaces = {{ $codespaces }}
 	container = {{ $container }}
+	proxy = {{ $proxy | quote }}
 
 	accel = {{ or $container (eq .chezmoi.hostname "anlorsp-main") }}
 

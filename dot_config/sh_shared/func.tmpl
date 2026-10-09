@@ -1,16 +1,9 @@
+{{- if .proxy -}}
 set-proxy(){
-{{- if .container }}
-	PROXY_HOST="${1:-host.containers.internal}"
-	PROXY_PORT="${2:-10810}"
-{{ else if eq .chezmoi.hostname "anlorsp-main" }}
-	PROXY_HOST="${1:-localhost}"
-	PROXY_PORT="${2:-10808}"
-{{ else }}
-	PROXY_HOST="${1:-localhost}"
-	PROXY_PORT="${2:-10810}"
-{{- end }}
+	PROXY_HOST="${1:-{{ (urlParse .proxy).host | splitList ":" | first }}}"
+	PROXY_PORT="${2:-{{ (urlParse .proxy).host | splitList ":" | last }}}"
 
-	export http_proxy=http://$PROXY_HOST:$PROXY_PORT
+	export http_proxy={{ (urlParse .proxy).scheme }}://$PROXY_HOST:$PROXY_PORT
 	export https_proxy=$http_proxy
 	export ftp_proxy=$http_proxy
 	export all_proxy=$http_proxy
@@ -22,6 +15,7 @@ set-proxy(){
 	export ALL_PROXY=$all_proxy
 	export NO_PROXY=$no_proxy
 }
+{{- end }}
 
 reset-proxy(){
 	unset http_proxy
