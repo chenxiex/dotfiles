@@ -8,6 +8,14 @@ Follow the project's documented conventions or established style. Where the proj
 - Do not hard-wrap generated documents at a fixed line width.
 - Use progressive disclosure in documentation: place details near the code or topic they describe, and keep repository-level documents focused on navigation and shared guidance rather than collecting all details there.
 
+## Hashes, Validation, and Version Tracking
+
+- Generate or retain hashes only for a concrete comparison: identify a meaningful baseline, when it will be compared, how the result will be used, and what to do on a mismatch. Do not create checksum files without a later consumer.
+- Hashes establish content equality with a baseline, not correctness, provenance, or semantic validity. A locally generated baseline detects later changes but does not validate the initial content. Check task-specific structure, loading, and references separately.
+- For extraction or transfers, compare the required contents once while both sides are available; byte comparisons or temporary checksums are sufficient. Reuse trustworthy existing checksums and validation. Retain source/version information, extraction mappings, and validation results; avoid duplicate package/file hashes without distinct uses.
+- For caches and resume, use normalized configuration and explicit input, model, environment, and source version IDs. Update affected IDs and invalidate caches when these change; version checks establish declared identity, not file integrity.
+- Do not rehash all inputs, environments, or outputs on every run. Use recorded validation, version checks, necessary loading checks, and atomic output commits; compare content hashes with a retained baseline when a concrete integrity concern requires it. Hashes cannot recover content; state verification limits when deleting archives or discarding baselines.
+
 ## File Write Policy
 
 Agents may write files only in:
