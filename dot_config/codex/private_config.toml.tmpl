@@ -1,5 +1,7 @@
 model_context_window = 1000000
 model_auto_compact_token_limit = 900000
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
 
 {{ if .container -}}
 # Use the container's isolation because nested bwrap sandboxes may fail.
