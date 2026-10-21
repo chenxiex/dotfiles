@@ -76,15 +76,6 @@ finally:
 PY
 }
 
-relative_path() {
-  perl -MCwd=abs_path -MFile::Basename=dirname,basename -MFile::Spec -e '
-    my ($target, $base) = @ARGV;
-    my $target_dir = abs_path(dirname($target)) // die "cannot resolve target dir: $target\n";
-    my $base_dir = abs_path($base) // die "cannot resolve base dir: $base\n";
-    print File::Spec->abs2rel(File::Spec->catfile($target_dir, basename($target)), $base_dir);
-  ' "$1" "$2"
-}
-
 ensure_directory() {
   local source_dir="$1"
   local target_dir="$2"
@@ -112,9 +103,11 @@ for install_path in "${INSTALL_PATHS[@]}"; do
     [ "$relative_file" = config.toml ] && continue
     target_path="$install_path/$relative_file"
     if [ -d "$target_path" ]; then
-      printf 'Cannot replace directory with file link: %s\n' "$target_path" >&2
+      printf 'Cannot replace directory with file: %s\n' "$target_path" >&2
       exit 1
     fi
-    ln -sfn "$(relative_path "$source_path" "${target_path%/*}")" "$target_path"
+    # Remove existing links so copying never writes through to their source.
+    rm -f "$target_path"
+    cp -L "$source_path" "$target_path"
   done < <(find "$CODEX_PATH" \( -type f -o -type l \) -print0)
 done
