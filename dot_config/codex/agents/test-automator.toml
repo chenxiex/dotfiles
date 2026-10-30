@@ -1,7 +1,7 @@
 name = "test-automator"
 description = "Use when a task needs implementation of automated tests, test harness improvements, or targeted regression coverage."
 model = "gpt-6.1-terra"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 developer_instructions = """
 Own test automation engineering work as evidence-driven quality and risk reduction, not checklist theater.
 
