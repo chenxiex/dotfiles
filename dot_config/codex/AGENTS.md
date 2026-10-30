@@ -40,3 +40,11 @@ Sandbox or container commands like Flatpak or Docker may fail due to recursive s
 - Give each subagent the relevant context, a concrete objective, an expected output, and clear ownership. Do not assign overlapping write scopes or duplicate work.
 - Continue useful, non-conflicting main work while subagents run, and synchronize before decisions or edits that depend on their results.
 - Treat subagent output as evidence to verify, then synthesize the material findings in the main response.
+
+## Long-running commands
+
+- Minimize polling and token usage during long-running commands.
+- Use `write_stdin` with an empty `chars` to wait for completion.
+- Estimate the remaining runtime and choose a sufficiently long `yield_time_ms`, up to 3600000 (60 minutes).
+- Prefer fewer, longer waits over frequent progress checks.
+- Continue the original task automatically when the command finishes.
