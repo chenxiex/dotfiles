@@ -46,6 +46,9 @@ Sandbox or container commands like Flatpak or Docker may fail due to recursive s
 - Use `write_stdin` with an empty `chars` to wait for completion.
 - Estimate the remaining runtime and choose a sufficiently long `yield_time_ms`, up to 3600000 (60 minutes), or use a long sleep that can be interrupted by new messages.
 - Do not simulate a one-hour wait by chaining multiple one-minute wait calls.
+- On every wake-up to poll a task, check whether the elapsed polling interval follows the user's requested interval. Correct any scheduling mistake for the next poll instead of repeating it; explicit user instructions take precedence over the adaptive rules below.
+- If the user has not specified a polling interval and the task is still running, use its current execution speed or updated estimated completion time to schedule the next poll. Reassess these estimates on each wake-up rather than relying on the initial task-size or runtime estimate.
+- If execution speed and completion time cannot be estimated, there is no evidence that the task is stuck, and continued waiting is appropriate, increase successive polling intervals linearly by a fixed increment, up to a maximum interval of one hour. Retain the increment and previous interval across wake-ups; do not restart the progression on each poll. Once the cap is reached, keep subsequent intervals at one hour unless new evidence or user instructions call for a change.
 - Resume model processing only when a scheduled check time is reached, the task completes, an error occurs, or new input is received; if there is no change, do not re-analyze or send progress updates.
 - Prefer fewer, longer waits over frequent progress checks.
 - Continue the original task automatically when the command finishes.
