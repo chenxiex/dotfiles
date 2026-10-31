@@ -4,6 +4,10 @@ approval_policy = "on-request"
 approvals_reviewer = "auto_review"
 background_terminal_max_timeout = 3600000
 
+[agents]
+default_subagent_model = "gpt-6.1-sol"
+default_subagent_reasoning_effort = "medium"
+
 {{ if .container -}}
 # Use the container's isolation because nested bwrap sandboxes may fail.
 default_permissions = ":danger-full-access"
