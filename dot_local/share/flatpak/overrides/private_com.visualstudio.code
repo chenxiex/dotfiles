@@ -1,6 +1,6 @@
 [Context]
-filesystems=xdg-config/claude;xdg-config/codex;~/.codex;~/.gnupg;~/.local;~/.ssh;~/opt;xdg-run/podman/podman.sock:ro;xdg-run/podman:ro;~/.vscode-server-flatpakhost;xdg-config/git;~/.claude;!host
-persistent=.vscode-shared;.vscode
+filesystems=xdg-download;~/.claude;xdg-config/git;~/.vscode-server-flatpakhost;xdg-run/podman:ro;xdg-run/podman/podman.sock:ro;~/opt;~/.ssh;~/.local;~/.gnupg;~/.codex;xdg-config/codex;xdg-config/claude;!host
+persistent=.vscode;.vscode-shared
 
 [Environment]
 TMPDIR=/var/tmp

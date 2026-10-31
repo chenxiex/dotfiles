@@ -1,2 +1,2 @@
 [Context]
-sockets=wayland
+filesystems=!~/JoplinBackup;~/OneDrive/Backups/JoplinBackup:create
