@@ -18,8 +18,7 @@ Follow the project's documented conventions or established style. Where the proj
 
 ## Codex Configuration and chezmoi
 
-- `~/.config/codex/` is managed by chezmoi. chezmoi links its contents into `~/.codex/`, merging them with files already present there.
-- Before modifying a file under `~/.codex/`, check whether it is a link to a file under `~/.config/codex/`. If it is, edit the source file under `~/.config/codex/`; otherwise, edit the file under `~/.codex/` directly.
+- `~/.config/codex/` is managed by chezmoi. chezmoi merges them with files already present in `~/.codex/`.
 - When adding skills, subagents, or other configuration, prefer `~/.config/codex/` if it contains no tokens, other sensitive information, or machine-specific information such as local paths. This makes it available for synchronization between machines through chezmoi.
 - If the new configuration contains tokens, other sensitive information, or machine-specific information, add it under `~/.codex/` to avoid exposing it through chezmoi.
 
