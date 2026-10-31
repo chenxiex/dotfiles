@@ -44,6 +44,8 @@ Sandbox or container commands like Flatpak or Docker may fail due to recursive s
 
 - Minimize polling and token usage during long-running commands.
 - Use `write_stdin` with an empty `chars` to wait for completion.
-- Estimate the remaining runtime and choose a sufficiently long `yield_time_ms`, up to 3600000 (60 minutes).
+- Estimate the remaining runtime and choose a sufficiently long `yield_time_ms`, up to 3600000 (60 minutes), or use a long sleep that can be interrupted by new messages.
+- Do not simulate a one-hour wait by chaining multiple one-minute wait calls.
+- Resume model processing only when a scheduled check time is reached, the task completes, an error occurs, or new input is received; if there is no change, do not re-analyze or send progress updates.
 - Prefer fewer, longer waits over frequent progress checks.
 - Continue the original task automatically when the command finishes.
