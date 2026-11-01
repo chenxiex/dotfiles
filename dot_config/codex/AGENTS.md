@@ -32,6 +32,8 @@ Agents must not skip any necessary probing or verification because of a sandbox 
 
 Sandbox or container commands like Flatpak or Docker may fail due to recursive sandbox. Agents must request elevated permission to run these commands, and stop immediately if permission request is blocked. Agents must not bypass Flatpak, `bwrap`, Docker, or any other sandbox or container boundary to execute an equivalent native host binary directly. 
 
+Agents must not bypass MCP by directly invoking command-line tools to perform the same operation.
+
 ## Subagent Delegation
 
 - Proactively delegate when a task contains an independent, bounded side track whose parallel or isolated execution materially improves speed, coverage, or confidence.
