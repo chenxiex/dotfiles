@@ -1,0 +1,29 @@
+{
+  "plugins": {
+    "gslides": {
+      "installedFrom": {
+        "id": "antigravity-plugins-official/plugin/gslides",
+        "marketplace": "antigravity-plugins-official",
+        "version": "0.0.7"
+      }
+    }
+  },
+  "userSettings": {
+    "autoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_PROCEED_IN_SANDBOX",
+    "enableTerminalSandbox": true,
+    "globalPermissionGrants": {
+      "allow": [
+        "read_url(*)",
+        "write_file(/home/anlorsp/.cache)",
+        "write_file(/home/anlorsp/.config/matplotlib)"
+      ]
+    },
+    "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ASK",
+    "permissionGrantsV2Migrated": true,
+    "permissionPreset": "AGENT_PERMISSION_PRESET_DEFAULT",
+    "queuedMessageDeliveryStrategy": "MESSAGE_DELIVERY_STRATEGY_NEXT_INVOCATION",
+    "remoteControlEnabled": true,
+    "remoteControlHostname": "anlorsp-main-starlit-cosmos",
+    "sandboxEnabledAtV2Migration": true
+  }
+}
