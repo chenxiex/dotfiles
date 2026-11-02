@@ -5,8 +5,8 @@
     "globalPermissionGrants": {
       "allow": [
         "read_url(*)",
-        "write_file(/home/anlorsp/.cache)",
-        "write_file(/home/anlorsp/.config/matplotlib)"
+        "write_file({{ .chezmoi.homeDir }}/.cache)",
+        "write_file({{ .chezmoi.homeDir }}/.config/matplotlib)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ASK",
