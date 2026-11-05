@@ -1,18 +1,25 @@
 {
   "userSettings": {
+    {{ if .container -}}
+    "autoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_EAGER",
+    "enableTerminalSandbox": false,
+	"nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
+	"permissionPreset": "AGENT_PERMISSION_PRESET_TURBO",
+	{{ else -}}
     "autoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_PROCEED_IN_SANDBOX",
     "enableTerminalSandbox": true,
+    "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ASK",
+    "permissionPreset": "AGENT_PERMISSION_PRESET_DEFAULT",
+	{{ end }}
     "globalPermissionGrants": {
       "allow": [
         "read_url(*)",
+		"read_file(*)",
         "write_file({{ .chezmoi.homeDir }}/.cache)",
-        "write_file({{ .chezmoi.homeDir }}/.config/matplotlib)",
-		"read_file(*)"
+        "write_file({{ .chezmoi.homeDir }}/.config/matplotlib)"
       ]
     },
-    "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ASK",
     "permissionGrantsV2Migrated": true,
-    "permissionPreset": "AGENT_PERMISSION_PRESET_DEFAULT",
     "queuedMessageDeliveryStrategy": "MESSAGE_DELIVERY_STRATEGY_NEXT_INVOCATION",
     "sandboxEnabledAtV2Migration": true
   }
