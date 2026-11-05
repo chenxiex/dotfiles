@@ -1,0 +1,4 @@
+interface:
+  display_name: "Autoresearch"
+  short_description: "持续编排科研实验迭代，协调编码、作业维护、结果分析与文献研究"
+  default_prompt: "使用 $autoresearch，根据当前实验状态持续推进研究目标，逐轮验收并记录关键决策与成果。"
