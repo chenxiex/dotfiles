@@ -6,7 +6,8 @@
       "allow": [
         "read_url(*)",
         "write_file({{ .chezmoi.homeDir }}/.cache)",
-        "write_file({{ .chezmoi.homeDir }}/.config/matplotlib)"
+        "write_file({{ .chezmoi.homeDir }}/.config/matplotlib)",
+		"read_file(*)"
       ]
     },
     "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ASK",
