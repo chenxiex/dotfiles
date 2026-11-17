@@ -9,14 +9,14 @@ if ! chezmoi="$(command -v chezmoi)"; then
 	chezmoi="${bin_dir}/chezmoi"
 	echo "Installing chezmoi to '${chezmoi}'" >&2
 	if command -v curl >/dev/null; then
-		chezmoi_install_script="$(curl -fsSL get.chezmoi.io)"
+		chezmoi_install_script="$(curl -fsSL https://get.chezmoi.io)"
 	elif command -v wget >/dev/null; then
-		chezmoi_install_script="$(wget -qO- get.chezmoi.io)"
+		chezmoi_install_script="$(wget -qO- https://get.chezmoi.io)"
 	else
 		echo "To install chezmoi, you must have curl or wget installed." >&2
 		exit 1
 	fi
-	chezmoi_install_script="$(printf '%s' "${chezmoi_install_script}" | sed 's|"https://github.com/twpayne/chezmoi/\([^"]*\)"|"https://gh-proxy.com/https://github.com/twpayne/chezmoi/\1"|g')"
+	chezmoi_install_script="$(printf '%s' "${chezmoi_install_script}" | sed 's|"https://github.com/twpayne/chezmoi/releases/download/|"https://gh-proxy.com/https://github.com/twpayne/chezmoi/releases/download/|g')"
 	sh -c "${chezmoi_install_script}" -- -b "${bin_dir}"
 	unset chezmoi_install_script bin_dir
 fi
