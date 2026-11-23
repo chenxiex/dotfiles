@@ -45,3 +45,9 @@ pick_gpu() {
     export CUDA_VISIBLE_DEVICES="$gpu_id"
     echo "Using GPU $gpu_id"
 }
+
+function cgtproxy-exec() {
+  local slice="cgtproxy-$1.slice"
+  shift 1
+  systemd-run --user --slice --collect "$slice" -P "$@"
+}
