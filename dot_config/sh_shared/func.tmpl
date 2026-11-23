@@ -49,5 +49,5 @@ pick_gpu() {
 function cgtproxy-exec() {
   local slice="cgtproxy-$1.slice"
   shift 1
-  systemd-run --user --slice --collect "$slice" -P "$@"
+  systemd-run --user --collect --slice "$slice" -P "$@"
 }
