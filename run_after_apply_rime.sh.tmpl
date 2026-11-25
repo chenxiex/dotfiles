@@ -1,5 +1,5 @@
 {{- if not .container -}}
-#!/bin/bash
+#!{{ lookPath "bash" }}
 RIME_PATH="$HOME/.config/rime"
 INSTALL_PATHS=(
   "$HOME/.config/ibus/rime"
