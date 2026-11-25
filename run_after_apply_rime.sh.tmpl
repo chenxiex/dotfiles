@@ -5,6 +5,10 @@ INSTALL_PATHS=(
   "$HOME/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime"
   "$HOME/.local/share/fcitx5/rime"
 )
+COPY_PATHS=(
+  "$HOME/storage/shared/rime"
+)
+SOURCE_PATHS=("$RIME_PATH"/oh-my-rime/* "$RIME_PATH"/rime_custom/* "$RIME_PATH"/wanxiang/*)
 
 relative_path() {
   perl -MCwd=abs_path -MFile::Basename=dirname,basename -MFile::Spec -e '
@@ -15,10 +19,43 @@ relative_path() {
   ' "$1" "$2"
 }
 
+copy_rime_entry() {
+  local source_path="$1" target_path="$2" child_path
+
+  [ -d "$source_path" ] || [ -f "$source_path" ] || return 0
+  if [ -L "$target_path" ]; then
+    unlink "$target_path" || return
+  fi
+
+  if [ -d "$source_path" ]; then
+    [ -d "$target_path" ] || mkdir "$target_path" || return
+    for child_path in "$source_path"/*; do
+      copy_rime_entry "$child_path" "$target_path/${child_path##*/}" || return
+    done
+  else
+    [ "$source_path" -ef "$target_path" ] && return 0
+    if [ -e "$target_path" ] && [ ! -f "$target_path" ]; then
+      printf 'Cannot copy Rime file to %s\n' "$target_path" >&2
+      return 1
+    fi
+    cat "$source_path" > "$target_path"
+  fi
+}
+
 for install_path in "${INSTALL_PATHS[@]}"; do
   mkdir -p "$install_path"
-  for source_path in "$RIME_PATH"/oh-my-rime/* "$RIME_PATH"/rime_custom/* "$RIME_PATH"/wanxiang/*; do
+  for source_path in "${SOURCE_PATHS[@]}"; do
     [ -e "$source_path" ] || continue
     ln -sfn "$(relative_path "$source_path" "$install_path")" "$install_path/$(basename "$source_path")"
   done
 done
+
+(
+  shopt -s dotglob nullglob
+  for copy_path in "${COPY_PATHS[@]}"; do
+    [ -d "$copy_path" ] || continue
+    for source_path in "${SOURCE_PATHS[@]}"; do
+      copy_rime_entry "$source_path" "$copy_path/${source_path##*/}" || exit
+    done
+  done
+)
