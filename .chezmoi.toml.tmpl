@@ -23,13 +23,14 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
 [data]
 	codespaces = {{ $codespaces }}
 	container = {{ $container }}
-	proxy = {{ $proxy | quote }}
+	proxy = {{ dig "proxy" $proxy . | quote }}
 
-	accel = {{ or $container (eq .chezmoi.hostname "anlorsp-main") }}
+	accel = {{ dig "accel" (or $container (eq .chezmoi.hostname "anlorsp-main")) . }}
 
-	large = {{ (eq .chezmoi.hostname "anlorsp-main") }}
+	large = {{ dig "large" (eq .chezmoi.hostname "anlorsp-main") . }}
+	rime = {{ dig "rime" (eq .chezmoi.hostname "anlorsp-main") . }}
 
-	gituser = {{ or (eq .chezmoi.hostname "anlorsp-main" ) $container }}
+	gituser = {{ dig "gituser" (or (eq .chezmoi.hostname "anlorsp-main") $container) . }}
 
 [git]
     autoCommit = true

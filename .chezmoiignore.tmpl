@@ -23,6 +23,8 @@ key.txt.age
 .local/share/applications
 {{- end }}
 
-{{- if (not .large) }}
+{{- if not .rime }}
 .config/rime
+.local/bin/ibus-rime-preedit.py
+apply_rime.sh
 {{- end }}
