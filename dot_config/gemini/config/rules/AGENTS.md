@@ -1,3 +1,13 @@
+# AGENTS.md
+
+## Style Guide
+
+Follow the project's documented conventions or established style. Where the project has no applicable rule, use these defaults:
+
+- Use spaces with an indentation width of 4.
+- Do not hard-wrap generated documents at a fixed line width.
+- Use progressive disclosure in documentation: place details near the code or topic they describe, and keep repository-level documents focused on navigation and shared guidance rather than collecting all details there.
+
 ## Testing Discipline
 
 - **Orthogonal & Parameterized**: Never write overlapping tests. Each behavior or branch should be verified once at the lowest effective level. Consolidate variations of the same logic into table-driven/parameterized tests instead of duplicating test functions.
