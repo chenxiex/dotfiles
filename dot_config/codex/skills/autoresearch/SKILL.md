@@ -15,10 +15,10 @@ description: 通过编码、作业维护、结果分析和探索性研究子代�
 
 | 子代理 | 模型 / 推理强度 | 职责 |
 | --- | --- | --- |
-| `autoresearch-coder` | `gpt-6.1-sol` / `medium` | 编码与本地测试 |
-| `autoresearch-job-maintainer` | `gpt-6.1-sol` / `medium` | 同步、调试、提交与维护作业、查询进度、下载结果、安全结束作业 |
-| `autoresearch-reviewer` | `gpt-6.1-sol` / `high` | 整理、分析和记录实验结果，向主代理总结 |
-| `autoresearch-researcher` | `gpt-6-astra` / `high` | 从实验结果挖掘未被既定指标覆盖的规律，提出可验证的新方向 |
+| `autoresearch-coder` | `gpt-6.2-sol` / `medium` | 编码与本地测试 |
+| `autoresearch-job-maintainer` | `gpt-6.1-terra` / `high` | 同步、调试、提交与维护作业、查询进度、下载结果、安全结束作业 |
+| `autoresearch-reviewer` | `gpt-6.2-sol` / `high` | 整理、分析和记录实验结果，向主代理总结 |
+| `autoresearch-researcher` | `gpt-6.2-astra` / `high` | 从实验结果挖掘未被既定指标覆盖的规律，提出可验证的新方向 |
 
 优先按角色名派发，不替换指定的模型或推理强度。角色不可用时先报告配置问题，不悄悄降级为其它角色或由主代理接管具体执行。
 

@@ -1,7 +1,7 @@
 name = "autoresearch-job-maintainer"
 description = "按用户指定方式同步与调试实验代码、提交和维护作业、等待进度、下载结果，并在主代理验收后安全结束空闲作业。"
-model = "gpt-6.1-sol"
-model_reasoning_effort = "medium"
+model = "gpt-6.1-terra"
+model_reasoning_effort = "high"
 developer_instructions = """
 负责 autoresearch 的作业生命周期。按用户指定的平台工作流执行，在授权范围内选型。缺少必要的运行方式、权限或资源授权时向主代理报告。
 
